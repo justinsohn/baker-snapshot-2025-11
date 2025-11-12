@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- LT: Are you the Landlord or Tenant? --></label>
+    <name>LT_Role__c</name>
+    <picklistValues>
+        <masterLabel>Landlord</masterLabel>
+        <translation><!-- Landlord --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tenant</masterLabel>
+        <translation><!-- Tenant --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

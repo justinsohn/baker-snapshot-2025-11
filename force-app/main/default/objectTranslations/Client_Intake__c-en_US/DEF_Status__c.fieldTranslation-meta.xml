@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DEF: Defamed or Accused of Defaming? --></label>
+    <name>DEF_Status__c</name>
+    <picklistValues>
+        <masterLabel>Accused of defaming others</masterLabel>
+        <translation><!-- Accused of defaming others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Victim of defamation</masterLabel>
+        <translation><!-- Victim of defamation --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

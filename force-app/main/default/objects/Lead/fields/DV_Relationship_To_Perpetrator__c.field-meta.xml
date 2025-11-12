@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DV_Relationship_To_Perpetrator__c</fullName>
+    <label>Relationship to Perpetrator</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Partner/spouse</fullName>
+                <default>false</default>
+                <label>Partner/spouse</label>
+            </value>
+            <value>
+                <fullName>Ex-partner/spouse</fullName>
+                <default>false</default>
+                <label>Ex-partner/spouse</label>
+            </value>
+            <value>
+                <fullName>Family member</fullName>
+                <default>false</default>
+                <label>Family member</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

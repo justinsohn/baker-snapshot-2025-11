@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://app.clio.com/oauth/authorize</authorizeUrl>
+    <consumerKey>GAHZaYSWvH7PJ9NS0ru3uf9P6nQpQ8MYy7va69Eb</consumerKey>
+    <consumerSecret>Placeholder_Value</consumerSecret>
+    <defaultScopes>contacts_read matters_read activities_read bills_read calendar_entries_read bank_transactions_read users_read</defaultScopes>
+    <friendlyName>Clio OAuth Provider</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <isPkceEnabled>false</isPkceEnabled>
+    <providerType>OpenIdConnect</providerType>
+    <requireMfa>false</requireMfa>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <sendSecretInApis>true</sendSecretInApis>
+    <tokenUrl>https://app.clio.com/oauth/token</tokenUrl>
+</AuthProvider>

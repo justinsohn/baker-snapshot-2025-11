@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CL_Case_Involvement_Types__c</fullName>
+    <label>CL: Case Involvement Types (Check all)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Domestic Violence</fullName>
+                <default>false</default>
+                <label>Domestic Violence</label>
+            </value>
+            <value>
+                <fullName>Juvenile Offense</fullName>
+                <default>false</default>
+                <label>Juvenile Offense</label>
+            </value>
+            <value>
+                <fullName>Sex Offense</fullName>
+                <default>false</default>
+                <label>Sex Offense</label>
+            </value>
+            <value>
+                <fullName>Drug Offense</fullName>
+                <default>false</default>
+                <label>Drug Offense</label>
+            </value>
+            <value>
+                <fullName>DUI/DWI</fullName>
+                <default>false</default>
+                <label>DUI/DWI</label>
+            </value>
+            <value>
+                <fullName>Death or Serious Bodily Injury</fullName>
+                <default>false</default>
+                <label>Death or Serious Bodily Injury</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

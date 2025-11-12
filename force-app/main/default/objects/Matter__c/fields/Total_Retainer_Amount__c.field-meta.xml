@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Retainer_Amount__c</fullName>
+    <formula>IF(
+				Lead__r.Initial_Retainer_Evergreen_Hr_Rate__c &gt; 0  ||  Lead__r.Flat_Rate_Retainer_if_Flat_Rate__c &gt; 0,
+				Lead__r.Initial_Retainer_Evergreen_Hr_Rate__c + Lead__r.Flat_Rate_Retainer_if_Flat_Rate__c,
+				0
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Retainer Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

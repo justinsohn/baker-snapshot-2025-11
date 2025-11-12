@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CQ: Documents for Review (Specify) --></label>
+    <name>CQ_Docs_For_Review_Specify__c</name>
+</CustomFieldTranslation>

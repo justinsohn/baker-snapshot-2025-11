@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type of Legal Matter (Check all that... --></label>
+    <name>Legal_Matter_Type__c</name>
+    <picklistValues>
+        <masterLabel>Business Law</masterLabel>
+        <translation><!-- Business Law --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Civil Litigation</masterLabel>
+        <translation><!-- Civil Litigation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Construction &amp; Construction Defect</masterLabel>
+        <translation><!-- Construction &amp; Construction Defect --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Criminal Law</masterLabel>
+        <translation><!-- Criminal Law --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Defamation</masterLabel>
+        <translation><!-- Defamation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Employment Law</masterLabel>
+        <translation><!-- Employment Law --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Family Law</masterLabel>
+        <translation><!-- Family Law --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Guardian and Conservatorship</masterLabel>
+        <translation><!-- Guardian and Conservatorship --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HOA</masterLabel>
+        <translation><!-- HOA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Landlord-Tenant Dispute</masterLabel>
+        <translation><!-- Landlord-Tenant Dispute --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Personal Injury</masterLabel>
+        <translation><!-- Personal Injury --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Probate/Estate Planning</masterLabel>
+        <translation><!-- Probate/Estate Planning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Real Estate</masterLabel>
+        <translation><!-- Real Estate --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

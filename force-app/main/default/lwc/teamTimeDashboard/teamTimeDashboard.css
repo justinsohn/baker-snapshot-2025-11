@@ -1,0 +1,237 @@
+/* teamTimeDashboard.css */
+
+.analytics-icon svg {
+    --sds-c-icon-color-foreground-default: #0070d2; /* SLDS Blue */
+}
+
+/* --- Modern Chart Card Styles --- */
+.chart-card {
+    border: 1px solid #dddbda; /* SLDS Gray 5 */
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    overflow: hidden; /* To keep the accent rail contained */
+    position: relative;
+}
+
+.chart-card_header {
+    border-bottom: 1px solid #e0e0e0; /* Faint divider */
+    padding: 0.75rem 1rem;
+}
+
+.chart-card_accent {
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.accent-blue { background-color: #0070d2; } /* SLDS Blue */
+.accent-green { background-color: #04844b; } /* SLDS Green */
+.accent-orange { background-color: #ff6b35; } /* Orange for Collection Rate */
+
+
+/* --- Gauge Color Bands --- */
+.gauge-band-red,
+.gauge-band-yellow,
+.gauge-band-green {
+    stroke-linecap: butt; /* Use butt for flat ends */
+}
+
+.gauge-band-red { stroke: #c23934; }
+.gauge-band-yellow { stroke: #ffb75d; }
+.gauge-band-green { stroke: #04844b; }
+
+/* --- Gauge Needle --- */
+.gauge-needle {
+    fill: #181818;
+    stroke: #333;
+    stroke-width: 0.5;
+}
+
+.gauge-needle-shadow {
+    fill: #000;
+    opacity: 0.15;
+    transform: translate(0.3px, 0.3px); /* Tighter, more subtle shadow */
+}
+
+.gauge-needle-center {
+    fill: #181818;
+    stroke: #555;
+    stroke-width: 1;
+}
+
+/* --- Gauge Ticks & Labels --- */
+.gauge-ticks {
+    font-size: 10px;
+    fill: #555;
+}
+
+.gauge-tick-line {
+    stroke: #777;
+    stroke-width: 1;
+}
+
+
+/* --- General Card & Layout --- */
+.kpi-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 190px; /* Reduced card height */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.gauge-container {
+    position: relative;
+    width: 100%;
+    max-width: 260px; /* Made the gauge container smaller */
+    margin: 0 auto;
+}
+
+.gauge-caption {
+    margin-top: 0; /* Let caption sit naturally below the SVG container */
+}
+
+/* --- Collection Rate Chart Styles --- */
+.collection-chart-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+}
+
+.collection-chart-container-compact {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.collection-chart-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+}
+
+.collectionRateChart {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* --- Custom Date Input Styles --- */
+.date-input-container {
+    position: relative;
+}
+
+.has-clear-button .clear-date-button {
+    position: absolute;
+    top: 67%; /* Adjusted to align better with input field */
+    right: 32px; /* Moved left to avoid overlapping with calendar icon space */
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: white;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+/* Hide calendar icon when clear button is present */
+.has-clear-button lightning-input {
+    --sds-c-input-shadow: none;
+}
+
+.has-clear-button lightning-input::part(input) {
+    padding-right: 60px !important;
+}
+
+/* Target the calendar icon in various ways */
+.has-clear-button .slds-input__icon_right,
+.has-clear-button .slds-input__icon,
+.has-clear-button lightning-primitive-icon {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Hide webkit calendar picker */
+.has-clear-button input[type="date"]::-webkit-calendar-picker-indicator,
+.has-clear-button .slds-input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+}
+
+/* Additional targeting for Lightning components */
+.has-clear-button lightning-input .slds-form-element__control .slds-input__icon_right {
+    display: none !important;
+}
+
+/* --- Smart Date Range Component Styles --- */
+.date-range-container {
+    position: relative;
+}
+
+.date-range-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.custom-date-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.custom-date-input {
+    flex: 1;
+}
+
+.date-separator {
+    font-size: 0.875rem;
+    color: #706e6b;
+    white-space: nowrap;
+    padding: 0 0.25rem;
+}
+
+.clear-custom-dates {
+    flex-shrink: 0;
+}
+
+/* Clickable Card Styling - matching Invoice Dashboard */
+.clickable-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.clickable-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-chevron {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #706e6b;
+    opacity: 0.7;
+}
+
+/* Full-screen modal styling - matching Invoice Dashboard */
+.slds-modal__container {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    min-width: 95vw !important;
+}
+
+.slds-modal__content {
+    max-height: 70vh;
+    overflow-y: auto;
+}

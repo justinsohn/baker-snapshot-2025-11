@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reference__c</fullName>
+    <description>This is an optional column that can be used for hard cost entries. Add any relevant reference information such as an invoice or other reference number associated with the vendor.</description>
+    <externalId>false</externalId>
+    <label>Reference</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

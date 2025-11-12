@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FL_Marriage_Type__c</fullName>
+    <label>Type of Marriage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Traditional</fullName>
+                <default>false</default>
+                <label>Traditional</label>
+            </value>
+            <value>
+                <fullName>Common Law</fullName>
+                <default>false</default>
+                <label>Common Law</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

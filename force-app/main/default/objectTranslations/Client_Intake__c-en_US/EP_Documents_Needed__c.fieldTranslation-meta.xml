@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- EP: Documents Needed for Estate Plan... --></label>
+    <name>EP_Documents_Needed__c</name>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Power of Attorney</masterLabel>
+        <translation><!-- Power of Attorney --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Trust</masterLabel>
+        <translation><!-- Trust --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Will</masterLabel>
+        <translation><!-- Will --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

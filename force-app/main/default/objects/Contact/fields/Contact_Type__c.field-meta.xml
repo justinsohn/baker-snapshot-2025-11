@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Type__c</fullName>
+    <label>Contact Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Administrative &amp; Support</fullName>
+                <default>false</default>
+                <label>Administrative &amp; Support</label>
+            </value>
+            <value>
+                <fullName>Arbitrator</fullName>
+                <default>false</default>
+                <label>Arbitrator</label>
+            </value>
+            <value>
+                <fullName>Authorized Representative</fullName>
+                <default>false</default>
+                <label>Authorized Representative</label>
+            </value>
+            <value>
+                <fullName>Billing Contact</fullName>
+                <default>false</default>
+                <label>Billing Contact</label>
+            </value>
+            <value>
+                <fullName>Co-Client / Co-Petitioner</fullName>
+                <default>false</default>
+                <label>Co-Client / Co-Petitioner</label>
+            </value>
+            <value>
+                <fullName>Co-Counsel</fullName>
+                <default>false</default>
+                <label>Co-Counsel</label>
+            </value>
+            <value>
+                <fullName>Court Clerk</fullName>
+                <default>false</default>
+                <label>Court Clerk</label>
+            </value>
+            <value>
+                <fullName>Emergency Contact</fullName>
+                <default>false</default>
+                <label>Emergency Contact</label>
+            </value>
+            <value>
+                <fullName>Expert Witness</fullName>
+                <default>false</default>
+                <label>Expert Witness</label>
+            </value>
+            <value>
+                <fullName>Government Agency Contact</fullName>
+                <default>false</default>
+                <label>Government Agency Contact</label>
+            </value>
+            <value>
+                <fullName>Insurance Adjuster (Opposing)</fullName>
+                <default>false</default>
+                <label>Insurance Adjuster (Opposing)</label>
+            </value>
+            <value>
+                <fullName>Intake Attorney</fullName>
+                <default>false</default>
+                <label>Intake Attorney</label>
+            </value>
+            <value>
+                <fullName>Interpreter</fullName>
+                <default>false</default>
+                <label>Interpreter</label>
+            </value>
+            <value>
+                <fullName>Investigator</fullName>
+                <default>false</default>
+                <label>Investigator</label>
+            </value>
+            <value>
+                <fullName>IT Support Contact</fullName>
+                <default>false</default>
+                <label>IT Support Contact</label>
+            </value>
+            <value>
+                <fullName>Judge</fullName>
+                <default>false</default>
+                <label>Judge</label>
+            </value>
+            <value>
+                <fullName>Legal Assistant</fullName>
+                <default>false</default>
+                <label>Legal Assistant</label>
+            </value>
+            <value>
+                <fullName>Mediator</fullName>
+                <default>false</default>
+                <label>Mediator</label>
+            </value>
+            <value>
+                <fullName>Medical Provider</fullName>
+                <default>false</default>
+                <label>Medical Provider</label>
+            </value>
+            <value>
+                <fullName>Office Manager</fullName>
+                <default>false</default>
+                <label>Office Manager</label>
+            </value>
+            <value>
+                <fullName>Opposing Counsel</fullName>
+                <default>false</default>
+                <label>Opposing Counsel</label>
+            </value>
+            <value>
+                <fullName>Opposing Law Firm</fullName>
+                <default>false</default>
+                <label>Opposing Law Firm</label>
+            </value>
+            <value>
+                <fullName>Opposing Party</fullName>
+                <default>false</default>
+                <label>Opposing Party</label>
+            </value>
+            <value>
+                <fullName>Paralegal</fullName>
+                <default>false</default>
+                <label>Paralegal</label>
+            </value>
+            <value>
+                <fullName>Parent / Guardian</fullName>
+                <default>false</default>
+                <label>Parent / Guardian</label>
+            </value>
+            <value>
+                <fullName>Power of Attorney</fullName>
+                <default>false</default>
+                <label>Power of Attorney</label>
+            </value>
+            <value>
+                <fullName>Primary Client</fullName>
+                <default>false</default>
+                <label>Primary Client</label>
+            </value>
+            <value>
+                <fullName>Process Server</fullName>
+                <default>false</default>
+                <label>Process Server</label>
+            </value>
+            <value>
+                <fullName>Records Custodian</fullName>
+                <default>false</default>
+                <label>Records Custodian</label>
+            </value>
+            <value>
+                <fullName>Responsible Attorney</fullName>
+                <default>false</default>
+                <label>Responsible Attorney</label>
+            </value>
+            <value>
+                <fullName>Scheduler</fullName>
+                <default>false</default>
+                <label>Scheduler</label>
+            </value>
+            <value>
+                <fullName>Translator</fullName>
+                <default>false</default>
+                <label>Translator</label>
+            </value>
+            <value>
+                <fullName>Witness</fullName>
+                <default>false</default>
+                <label>Witness</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

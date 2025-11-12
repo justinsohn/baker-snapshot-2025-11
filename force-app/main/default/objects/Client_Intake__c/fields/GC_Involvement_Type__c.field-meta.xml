@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GC_Involvement_Type__c</fullName>
+    <label>GC: How are you involved in this case?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Want to be appointed as a Guardian</fullName>
+                <default>false</default>
+                <label>Want to be appointed as a Guardian</label>
+            </value>
+            <value>
+                <fullName>Want to be appointed as a Conservator</fullName>
+                <default>false</default>
+                <label>Want to be appointed as a Conservator</label>
+            </value>
+            <value>
+                <fullName>Want to be appointed as both a Guardian and Conservator</fullName>
+                <default>false</default>
+                <label>Want to be appointed as both a Guardian and Conservator</label>
+            </value>
+            <value>
+                <fullName>Need to transfer Guardianship or Conservatorship from another state to Colorado</fullName>
+                <default>false</default>
+                <label>Need to transfer Guardianship or Conservatorship from another state to Colorado</label>
+            </value>
+            <value>
+                <fullName>Already appointed as a Guardian</fullName>
+                <default>false</default>
+                <label>Already appointed as a Guardian</label>
+            </value>
+            <value>
+                <fullName>Already appointed as a Conservator</fullName>
+                <default>false</default>
+                <label>Already appointed as a Conservator</label>
+            </value>
+            <value>
+                <fullName>Already appointed as both a Guardian and Conservator</fullName>
+                <default>false</default>
+                <label>Already appointed as both a Guardian and Conservator</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

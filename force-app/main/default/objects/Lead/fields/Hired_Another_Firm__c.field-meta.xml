@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hired_Another_Firm__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>The lead was scheduled but did not complete the call due to already hiring another firm</inlineHelpText>
+    <label>Hired Another Firm</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

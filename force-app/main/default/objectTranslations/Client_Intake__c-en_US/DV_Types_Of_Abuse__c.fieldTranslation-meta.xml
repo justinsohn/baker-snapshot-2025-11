@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DV: Types of Abuse Experienced... --></label>
+    <name>DV_Types_Of_Abuse__c</name>
+    <picklistValues>
+        <masterLabel>Emotional or psychological abuse</masterLabel>
+        <translation><!-- Emotional or psychological abuse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Financial abuse</masterLabel>
+        <translation><!-- Financial abuse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Physical abuse</masterLabel>
+        <translation><!-- Physical abuse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sexual abuse or assault</masterLabel>
+        <translation><!-- Sexual abuse or assault --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stalking or harassment</masterLabel>
+        <translation><!-- Stalking or harassment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Verbal abuse</masterLabel>
+        <translation><!-- Verbal abuse --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DEF_P: How Reputation Affected --></label>
+    <name>DEF_P_Reputation_Affected_How__c</name>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Personal reputation harmed</masterLabel>
+        <translation><!-- Personal reputation harmed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Professional reputation harmed</masterLabel>
+        <translation><!-- Professional reputation harmed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Public perception altered</masterLabel>
+        <translation><!-- Public perception altered --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

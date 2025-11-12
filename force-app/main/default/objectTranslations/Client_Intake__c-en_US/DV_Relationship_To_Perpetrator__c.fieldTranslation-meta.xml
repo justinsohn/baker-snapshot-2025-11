@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DV: Relationship to Perpetrator --></label>
+    <name>DV_Relationship_To_Perpetrator__c</name>
+    <picklistValues>
+        <masterLabel>Ex-partner/spouse</masterLabel>
+        <translation><!-- Ex-partner/spouse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Family member</masterLabel>
+        <translation><!-- Family member --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partner/spouse</masterLabel>
+        <translation><!-- Partner/spouse --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DEF: Defamatory Statements Included... --></label>
+    <name>DEF_Statement_Content_Types__c</name>
+    <picklistValues>
+        <masterLabel>A statement that you are impotent or unchaste</masterLabel>
+        <translation><!-- A statement that you are impotent or unchaste --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>A statement that you are unfit to practice your profession or trade</masterLabel>
+        <translation><!-- A statement that you are unfit to practice your profession or trade --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>A statement that you committed a crime</masterLabel>
+        <translation><!-- A statement that you committed a crime --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>A statement that you have a sexually transmitted disease</masterLabel>
+        <translation><!-- A statement that you have a sexually transmitted disease --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

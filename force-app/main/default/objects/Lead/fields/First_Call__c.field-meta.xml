@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>First_Call__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Stamped by Call Rail Phone Call Completed zap</description>
+    <inlineHelpText>Denotes whether this was the first call that the customer made. Set by Call Rail through Zapier. System field, should not be touched or altered</inlineHelpText>
+    <label>First Call</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

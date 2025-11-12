@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Practice_Sub_Area__c</fullName>
+    <label>Practice Sub Area</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ADA Violations</fullName>
+                <default>false</default>
+                <label>ADA Violations</label>
+            </value>
+            <value>
+                <fullName>Agreement (Employee)</fullName>
+                <default>false</default>
+                <label>Agreement (Employee)</label>
+            </value>
+            <value>
+                <fullName>Agreement (parenting plan)</fullName>
+                <default>false</default>
+                <label>Agreement (parenting plan)</label>
+            </value>
+            <value>
+                <fullName>Agreement (retraction or settlement)</fullName>
+                <default>false</default>
+                <label>Agreement (retraction or settlement)</label>
+            </value>
+            <value>
+                <fullName>Agreement (rule amendments)</fullName>
+                <default>false</default>
+                <label>Agreement (rule amendments)</label>
+            </value>
+            <value>
+                <fullName>Agreement (settlement drafting)</fullName>
+                <default>false</default>
+                <label>Agreement (settlement drafting)</label>
+            </value>
+            <value>
+                <fullName>Agreement (visa, green card applications)</fullName>
+                <default>false</default>
+                <label>Agreement (visa, green card applications)</label>
+            </value>
+            <value>
+                <fullName>Area Types: Contested ∣ Uncontested</fullName>
+                <default>false</default>
+                <label>Area Types: Contested ∣ Uncontested</label>
+            </value>
+            <value>
+                <fullName>Assault</fullName>
+                <default>false</default>
+                <label>Assault</label>
+            </value>
+            <value>
+                <fullName>Assets (recovery of rents or profits)</fullName>
+                <default>false</default>
+                <label>Assets (recovery of rents or profits)</label>
+            </value>
+            <value>
+                <fullName>Cease and Desist</fullName>
+                <default>false</default>
+                <label>Cease and Desist</label>
+            </value>
+            <value>
+                <fullName>Cease and Desist (retaliation)</fullName>
+                <default>false</default>
+                <label>Cease and Desist (retaliation)</label>
+            </value>
+            <value>
+                <fullName>Cease and Desist (unauthorized use, trespass, nuisance)</fullName>
+                <default>false</default>
+                <label>Cease and Desist (unauthorized use, trespass, nuisance)</label>
+            </value>
+            <value>
+                <fullName>Child Custody</fullName>
+                <default>false</default>
+                <label>Child Custody</label>
+            </value>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <label>Contract</label>
+            </value>
+            <value>
+                <fullName>Contract / Purchase &amp; Sale (drafting or review of purchase agreements)</fullName>
+                <default>false</default>
+                <label>Contract / Purchase &amp; Sale (drafting or review of purchase agreements)</label>
+            </value>
+            <value>
+                <fullName>Contract (policy review)</fullName>
+                <default>false</default>
+                <label>Contract (policy review)</label>
+            </value>
+            <value>
+                <fullName>Contract (review)</fullName>
+                <default>false</default>
+                <label>Contract (review)</label>
+            </value>
+            <value>
+                <fullName>Deed (CC&amp;R compliance)</fullName>
+                <default>false</default>
+                <label>Deed (CC&amp;R compliance)</label>
+            </value>
+            <value>
+                <fullName>Deed (preparing or reviewing warranty, quitclaim deeds)</fullName>
+                <default>false</default>
+                <label>Deed (preparing or reviewing warranty, quitclaim deeds)</label>
+            </value>
+            <value>
+                <fullName>Demand Letter</fullName>
+                <default>false</default>
+                <label>Demand Letter</label>
+            </value>
+            <value>
+                <fullName>Demand Letter (assessment enforcement)</fullName>
+                <default>false</default>
+                <label>Demand Letter (assessment enforcement)</label>
+            </value>
+            <value>
+                <fullName>Demand Letter (coverage dispute)</fullName>
+                <default>false</default>
+                <label>Demand Letter (coverage dispute)</label>
+            </value>
+            <value>
+                <fullName>Demand Letter (e.g. tenant rent demand, seller disclosure issues)</fullName>
+                <default>false</default>
+                <label>Demand Letter (e.g. tenant rent demand, seller disclosure issues)</label>
+            </value>
+            <value>
+                <fullName>Demand Letter (rent, repairs)</fullName>
+                <default>false</default>
+                <label>Demand Letter (rent, repairs)</label>
+            </value>
+            <value>
+                <fullName>Demand Letter (support or custody proposals)</fullName>
+                <default>false</default>
+                <label>Demand Letter (support or custody proposals)</label>
+            </value>
+            <value>
+                <fullName>Demand Letter (wage, wrongful termination)</fullName>
+                <default>false</default>
+                <label>Demand Letter (wage, wrongful termination)</label>
+            </value>
+            <value>
+                <fullName>Deposit / Rent terms</fullName>
+                <default>false</default>
+                <label>Deposit / Rent terms</label>
+            </value>
+            <value>
+                <fullName>DHS (child protection screening)</fullName>
+                <default>false</default>
+                <label>DHS (child protection screening)</label>
+            </value>
+            <value>
+                <fullName>Discrimination</fullName>
+                <default>false</default>
+                <label>Discrimination</label>
+            </value>
+            <value>
+                <fullName>Discrimination (Title IX, ADA)</fullName>
+                <default>false</default>
+                <label>Discrimination (Title IX, ADA)</label>
+            </value>
+            <value>
+                <fullName>Dispute</fullName>
+                <default>false</default>
+                <label>Dispute</label>
+            </value>
+            <value>
+                <fullName>Dispute (contested guardianship)</fullName>
+                <default>false</default>
+                <label>Dispute (contested guardianship)</label>
+            </value>
+            <value>
+                <fullName>Dispute (lawsuit filing, motions)</fullName>
+                <default>false</default>
+                <label>Dispute (lawsuit filing, motions)</label>
+            </value>
+            <value>
+                <fullName>Dispute (Libel/Slander suit)</fullName>
+                <default>false</default>
+                <label>Dispute (Libel/Slander suit)</label>
+            </value>
+            <value>
+                <fullName>Dispute (removal defense, bond hearings)</fullName>
+                <default>false</default>
+                <label>Dispute (removal defense, bond hearings)</label>
+            </value>
+            <value>
+                <fullName>Dispute (rule violation)</fullName>
+                <default>false</default>
+                <label>Dispute (rule violation)</label>
+            </value>
+            <value>
+                <fullName>Dispute (suit filing, motions)</fullName>
+                <default>false</default>
+                <label>Dispute (suit filing, motions)</label>
+            </value>
+            <value>
+                <fullName>Dispute (Will contest)</fullName>
+                <default>false</default>
+                <label>Dispute (Will contest)</label>
+            </value>
+            <value>
+                <fullName>Divorce</fullName>
+                <default>false</default>
+                <label>Divorce</label>
+            </value>
+            <value>
+                <fullName>Domestic Violence</fullName>
+                <default>false</default>
+                <label>Domestic Violence</label>
+            </value>
+            <value>
+                <fullName>Drug Related</fullName>
+                <default>false</default>
+                <label>Drug Related</label>
+            </value>
+            <value>
+                <fullName>DUI</fullName>
+                <default>false</default>
+                <label>DUI</label>
+            </value>
+            <value>
+                <fullName>Easement</fullName>
+                <default>false</default>
+                <label>Easement</label>
+            </value>
+            <value>
+                <fullName>Easement (creation or boundary/access disputes)</fullName>
+                <default>false</default>
+                <label>Easement (creation or boundary/access disputes)</label>
+            </value>
+            <value>
+                <fullName>Economic Crime (Fraud/Laundering)</fullName>
+                <default>false</default>
+                <label>Economic Crime (Fraud/Laundering)</label>
+            </value>
+            <value>
+                <fullName>Estate (administration)</fullName>
+                <default>false</default>
+                <label>Estate (administration)</label>
+            </value>
+            <value>
+                <fullName>Estate (general planning)</fullName>
+                <default>false</default>
+                <label>Estate (general planning)</label>
+            </value>
+            <value>
+                <fullName>Eviction</fullName>
+                <default>false</default>
+                <label>Eviction</label>
+            </value>
+            <value>
+                <fullName>Foreclosure (for dues)</fullName>
+                <default>false</default>
+                <label>Foreclosure (for dues)</label>
+            </value>
+            <value>
+                <fullName>Foreclosure (lender enforcement or homeowner defense)</fullName>
+                <default>false</default>
+                <label>Foreclosure (lender enforcement or homeowner defense)</label>
+            </value>
+            <value>
+                <fullName>Habitability</fullName>
+                <default>false</default>
+                <label>Habitability</label>
+            </value>
+            <value>
+                <fullName>Handbook</fullName>
+                <default>false</default>
+                <label>Handbook</label>
+            </value>
+            <value>
+                <fullName>Handbook (policy review/drafting)</fullName>
+                <default>false</default>
+                <label>Handbook (policy review/drafting)</label>
+            </value>
+            <value>
+                <fullName>Homicide</fullName>
+                <default>false</default>
+                <label>Homicide</label>
+            </value>
+            <value>
+                <fullName>Hostile Work Environment</fullName>
+                <default>false</default>
+                <label>Hostile Work Environment</label>
+            </value>
+            <value>
+                <fullName>Insurance Denial (Bad Faith)</fullName>
+                <default>false</default>
+                <label>Insurance Denial (Bad Faith)</label>
+            </value>
+            <value>
+                <fullName>Lease Agreement</fullName>
+                <default>false</default>
+                <label>Lease Agreement</label>
+            </value>
+            <value>
+                <fullName>Lease Agreement (residential or commercial lease drafting/review)</fullName>
+                <default>false</default>
+                <label>Lease Agreement (residential or commercial lease drafting/review)</label>
+            </value>
+            <value>
+                <fullName>Mechanic’s Lien</fullName>
+                <default>false</default>
+                <label>Mechanic’s Lien</label>
+            </value>
+            <value>
+                <fullName>Medical Malpractice</fullName>
+                <default>false</default>
+                <label>Medical Malpractice</label>
+            </value>
+            <value>
+                <fullName>Mortgage (reviewing financing documents)</fullName>
+                <default>false</default>
+                <label>Mortgage (reviewing financing documents)</label>
+            </value>
+            <value>
+                <fullName>Noncompete Clauses</fullName>
+                <default>false</default>
+                <label>Noncompete Clauses</label>
+            </value>
+            <value>
+                <fullName>Partition (heir/property disputes)</fullName>
+                <default>false</default>
+                <label>Partition (heir/property disputes)</label>
+            </value>
+            <value>
+                <fullName>Partition (if business asset dispute)</fullName>
+                <default>false</default>
+                <label>Partition (if business asset dispute)</label>
+            </value>
+            <value>
+                <fullName>Partition (judicial sale or division among co-owners)</fullName>
+                <default>false</default>
+                <label>Partition (judicial sale or division among co-owners)</label>
+            </value>
+            <value>
+                <fullName>POA</fullName>
+                <default>false</default>
+                <label>POA</label>
+            </value>
+            <value>
+                <fullName>POA (application assistance)</fullName>
+                <default>false</default>
+                <label>POA (application assistance)</label>
+            </value>
+            <value>
+                <fullName>POA (initial capacity assessments)</fullName>
+                <default>false</default>
+                <label>POA (initial capacity assessments)</label>
+            </value>
+            <value>
+                <fullName>POA (Limited Scope Criminal Consultation)</fullName>
+                <default>false</default>
+                <label>POA (Limited Scope Criminal Consultation)</label>
+            </value>
+            <value>
+                <fullName>Police Brutality</fullName>
+                <default>false</default>
+                <label>Police Brutality</label>
+            </value>
+            <value>
+                <fullName>Prenuptial Agreement</fullName>
+                <default>false</default>
+                <label>Prenuptial Agreement</label>
+            </value>
+            <value>
+                <fullName>Product Liabilities</fullName>
+                <default>false</default>
+                <label>Product Liabilities</label>
+            </value>
+            <value>
+                <fullName>Promissory Note / Debt / Collections</fullName>
+                <default>false</default>
+                <label>Promissory Note / Debt / Collections</label>
+            </value>
+            <value>
+                <fullName>QS (Qualified Subchapter S elections)</fullName>
+                <default>false</default>
+                <label>QS (Qualified Subchapter S elections)</label>
+            </value>
+            <value>
+                <fullName>Quit Claim (title transfers among family/co-owners)</fullName>
+                <default>false</default>
+                <label>Quit Claim (title transfers among family/co-owners)</label>
+            </value>
+            <value>
+                <fullName>Sex Offense</fullName>
+                <default>false</default>
+                <label>Sex Offense</label>
+            </value>
+            <value>
+                <fullName>Small Claims</fullName>
+                <default>false</default>
+                <label>Small Claims</label>
+            </value>
+            <value>
+                <fullName>Small Claims (deposit disputes)</fullName>
+                <default>false</default>
+                <label>Small Claims (deposit disputes)</label>
+            </value>
+            <value>
+                <fullName>Termination (Wrongful Discharge)</fullName>
+                <default>false</default>
+                <label>Termination (Wrongful Discharge)</label>
+            </value>
+            <value>
+                <fullName>Theft (Robbery, Shoplifting, Larceny, Burglary)</fullName>
+                <default>false</default>
+                <label>Theft (Robbery, Shoplifting, Larceny, Burglary)</label>
+            </value>
+            <value>
+                <fullName>Title / Property (quiet title actions, boundary disputes)</fullName>
+                <default>false</default>
+                <label>Title / Property (quiet title actions, boundary disputes)</label>
+            </value>
+            <value>
+                <fullName>Title / Property challenges</fullName>
+                <default>false</default>
+                <label>Title / Property challenges</label>
+            </value>
+            <value>
+                <fullName>Traffic Offense (including Hit-and-Run)</fullName>
+                <default>false</default>
+                <label>Traffic Offense (including Hit-and-Run)</label>
+            </value>
+            <value>
+                <fullName>Trust</fullName>
+                <default>false</default>
+                <label>Trust</label>
+            </value>
+            <value>
+                <fullName>Trust (funding &amp; distribution)</fullName>
+                <default>false</default>
+                <label>Trust (funding &amp; distribution)</label>
+            </value>
+            <value>
+                <fullName>Trust (special needs)</fullName>
+                <default>false</default>
+                <label>Trust (special needs)</label>
+            </value>
+            <value>
+                <fullName>Unbundled</fullName>
+                <default>false</default>
+                <label>Unbundled</label>
+            </value>
+            <value>
+                <fullName>Wage Dispute</fullName>
+                <default>false</default>
+                <label>Wage Dispute</label>
+            </value>
+            <value>
+                <fullName>Will</fullName>
+                <default>false</default>
+                <label>Will</label>
+            </value>
+            <value>
+                <fullName>Will admission</fullName>
+                <default>false</default>
+                <label>Will admission</label>
+            </value>
+            <value>
+                <fullName>Workman’s Comp</fullName>
+                <default>false</default>
+                <label>Workman’s Comp</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

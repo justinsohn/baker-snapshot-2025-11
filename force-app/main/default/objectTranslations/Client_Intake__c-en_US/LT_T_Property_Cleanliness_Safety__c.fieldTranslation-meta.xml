@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- LT_T: How is property kept... --></label>
+    <name>LT_T_Property_Cleanliness_Safety__c</name>
+    <picklistValues>
+        <masterLabel>Needs improvement</masterLabel>
+        <translation><!-- Needs improvement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unsafe</masterLabel>
+        <translation><!-- Unsafe --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Well-maintained</masterLabel>
+        <translation><!-- Well-maintained --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

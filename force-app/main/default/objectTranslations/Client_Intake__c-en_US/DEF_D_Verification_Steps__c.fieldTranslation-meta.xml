@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DEF_D: Steps Taken to Verify Truth --></label>
+    <name>DEF_D_Verification_Steps__c</name>
+</CustomFieldTranslation>

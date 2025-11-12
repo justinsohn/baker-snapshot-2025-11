@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DV: Receiving Support Services... --></label>
+    <name>DV_Receiving_Support_Services__c</name>
+    <picklistValues>
+        <masterLabel>Child protection services</masterLabel>
+        <translation><!-- Child protection services --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Domestic violence shelter</masterLabel>
+        <translation><!-- Domestic violence shelter --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Legal aid services</masterLabel>
+        <translation><!-- Legal aid services --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Medical treatment or health services</masterLabel>
+        <translation><!-- Medical treatment or health services --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Therapy or counseling</masterLabel>
+        <translation><!-- Therapy or counseling --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

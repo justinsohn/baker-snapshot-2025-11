@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>ADA Violations</fullName>
+        <default>false</default>
+        <label>ADA Violations</label>
+    </customValue>
+    <customValue>
+        <fullName>Application for Citizenship or Residency</fullName>
+        <default>false</default>
+        <label>Application for Citizenship or Residency</label>
+    </customValue>
+    <customValue>
+        <fullName>Asset Division</fullName>
+        <default>false</default>
+        <label>Asset Division</label>
+    </customValue>
+    <customValue>
+        <fullName>Asset Recovery</fullName>
+        <default>false</default>
+        <label>Asset Recovery</label>
+    </customValue>
+    <customValue>
+        <fullName>Bad Faith Denial</fullName>
+        <default>false</default>
+        <label>Bad Faith Denial</label>
+    </customValue>
+    <customValue>
+        <fullName>Bond Hearings</fullName>
+        <default>false</default>
+        <label>Bond Hearings</label>
+    </customValue>
+    <customValue>
+        <fullName>Breach of Contract</fullName>
+        <default>false</default>
+        <label>Breach of Contract</label>
+    </customValue>
+    <customValue>
+        <fullName>Breach of Lease Agreement</fullName>
+        <default>false</default>
+        <label>Breach of Lease Agreement</label>
+    </customValue>
+    <customValue>
+        <fullName>Business Dissolution</fullName>
+        <default>false</default>
+        <label>Business Dissolution</label>
+    </customValue>
+    <customValue>
+        <fullName>Business Formation</fullName>
+        <default>false</default>
+        <label>Business Formation</label>
+    </customValue>
+    <customValue>
+        <fullName>Business Purchase and Sale</fullName>
+        <default>false</default>
+        <label>Business Purchase and Sale</label>
+    </customValue>
+    <customValue>
+        <fullName>Business Transfer/Expansion</fullName>
+        <default>false</default>
+        <label>Business Transfer/Expansion</label>
+    </customValue>
+    <customValue>
+        <fullName>Cannabis Law</fullName>
+        <default>false</default>
+        <label>Cannabis Law</label>
+    </customValue>
+    <customValue>
+        <fullName>Cease and Desist</fullName>
+        <default>false</default>
+        <label>Cease and Desist</label>
+    </customValue>
+    <customValue>
+        <fullName>Child Support/Alimony</fullName>
+        <default>false</default>
+        <label>Child Support/Alimony</label>
+    </customValue>
+    <customValue>
+        <fullName>Construction Defect</fullName>
+        <default>false</default>
+        <label>Construction Defect</label>
+    </customValue>
+    <customValue>
+        <fullName>Contested</fullName>
+        <default>false</default>
+        <label>Contested</label>
+    </customValue>
+    <customValue>
+        <fullName>Contract/Purchase or Sale</fullName>
+        <default>false</default>
+        <label>Contract/Purchase or Sale</label>
+    </customValue>
+    <customValue>
+        <fullName>Contract Dispute</fullName>
+        <default>false</default>
+        <label>Contract Dispute</label>
+    </customValue>
+    <customValue>
+        <fullName>Contract Drafting</fullName>
+        <default>false</default>
+        <label>Contract Drafting</label>
+    </customValue>
+    <customValue>
+        <fullName>Contract Drafting/Review</fullName>
+        <default>false</default>
+        <label>Contract Drafting/Review</label>
+    </customValue>
+    <customValue>
+        <fullName>Contract Review</fullName>
+        <default>false</default>
+        <label>Contract Review</label>
+    </customValue>
+    <customValue>
+        <fullName>Custody</fullName>
+        <default>false</default>
+        <label>Custody</label>
+    </customValue>
+    <customValue>
+        <fullName>Debt/Collections</fullName>
+        <default>false</default>
+        <label>Debt/Collections</label>
+    </customValue>
+    <customValue>
+        <fullName>Deed</fullName>
+        <default>false</default>
+        <label>Deed</label>
+    </customValue>
+    <customValue>
+        <fullName>Deed Compliance</fullName>
+        <default>false</default>
+        <label>Deed Compliance</label>
+    </customValue>
+    <customValue>
+        <fullName>Demand Letter</fullName>
+        <default>false</default>
+        <label>Demand Letter</label>
+    </customValue>
+    <customValue>
+        <fullName>Demand Letter (Rent/Repair)</fullName>
+        <default>false</default>
+        <label>Demand Letter (Rent/Repair)</label>
+    </customValue>
+    <customValue>
+        <fullName>Demand Letter (Support)</fullName>
+        <default>false</default>
+        <label>Demand Letter (Support)</label>
+    </customValue>
+    <customValue>
+        <fullName>DHS (Child Protection)</fullName>
+        <default>false</default>
+        <label>DHS (Child Protection)</label>
+    </customValue>
+    <customValue>
+        <fullName>Discrimination</fullName>
+        <default>false</default>
+        <label>Discrimination</label>
+    </customValue>
+    <customValue>
+        <fullName>Divorce</fullName>
+        <default>false</default>
+        <label>Divorce</label>
+    </customValue>
+    <customValue>
+        <fullName>Documentation Review</fullName>
+        <default>false</default>
+        <label>Documentation Review</label>
+    </customValue>
+    <customValue>
+        <fullName>Document Review/Drafting</fullName>
+        <default>false</default>
+        <label>Document Review/Drafting</label>
+    </customValue>
+    <customValue>
+        <fullName>Easement</fullName>
+        <default>false</default>
+        <label>Easement</label>
+    </customValue>
+    <customValue>
+        <fullName>Easements</fullName>
+        <default>false</default>
+        <label>Easements</label>
+    </customValue>
+    <customValue>
+        <fullName>Employment Agreement</fullName>
+        <default>false</default>
+        <label>Employment Agreement</label>
+    </customValue>
+    <customValue>
+        <fullName>Eviction</fullName>
+        <default>false</default>
+        <label>Eviction</label>
+    </customValue>
+    <customValue>
+        <fullName>Foreclosure</fullName>
+        <default>false</default>
+        <label>Foreclosure</label>
+    </customValue>
+    <customValue>
+        <fullName>Franchise Agreements</fullName>
+        <default>false</default>
+        <label>Franchise Agreements</label>
+    </customValue>
+    <customValue>
+        <fullName>General Dispute</fullName>
+        <default>false</default>
+        <label>General Dispute</label>
+    </customValue>
+    <customValue>
+        <fullName>General Estate Planning</fullName>
+        <default>false</default>
+        <label>General Estate Planning</label>
+    </customValue>
+    <customValue>
+        <fullName>Habitability</fullName>
+        <default>false</default>
+        <label>Habitability</label>
+    </customValue>
+    <customValue>
+        <fullName>Handbook</fullName>
+        <default>false</default>
+        <label>Handbook</label>
+    </customValue>
+    <customValue>
+        <fullName>Harassment</fullName>
+        <default>false</default>
+        <label>Harassment</label>
+    </customValue>
+    <customValue>
+        <fullName>Hostile Work Environment</fullName>
+        <default>false</default>
+        <label>Hostile Work Environment</label>
+    </customValue>
+    <customValue>
+        <fullName>Independent Contractor Agreement</fullName>
+        <default>false</default>
+        <label>Independent Contractor Agreement</label>
+    </customValue>
+    <customValue>
+        <fullName>Joint Ventures and Partnerships</fullName>
+        <default>false</default>
+        <label>Joint Ventures and Partnerships</label>
+    </customValue>
+    <customValue>
+        <fullName>Lease Agreement</fullName>
+        <default>false</default>
+        <label>Lease Agreement</label>
+    </customValue>
+    <customValue>
+        <fullName>Lease Drafting/Review</fullName>
+        <default>false</default>
+        <label>Lease Drafting/Review</label>
+    </customValue>
+    <customValue>
+        <fullName>Libel/Slander Suit</fullName>
+        <default>false</default>
+        <label>Libel/Slander Suit</label>
+    </customValue>
+    <customValue>
+        <fullName>Litigation</fullName>
+        <default>false</default>
+        <label>Litigation</label>
+    </customValue>
+    <customValue>
+        <fullName>Mechanic&apos;s Lien</fullName>
+        <default>false</default>
+        <label>Mechanic&apos;s Lien</label>
+    </customValue>
+    <customValue>
+        <fullName>Mediation/ADR</fullName>
+        <default>false</default>
+        <label>Mediation/ADR</label>
+    </customValue>
+    <customValue>
+        <fullName>Medical Malpractice</fullName>
+        <default>false</default>
+        <label>Medical Malpractice</label>
+    </customValue>
+    <customValue>
+        <fullName>Mergers and Acquisitions</fullName>
+        <default>false</default>
+        <label>Mergers and Acquisitions</label>
+    </customValue>
+    <customValue>
+        <fullName>Mortgage</fullName>
+        <default>false</default>
+        <label>Mortgage</label>
+    </customValue>
+    <customValue>
+        <fullName>Noncompete</fullName>
+        <default>false</default>
+        <label>Noncompete</label>
+    </customValue>
+    <customValue>
+        <fullName>Non-Compete/Non-Solicit Dispute</fullName>
+        <default>false</default>
+        <label>Non-Compete/Non-Solicit Dispute</label>
+    </customValue>
+    <customValue>
+        <fullName>Non-Compete/Non-Solicit Review</fullName>
+        <default>false</default>
+        <label>Non-Compete/Non-Solicit Review</label>
+    </customValue>
+    <customValue>
+        <fullName>Opinion Letter</fullName>
+        <default>false</default>
+        <label>Opinion Letter</label>
+    </customValue>
+    <customValue>
+        <fullName>OSHA Violation</fullName>
+        <default>false</default>
+        <label>OSHA Violation</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Other Discrimination</fullName>
+        <default>false</default>
+        <label>Other Discrimination</label>
+    </customValue>
+    <customValue>
+        <fullName>Parenting Plan</fullName>
+        <default>false</default>
+        <label>Parenting Plan</label>
+    </customValue>
+    <customValue>
+        <fullName>Partitions</fullName>
+        <default>false</default>
+        <label>Partitions</label>
+    </customValue>
+    <customValue>
+        <fullName>POA</fullName>
+        <default>false</default>
+        <label>POA</label>
+    </customValue>
+    <customValue>
+        <fullName>POA (Application Assistance)</fullName>
+        <default>false</default>
+        <label>POA (Application Assistance)</label>
+    </customValue>
+    <customValue>
+        <fullName>Police Brutality</fullName>
+        <default>false</default>
+        <label>Police Brutality</label>
+    </customValue>
+    <customValue>
+        <fullName>Policy Review</fullName>
+        <default>false</default>
+        <label>Policy Review</label>
+    </customValue>
+    <customValue>
+        <fullName>Policy Review/Drafting</fullName>
+        <default>false</default>
+        <label>Policy Review/Drafting</label>
+    </customValue>
+    <customValue>
+        <fullName>Prenuptial/Postnuptial Agreement</fullName>
+        <default>false</default>
+        <label>Prenuptial/Postnuptial Agreement</label>
+    </customValue>
+    <customValue>
+        <fullName>Product Liability</fullName>
+        <default>false</default>
+        <label>Product Liability</label>
+    </customValue>
+    <customValue>
+        <fullName>Protest Violations</fullName>
+        <default>false</default>
+        <label>Protest Violations</label>
+    </customValue>
+    <customValue>
+        <fullName>Psilocybin Regulation</fullName>
+        <default>false</default>
+        <label>Psilocybin Regulation</label>
+    </customValue>
+    <customValue>
+        <fullName>Qualified Subchapter S Elections</fullName>
+        <default>false</default>
+        <label>Qualified Subchapter S Elections</label>
+    </customValue>
+    <customValue>
+        <fullName>Quiet Title/Boundary</fullName>
+        <default>false</default>
+        <label>Quiet Title/Boundary</label>
+    </customValue>
+    <customValue>
+        <fullName>Removal Defense</fullName>
+        <default>false</default>
+        <label>Removal Defense</label>
+    </customValue>
+    <customValue>
+        <fullName>Retraction</fullName>
+        <default>false</default>
+        <label>Retraction</label>
+    </customValue>
+    <customValue>
+        <fullName>Review Leave Compliance</fullName>
+        <default>false</default>
+        <label>Review Leave Compliance</label>
+    </customValue>
+    <customValue>
+        <fullName>Review Wage/Hour Compliance</fullName>
+        <default>false</default>
+        <label>Review Wage/Hour Compliance</label>
+    </customValue>
+    <customValue>
+        <fullName>Rule Violations</fullName>
+        <default>false</default>
+        <label>Rule Violations</label>
+    </customValue>
+    <customValue>
+        <fullName>Services Agreement</fullName>
+        <default>false</default>
+        <label>Services Agreement</label>
+    </customValue>
+    <customValue>
+        <fullName>Settlement</fullName>
+        <default>false</default>
+        <label>Settlement</label>
+    </customValue>
+    <customValue>
+        <fullName>Settlement Agreement Drafting/Review</fullName>
+        <default>false</default>
+        <label>Settlement Agreement Drafting/Review</label>
+    </customValue>
+    <customValue>
+        <fullName>Small Claims</fullName>
+        <default>false</default>
+        <label>Small Claims</label>
+    </customValue>
+    <customValue>
+        <fullName>Title 9</fullName>
+        <default>false</default>
+        <label>Title 9</label>
+    </customValue>
+    <customValue>
+        <fullName>Title Transfers</fullName>
+        <default>false</default>
+        <label>Title Transfers</label>
+    </customValue>
+    <customValue>
+        <fullName>Trust</fullName>
+        <default>false</default>
+        <label>Trust</label>
+    </customValue>
+    <customValue>
+        <fullName>Unbundled</fullName>
+        <default>false</default>
+        <label>Unbundled</label>
+    </customValue>
+    <customValue>
+        <fullName>Uncontested</fullName>
+        <default>false</default>
+        <label>Uncontested</label>
+    </customValue>
+    <customValue>
+        <fullName>Visa Application</fullName>
+        <default>false</default>
+        <label>Visa Application</label>
+    </customValue>
+    <customValue>
+        <fullName>Wage/Hour</fullName>
+        <default>false</default>
+        <label>Wage/Hour</label>
+    </customValue>
+    <customValue>
+        <fullName>Water Law</fullName>
+        <default>false</default>
+        <label>Water Law</label>
+    </customValue>
+    <customValue>
+        <fullName>Will</fullName>
+        <default>false</default>
+        <label>Will</label>
+    </customValue>
+    <customValue>
+        <fullName>Workers Comp</fullName>
+        <default>false</default>
+        <label>Workers Comp</label>
+    </customValue>
+    <customValue>
+        <fullName>Wrongful Discharge</fullName>
+        <default>false</default>
+        <label>Wrongful Discharge</label>
+    </customValue>
+    <masterLabel>Subcategory</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

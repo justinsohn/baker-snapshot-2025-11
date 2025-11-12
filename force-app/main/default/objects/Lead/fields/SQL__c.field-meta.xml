@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SQL__c</fullName>
+    <formula>AND(
+  NOT(CONTAINS(TEXT(LeadSource), &quot;referral&quot;)),
+  OR(
+    AND(
+      NOT(ISPICKVAL(Status, &quot;New&quot;)),
+      NOT(ISPICKVAL(Status, &quot;Working&quot;)),
+      NOT(ISPICKVAL(Status, &quot;Unqualified&quot;))
+    ),
+    AND(
+      NOT(ISPICKVAL(Status, &quot;New&quot;)),
+      OR(
+										Hired_Another_Firm__c = TRUE,
+						    ISPICKVAL(Disqualified_Reason__c, &quot;Firm Availability&quot;),
+										ISPICKVAL(Disqualified_Reason__c, &quot;Already Hired Another Firm&quot;)
+						)
+    )
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>SQL</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

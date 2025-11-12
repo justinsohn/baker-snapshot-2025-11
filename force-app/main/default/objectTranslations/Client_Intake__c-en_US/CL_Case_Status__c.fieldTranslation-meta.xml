@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CL: Case Status --></label>
+    <name>CL_Case_Status__c</name>
+    <picklistValues>
+        <masterLabel>Appeal</masterLabel>
+        <translation><!-- Appeal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pending Charges</masterLabel>
+        <translation><!-- Pending Charges --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Probation Revocation</masterLabel>
+        <translation><!-- Probation Revocation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Record Sealing</masterLabel>
+        <translation><!-- Record Sealing --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

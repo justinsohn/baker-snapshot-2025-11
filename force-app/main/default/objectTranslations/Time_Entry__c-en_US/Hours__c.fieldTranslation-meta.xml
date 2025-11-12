@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Shows the Duration rounded up to the closest 10th decimal spot (eg: 1.51 = 1.60) --></help>
+    <label><!-- Hours --></label>
+    <name>Hours__c</name>
+</CustomFieldTranslation>

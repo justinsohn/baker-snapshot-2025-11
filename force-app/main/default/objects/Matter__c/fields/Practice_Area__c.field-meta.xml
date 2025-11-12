@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Practice_Area__c</fullName>
+    <label>Practice Area</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+                <label>Administrative</label>
+            </value>
+            <value>
+                <fullName>Admiralty/Maritime</fullName>
+                <default>false</default>
+                <label>Admiralty/Maritime</label>
+            </value>
+            <value>
+                <fullName>Anti-Trust / Competition</fullName>
+                <default>false</default>
+                <label>Anti-Trust / Competition</label>
+            </value>
+            <value>
+                <fullName>Appellate</fullName>
+                <default>false</default>
+                <label>Appellate</label>
+            </value>
+            <value>
+                <fullName>Banking / Finance</fullName>
+                <default>false</default>
+                <label>Banking / Finance</label>
+            </value>
+            <value>
+                <fullName>Bankruptcy</fullName>
+                <default>false</default>
+                <label>Bankruptcy</label>
+            </value>
+            <value>
+                <fullName>Business</fullName>
+                <default>false</default>
+                <label>Business</label>
+            </value>
+            <value>
+                <fullName>Business Formation / Compliance</fullName>
+                <default>false</default>
+                <label>Business Formation / Compliance</label>
+            </value>
+            <value>
+                <fullName>Civil Litigation</fullName>
+                <default>false</default>
+                <label>Civil Litigation</label>
+            </value>
+            <value>
+                <fullName>Civil Rights / Constitutional</fullName>
+                <default>false</default>
+                <label>Civil Rights / Constitutional</label>
+            </value>
+            <value>
+                <fullName>Collections &amp; Debt</fullName>
+                <default>false</default>
+                <label>Collections &amp; Debt</label>
+            </value>
+            <value>
+                <fullName>Commercial / Sale of Goods</fullName>
+                <default>false</default>
+                <label>Commercial / Sale of Goods</label>
+            </value>
+            <value>
+                <fullName>Commercial Litigation</fullName>
+                <default>false</default>
+                <label>Commercial Litigation</label>
+            </value>
+            <value>
+                <fullName>Construction</fullName>
+                <default>false</default>
+                <label>Construction</label>
+            </value>
+            <value>
+                <fullName>Consumer Protection</fullName>
+                <default>false</default>
+                <label>Consumer Protection</label>
+            </value>
+            <value>
+                <fullName>Contracts</fullName>
+                <default>false</default>
+                <label>Contracts</label>
+            </value>
+            <value>
+                <fullName>Corporate Litigation</fullName>
+                <default>false</default>
+                <label>Corporate Litigation</label>
+            </value>
+            <value>
+                <fullName>Criminal</fullName>
+                <default>false</default>
+                <label>Criminal</label>
+            </value>
+            <value>
+                <fullName>Disability / Social Security</fullName>
+                <default>false</default>
+                <label>Disability / Social Security</label>
+            </value>
+            <value>
+                <fullName>Education</fullName>
+                <default>false</default>
+                <label>Education</label>
+            </value>
+            <value>
+                <fullName>Elder</fullName>
+                <default>false</default>
+                <label>Elder</label>
+            </value>
+            <value>
+                <fullName>Employment / Labor</fullName>
+                <default>false</default>
+                <label>Employment / Labor</label>
+            </value>
+            <value>
+                <fullName>Energy / Environmental</fullName>
+                <default>false</default>
+                <label>Energy / Environmental</label>
+            </value>
+            <value>
+                <fullName>Ethics</fullName>
+                <default>false</default>
+                <label>Ethics</label>
+            </value>
+            <value>
+                <fullName>Family</fullName>
+                <default>false</default>
+                <label>Family</label>
+            </value>
+            <value>
+                <fullName>Food / Drug</fullName>
+                <default>false</default>
+                <label>Food / Drug</label>
+            </value>
+            <value>
+                <fullName>Government</fullName>
+                <default>false</default>
+                <label>Government</label>
+            </value>
+            <value>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+                <label>Healthcare</label>
+            </value>
+            <value>
+                <fullName>Immigration</fullName>
+                <default>false</default>
+                <label>Immigration</label>
+            </value>
+            <value>
+                <fullName>In-House Counsel</fullName>
+                <default>false</default>
+                <label>In-House Counsel</label>
+            </value>
+            <value>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+                <label>Insurance</label>
+            </value>
+            <value>
+                <fullName>Intellectual Property</fullName>
+                <default>false</default>
+                <label>Intellectual Property</label>
+            </value>
+            <value>
+                <fullName>International</fullName>
+                <default>false</default>
+                <label>International</label>
+            </value>
+            <value>
+                <fullName>Juvenile</fullName>
+                <default>false</default>
+                <label>Juvenile</label>
+            </value>
+            <value>
+                <fullName>Legal Aid</fullName>
+                <default>false</default>
+                <label>Legal Aid</label>
+            </value>
+            <value>
+                <fullName>Mediation / Arbitration</fullName>
+                <default>false</default>
+                <label>Mediation / Arbitration</label>
+            </value>
+            <value>
+                <fullName>Medical Malpractice</fullName>
+                <default>false</default>
+                <label>Medical Malpractice</label>
+            </value>
+            <value>
+                <fullName>Military</fullName>
+                <default>false</default>
+                <label>Military</label>
+            </value>
+            <value>
+                <fullName>Non-Profit / Pro Bono</fullName>
+                <default>false</default>
+                <label>Non-Profit / Pro Bono</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Personal Injury</fullName>
+                <default>false</default>
+                <label>Personal Injury</label>
+            </value>
+            <value>
+                <fullName>Privacy / Information Security</fullName>
+                <default>false</default>
+                <label>Privacy / Information Security</label>
+            </value>
+            <value>
+                <fullName>Private Client</fullName>
+                <default>false</default>
+                <label>Private Client</label>
+            </value>
+            <value>
+                <fullName>Product Liability</fullName>
+                <default>false</default>
+                <label>Product Liability</label>
+            </value>
+            <value>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+                <label>Real Estate</label>
+            </value>
+            <value>
+                <fullName>Science / Technology</fullName>
+                <default>false</default>
+                <label>Science / Technology</label>
+            </value>
+            <value>
+                <fullName>Securities / Mergers &amp; Acquisitions</fullName>
+                <default>false</default>
+                <label>Securities / Mergers &amp; Acquisitions</label>
+            </value>
+            <value>
+                <fullName>Small Claims</fullName>
+                <default>false</default>
+                <label>Small Claims</label>
+            </value>
+            <value>
+                <fullName>Sports / Entertainment / Gaming</fullName>
+                <default>false</default>
+                <label>Sports / Entertainment / Gaming</label>
+            </value>
+            <value>
+                <fullName>Tax</fullName>
+                <default>false</default>
+                <label>Tax</label>
+            </value>
+            <value>
+                <fullName>Telecommunications</fullName>
+                <default>false</default>
+                <label>Telecommunications</label>
+            </value>
+            <value>
+                <fullName>Traffic Offenses</fullName>
+                <default>false</default>
+                <label>Traffic Offenses</label>
+            </value>
+            <value>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+                <label>Transportation</label>
+            </value>
+            <value>
+                <fullName>Tribal</fullName>
+                <default>false</default>
+                <label>Tribal</label>
+            </value>
+            <value>
+                <fullName>Trusts</fullName>
+                <default>false</default>
+                <label>Trusts</label>
+            </value>
+            <value>
+                <fullName>Wills &amp; Estates</fullName>
+                <default>false</default>
+                <label>Wills &amp; Estates</label>
+            </value>
+            <value>
+                <fullName>Worker’s Compensation</fullName>
+                <default>false</default>
+                <label>Worker’s Compensation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

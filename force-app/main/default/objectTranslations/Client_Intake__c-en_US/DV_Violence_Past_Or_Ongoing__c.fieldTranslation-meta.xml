@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DV: Violence Past or Ongoing? --></label>
+    <name>DV_Violence_Past_Or_Ongoing__c</name>
+    <picklistValues>
+        <masterLabel>Ongoing</masterLabel>
+        <translation><!-- Ongoing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Past</masterLabel>
+        <translation><!-- Past --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

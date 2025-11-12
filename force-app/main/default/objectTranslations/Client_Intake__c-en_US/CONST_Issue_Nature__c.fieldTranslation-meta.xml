@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CONST: Nature of Construction Issue --></label>
+    <name>CONST_Issue_Nature__c</name>
+    <picklistValues>
+        <masterLabel>Breach of contract</masterLabel>
+        <translation><!-- Breach of contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Building code violations</masterLabel>
+        <translation><!-- Building code violations --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Defects in construction</masterLabel>
+        <translation><!-- Defects in construction --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delays in construction timeline</masterLabel>
+        <translation><!-- Delays in construction timeline --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Payment issues</masterLabel>
+        <translation><!-- Payment issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Permitting issues</masterLabel>
+        <translation><!-- Permitting issues --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Poor quality of work</masterLabel>
+        <translation><!-- Poor quality of work --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Safety concerns</masterLabel>
+        <translation><!-- Safety concerns --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

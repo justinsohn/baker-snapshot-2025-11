@@ -1,0 +1,346 @@
+<template>
+    <div class="slds-p-around_medium slds-theme_default">
+        <header class="slds-media slds-media_center slds-m-bottom_large">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="utility:target" size="medium"></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+                 <h1 class="slds-text-heading_medium">Billable Target Progress</h1>
+            </div>
+        </header>
+
+        <!-- Filters Card -->
+        <article class="slds-card">
+            <div class="slds-card__body slds-card__body_inner">
+                <lightning-layout multiple-rows="true" pull-to-boundary="small" vertical-align="end">
+                    <lightning-layout-item class="slds-p-right_small">
+                         <lightning-icon icon-name="utility:filterList" size="small" class="slds-m-bottom_medium"></lightning-icon>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="5" padding="around-small">
+                        <lightning-combobox
+                            name="billableFilter"
+                            label="Billable Status"
+                            value={billableFilter}
+                            options={billableOptions}
+                            onchange={handleFilterChange}>
+                        </lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" padding="around-small">
+                        <lightning-combobox
+                            name="dateFilter"
+                            label="Time Range"
+                            value={dateFilter}
+                            options={dateRangeOptions}
+                            onchange={handleFilterChange}>
+                        </lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="2" padding="around-small" class="slds-align-bottom">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <div class="slds-checkbox">
+                                    <input type="checkbox" name="viewTeam" id="viewTeam" value={viewTeam} checked={viewTeam} onchange={handleViewTeamChange} />
+                                    <label class="slds-checkbox__label" for="viewTeam">
+                                        <span class="slds-checkbox_faux"></span>
+                                        <span class="slds-form-element__label">View Team</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                    <template if:true={isCustomRange}>
+                        <lightning-layout-item size="12" small-device-size="6" medium-device-size="6" padding="around-small">
+                            <lightning-input type="date" label="Start Date" name="customStartDate" value={customStartDate} onchange={handleFilterChange}></lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" small-device-size="6" medium-device-size="6" padding="around-small">
+                            <lightning-input type="date" label="End Date" name="customEndDate" value={customEndDate} onchange={handleFilterChange}></lightning-input>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+        </article>
+
+        <!-- KPI and Chart Cards -->
+        <div class="slds-m-vertical_large">
+            <lightning-layout pull-to-boundary="small">
+                <lightning-layout-item size="12" medium-device-size="4" padding="around-small">
+                    <!-- Custom Time Summary Card -->
+                    <article class="slds-card chart-card">
+                        <div class="chart-card_accent accent-blue"></div>
+                        <div class="slds-card__header slds-grid chart-card_header">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <lightning-icon icon-name="utility:clock" size="small"></lightning-icon>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <span class="slds-text-heading_small">Time Summary</span>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner slds-text-align_center kpi-card-content">
+                             <div class="slds-m-bottom_medium slds-border_bottom slds-p-bottom_small">
+                                <span class="slds-text-heading_medium slds-text-color_default">{totalHours}</span>
+                                <p class="slds-text-title_caps slds-m-bottom_small">Total Hours</p>
+                            </div>
+                            <div class="slds-grid slds-grid_align-spread slds-p-top_small">
+                                <div class="slds-col">
+                                    <span class="slds-text-heading_small slds-text-color_success">{billableHoursValue}</span>
+                                    <p class="slds-text-title_caps">Billable</p>
+                                </div>
+                                <div class="slds-col">
+                                    <span class="slds-text-heading_small slds-text-color_error">{nonBillableHoursValue}</span>
+                                    <p class="slds-text-title_caps">Non-Billable</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </lightning-layout-item>
+                 <lightning-layout-item size="12" medium-device-size="4" padding="around-small">
+                    <!-- Custom Goal Progress Card -->
+                    <article class="slds-card chart-card">
+                        <div class="chart-card_accent accent-green"></div>
+                        <div class="slds-card__header slds-grid chart-card_header">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <lightning-icon icon-name="utility:target" size="small"></lightning-icon>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <span class="slds-text-heading_small">Goal Progress</span>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                         <div class="slds-card__body slds-card__body_inner slds-text-align_center kpi-card-content">
+                             <div class="gauge-container">
+                                 <svg width="100%" viewBox="-10 -5 220 115">
+                                    <!-- Static Color Bands (0-50% Red, 50-80% Yellow, 80-100% Green) -->
+                                    <path d="M 25 100 A 75 75 0 0 1 100 25" fill="none" class="gauge-band-red" stroke-width="20"></path>
+                                    <path d="M 100 25 A 75 75 0 0 1 160.7 55.9" fill="none" class="gauge-band-yellow" stroke-width="20"></path>
+                                    <path d="M 160.7 55.9 A 75 75 0 0 1 175 100" fill="none" class="gauge-band-green" stroke-width="20"></path>
+
+                                    <!-- Ticks and Labels -->
+                                    <g class="gauge-ticks">
+                                        <template for:each={gaugeTicks} for:item="tick">
+                                            <g key={tick.label}>
+                                                <line x1={tick.x1} y1={tick.y1} x2={tick.x2} y2={tick.y2} class="gauge-tick-line"></line>
+                                                <text x={tick.tx} y={tick.ty} text-anchor="middle" alignment-baseline="middle" class="gauge-tick-label">{tick.label}</text>
+                                            </g>
+                                        </template>
+                                    </g>
+
+                                    <!-- Needle -->
+                                    <g transform={gaugeNeedleTransform}>
+                                        <path d="M 100 100 L 97 25 L 103 25 Z" class="gauge-needle-shadow"></path>
+                                        <path d="M 100 100 L 98 25 L 102 25 Z" class="gauge-needle"></path>
+                                        <circle cx="100" cy="100" r="6" class="gauge-needle-center"></circle>
+                                    </g>
+                                </svg>
+                             </div>
+                            <div class="gauge-caption">
+                                <p class="slds-text-heading_medium">{goalPercentage}%</p>
+                                <p class="slds-text-body_small slds-m-top_xx-small">({billableHoursValue} / {formattedCurrentTargetGoal} billable hrs)</p>
+                            </div>
+                         </div>
+                    </article>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" medium-device-size="4" padding="around-small">
+                    <!-- Collection Rate Donut Chart Card -->
+                    <article class="slds-card chart-card clickable-card" onclick={handleCollectionRateClick}>
+                        <div class="chart-card_accent accent-orange"></div>
+                        <div class="slds-card__header slds-grid chart-card_header">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <lightning-icon icon-name="utility:money" size="small"></lightning-icon>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <span class="slds-text-heading_small">Collection Rate</span>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner slds-text-align_center kpi-card-content">
+                            <div class="collection-chart-container-compact">
+                                <canvas class="collectionRateChart" width="140" height="140"></canvas>
+                                <div class="collection-chart-center">
+                                    <span class="slds-text-heading_medium">{collectionRateFormatted}%</span>
+                                    <p class="slds-text-body_small">Collected</p>
+                                </div>
+                            </div>
+                        </div>
+                        <lightning-icon icon-name="utility:chevronright" size="small" class="card-chevron"></lightning-icon>
+                    </article>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+
+        <!-- Time Entries Table -->
+        <lightning-card title="Time Entries" icon-name="utility:list">
+            <div class="slds-p-around_medium">
+                <template if:true={allTimeEntries.length}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={paginatedTimeEntries}
+                        columns={columns}
+                        sorted-by={sortBy}
+                        sorted-direction={sortDirection}
+                        onsort={handleSort}
+                        hide-checkbox-column="true">
+                    </lightning-datatable>
+                    <div class="slds-grid slds-grid_align-spread slds-p-top_small">
+                        <lightning-button label="Previous" onclick={handlePrevious} disabled={isFirstPage}></lightning-button>
+                        <span class="slds-align-middle slds-text-body_small">Page {currentPage} of {totalPages}</span>
+                        <lightning-button label="Next" onclick={handleNext} disabled={isLastPage}></lightning-button>
+                    </div>
+                </template>
+                 <template if:false={allTimeEntries.length}>
+                    <div class="slds-text-align_center slds-p-around_medium">
+                        No time entries found for the selected period.
+                    </div>
+                </template>
+                <template if:true={error}>
+                     <div class="slds-text-align_center slds-p-around_medium slds-text-color_error">
+                        An error occurred: {error}
+                    </div>
+                </template>
+            </div>
+        </lightning-card>
+    </div>
+
+    <!-- Collection Rate Details Modal -->
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{modalTitle}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <template if:true={isLoadingModal}>
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                    </template>
+                    <template if:false={isLoadingModal}>
+                        <!-- CSV Download Button -->
+                        <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
+                            <div class="slds-col">
+                                <lightning-button
+                                    variant="brand"
+                                    label="Download CSV"
+                                    icon-name="utility:download"
+                                    onclick={handleDownloadCSV}
+                                ></lightning-button>
+                            </div>
+                        </div>
+                        
+                        <!-- Top Pagination Controls -->
+                        <template if:true={hasMultipleModalPages}>
+                            <div class="slds-p-around_small slds-border_bottom">
+                                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                    <div class="slds-col">
+                                        <span class="slds-text-body_small">{modalPageInfo}</span>
+                                    </div>
+                                    <div class="slds-col slds-no-flex">
+                                        <div class="slds-button-group" role="group">
+                                            <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                    onclick={handleFirstModalPage} 
+                                                    disabled={isLoadingModal}
+                                                    title="First Page">
+                                                <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                                                <lightning-icon icon-name="utility:chevronleft" size="x-small" class="slds-m-left_xxx-small"></lightning-icon>
+                                                <span class="slds-assistive-text">First Page</span>
+                                            </button>
+                                            <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                    onclick={handlePreviousModalPage} 
+                                                    disabled={isLoadingModal}
+                                                    title="Previous Page">
+                                                <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                                                <span class="slds-assistive-text">Previous Page</span>
+                                            </button>
+                                            <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                    onclick={handleNextModalPage} 
+                                                    disabled={isLoadingModal}
+                                                    title="Next Page">
+                                                <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                                <span class="slds-assistive-text">Next Page</span>
+                                            </button>
+                                            <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                    onclick={handleLastModalPage} 
+                                                    disabled={isLoadingModal}
+                                                    title="Last Page">
+                                                <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                                <lightning-icon icon-name="utility:chevronright" size="x-small" class="slds-m-left_xxx-small"></lightning-icon>
+                                                <span class="slds-assistive-text">Last Page</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        
+                        <lightning-datatable
+                            key-field="invoiceId"
+                            data={invoiceDetails}
+                            columns={modalColumns}
+                            hide-checkbox-column="true"
+                            onrowaction={handleRowAction}
+                        ></lightning-datatable>
+                        
+                        <!-- Bottom Pagination Controls -->
+                        <template if:true={hasMultipleModalPages}>
+                            <div class="slds-p-around_small slds-border_top">
+                                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                    <div class="slds-col">
+                                        <span class="slds-text-body_small">{modalPageInfo}</span>
+                                    </div>
+                                    <div class="slds-col slds-no-flex">
+                                        <div class="slds-button-group" role="group">
+                                            <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                    onclick={handleFirstModalPage} 
+                                                    disabled={isLoadingModal}
+                                                    title="First Page">
+                                                <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                                                <lightning-icon icon-name="utility:chevronleft" size="x-small" class="slds-m-left_xxx-small"></lightning-icon>
+                                                <span class="slds-assistive-text">First Page</span>
+                                            </button>
+                                            <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                    onclick={handlePreviousModalPage} 
+                                                    disabled={isLoadingModal}
+                                                    title="Previous Page">
+                                                <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                                                <span class="slds-assistive-text">Previous Page</span>
+                                            </button>
+                                            <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                    onclick={handleNextModalPage} 
+                                                    disabled={isLoadingModal}
+                                                    title="Next Page">
+                                                <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                                <span class="slds-assistive-text">Next Page</span>
+                                            </button>
+                                            <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                    onclick={handleLastModalPage} 
+                                                    disabled={isLoadingModal}
+                                                    title="Last Page">
+                                                <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                                <lightning-icon icon-name="utility:chevronright" size="x-small" class="slds-m-left_xxx-small"></lightning-icon>
+                                                <span class="slds-assistive-text">Last Page</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal}>Close</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

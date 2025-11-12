@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CL_Case_Status__c</fullName>
+    <label>Case Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending Charges</fullName>
+                <default>false</default>
+                <label>Pending Charges</label>
+            </value>
+            <value>
+                <fullName>Probation Revocation</fullName>
+                <default>false</default>
+                <label>Probation Revocation</label>
+            </value>
+            <value>
+                <fullName>Appeal</fullName>
+                <default>false</default>
+                <label>Appeal</label>
+            </value>
+            <value>
+                <fullName>Record Sealing</fullName>
+                <default>false</default>
+                <label>Record Sealing</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

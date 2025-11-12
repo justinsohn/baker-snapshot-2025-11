@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_First_Payment__c</fullName>
+    <description>Set by Payment - After Flow when first Payment record is created</description>
+    <inlineHelpText>Date that the client made their first payment. Set Automatically by the system</inlineHelpText>
+    <label>Date of First Payment</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

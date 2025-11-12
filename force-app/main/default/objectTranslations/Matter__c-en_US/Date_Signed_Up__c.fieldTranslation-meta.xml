@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Shows the date the client signed up (the first day they either made a payment or signed a fee agreement) --></help>
+    <label><!-- Date Signed Up --></label>
+    <name>Date_Signed_Up__c</name>
+</CustomFieldTranslation>

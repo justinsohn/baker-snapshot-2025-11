@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Team --></label>
+    <name>Team__c</name>
+    <picklistValues>
+        <masterLabel>Team Brian</masterLabel>
+        <translation><!-- Team Brian --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Carl</masterLabel>
+        <translation><!-- Team Carl --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Dillon</masterLabel>
+        <translation><!-- Team Dillon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Tyler</masterLabel>
+        <translation><!-- Team Tyler --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

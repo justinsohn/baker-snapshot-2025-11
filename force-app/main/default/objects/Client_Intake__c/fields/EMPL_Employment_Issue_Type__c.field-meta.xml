@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMPL_Employment_Issue_Type__c</fullName>
+    <label>EMPL: Type of Employment Issue</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Wrongful Termination</fullName>
+                <default>false</default>
+                <label>Wrongful Termination</label>
+            </value>
+            <value>
+                <fullName>Discrimination</fullName>
+                <default>false</default>
+                <label>Discrimination</label>
+            </value>
+            <value>
+                <fullName>Harassment</fullName>
+                <default>false</default>
+                <label>Harassment</label>
+            </value>
+            <value>
+                <fullName>Retaliation</fullName>
+                <default>false</default>
+                <label>Retaliation</label>
+            </value>
+            <value>
+                <fullName>Wage/Hour Violations</fullName>
+                <default>false</default>
+                <label>Wage/Hour Violations</label>
+            </value>
+            <value>
+                <fullName>FMLA Violations</fullName>
+                <default>false</default>
+                <label>FMLA Violations</label>
+            </value>
+            <value>
+                <fullName>Unsafe Work Conditions</fullName>
+                <default>false</default>
+                <label>Unsafe Work Conditions</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

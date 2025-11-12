@@ -1,0 +1,31 @@
+{!Lead.Name}
+
+Email: {!Lead.Email}
+
+Name of Additional Contacts: {!Lead.Names_of_Additional_Contacts__c}
+
+Scope of Work: {!Lead.Scope_of_Work__c}
+
+Nature of Matter: {!Lead.Nature_of_Matter__c}
+
+Next Deadline: {!Lead.Next_Deadline__c}
+
+Fee Agreement Type: {!Lead.Which_type_of_Fee_Agreement__c}
+
+Initial Retainer $ (Evergreen Hr Rate): {!Lead.Initial_Retainer_Evergreen_Hr_Rate__c}
+
+Standard Trust Amount (If Evergreen): {!Lead.Standard_Trust_Amount__c}
+
+Flat Fee Retainer (if flat rate): {!Lead.Flat_Rate_Retainer_if_Flat_Rate__c}
+
+Flat Fee Only: {!Lead.Flat_Fee_Only_earned_in_increments__c}
+
+Matter Notes: {!Lead.Matter_Notes_Long__c}
+
+Intake Attorney: {!Lead.Intake_Attorney__c}
+
+Consult Held With: {!Lead.Consult_Held_With__c}
+
+Special Follow Up Instructions: {!Lead.Special_Follow_Up_Instructions__c}
+
+Attorney to personally follow up w/ PC: {!Lead.Attorney_to_personally_follow_up_w_PC__c}

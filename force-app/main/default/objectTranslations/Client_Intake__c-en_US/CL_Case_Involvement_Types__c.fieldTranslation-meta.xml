@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CL: Case Involvement Types (Check all) --></label>
+    <name>CL_Case_Involvement_Types__c</name>
+    <picklistValues>
+        <masterLabel>DUI/DWI</masterLabel>
+        <translation><!-- DUI/DWI --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Death or Serious Bodily Injury</masterLabel>
+        <translation><!-- Death or Serious Bodily Injury --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Domestic Violence</masterLabel>
+        <translation><!-- Domestic Violence --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drug Offense</masterLabel>
+        <translation><!-- Drug Offense --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Juvenile Offense</masterLabel>
+        <translation><!-- Juvenile Offense --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sex Offense</masterLabel>
+        <translation><!-- Sex Offense --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

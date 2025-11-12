@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- EMPL: Outcome/Resolution Seeking for... --></label>
+    <name>EMPL_Desired_Outcome__c</name>
+    <picklistValues>
+        <masterLabel>Compensation for Lost Wages</masterLabel>
+        <translation><!-- Compensation for Lost Wages --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Policy Change at the Workplace</masterLabel>
+        <translation><!-- Policy Change at the Workplace --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reinstatement of Position</masterLabel>
+        <translation><!-- Reinstatement of Position --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

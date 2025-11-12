@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nature_of_Matter__c</fullName>
+    <label>Nature of Matter</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Agreement (Employee, Business)</fullName>
+                <default>false</default>
+                <label>Agreement (Employee, Business)</label>
+            </value>
+            <value>
+                <fullName>Assault</fullName>
+                <default>false</default>
+                <label>Assault</label>
+            </value>
+            <value>
+                <fullName>Assets</fullName>
+                <default>false</default>
+                <label>Assets</label>
+            </value>
+            <value>
+                <fullName>Cease and Desist</fullName>
+                <default>false</default>
+                <label>Cease and Desist</label>
+            </value>
+            <value>
+                <fullName>Child Custody</fullName>
+                <default>false</default>
+                <label>Child Custody</label>
+            </value>
+            <value>
+                <fullName>Commercial</fullName>
+                <default>false</default>
+                <label>Commercial</label>
+            </value>
+            <value>
+                <fullName>Conservatorship</fullName>
+                <default>false</default>
+                <label>Conservatorship</label>
+            </value>
+            <value>
+                <fullName>Construction Defect</fullName>
+                <default>false</default>
+                <label>Construction Defect</label>
+            </value>
+            <value>
+                <fullName>Contested</fullName>
+                <default>false</default>
+                <label>Contested</label>
+            </value>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <label>Contract</label>
+            </value>
+            <value>
+                <fullName>Deed</fullName>
+                <default>false</default>
+                <label>Deed</label>
+            </value>
+            <value>
+                <fullName>Demand Letter</fullName>
+                <default>false</default>
+                <label>Demand Letter</label>
+            </value>
+            <value>
+                <fullName>Deposit / Rent</fullName>
+                <default>false</default>
+                <label>Deposit / Rent</label>
+            </value>
+            <value>
+                <fullName>DHS</fullName>
+                <default>false</default>
+                <label>DHS</label>
+            </value>
+            <value>
+                <fullName>Discrimination</fullName>
+                <default>false</default>
+                <label>Discrimination</label>
+            </value>
+            <value>
+                <fullName>Dispute</fullName>
+                <default>false</default>
+                <label>Dispute</label>
+            </value>
+            <value>
+                <fullName>Divorce</fullName>
+                <default>false</default>
+                <label>Divorce</label>
+            </value>
+            <value>
+                <fullName>Domestic Violence</fullName>
+                <default>false</default>
+                <label>Domestic Violence</label>
+            </value>
+            <value>
+                <fullName>Drug Related</fullName>
+                <default>false</default>
+                <label>Drug Related</label>
+            </value>
+            <value>
+                <fullName>DUI</fullName>
+                <default>false</default>
+                <label>DUI</label>
+            </value>
+            <value>
+                <fullName>Easement</fullName>
+                <default>false</default>
+                <label>Easement</label>
+            </value>
+            <value>
+                <fullName>Economic Crime (fraud, money laundering, etc)</fullName>
+                <default>false</default>
+                <label>Economic Crime (fraud, money laundering, etc)</label>
+            </value>
+            <value>
+                <fullName>Estate</fullName>
+                <default>false</default>
+                <label>Estate</label>
+            </value>
+            <value>
+                <fullName>Eviction</fullName>
+                <default>false</default>
+                <label>Eviction</label>
+            </value>
+            <value>
+                <fullName>Foreclosure</fullName>
+                <default>false</default>
+                <label>Foreclosure</label>
+            </value>
+            <value>
+                <fullName>Guardianship</fullName>
+                <default>false</default>
+                <label>Guardianship</label>
+            </value>
+            <value>
+                <fullName>Habitability</fullName>
+                <default>false</default>
+                <label>Habitability</label>
+            </value>
+            <value>
+                <fullName>Handbook</fullName>
+                <default>false</default>
+                <label>Handbook</label>
+            </value>
+            <value>
+                <fullName>Homicide</fullName>
+                <default>false</default>
+                <label>Homicide</label>
+            </value>
+            <value>
+                <fullName>Hostile Work Environment</fullName>
+                <default>false</default>
+                <label>Hostile Work Environment</label>
+            </value>
+            <value>
+                <fullName>Insurance Denial</fullName>
+                <default>false</default>
+                <label>Insurance Denial</label>
+            </value>
+            <value>
+                <fullName>Lease Agreement</fullName>
+                <default>false</default>
+                <label>Lease Agreement</label>
+            </value>
+            <value>
+                <fullName>Mechanic&apos;s Lien</fullName>
+                <default>false</default>
+                <label>Mechanic&apos;s Lien</label>
+            </value>
+            <value>
+                <fullName>Medical Malpractice</fullName>
+                <default>false</default>
+                <label>Medical Malpractice</label>
+            </value>
+            <value>
+                <fullName>Mortgage</fullName>
+                <default>false</default>
+                <label>Mortgage</label>
+            </value>
+            <value>
+                <fullName>Noncompete Clauses</fullName>
+                <default>false</default>
+                <label>Noncompete Clauses</label>
+            </value>
+            <value>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <label>Others</label>
+            </value>
+            <value>
+                <fullName>Partition</fullName>
+                <default>false</default>
+                <label>Partition</label>
+            </value>
+            <value>
+                <fullName>POA</fullName>
+                <default>false</default>
+                <label>POA</label>
+            </value>
+            <value>
+                <fullName>Prelitigation</fullName>
+                <default>false</default>
+                <label>Prelitigation</label>
+            </value>
+            <value>
+                <fullName>Prenuptial Agreement</fullName>
+                <default>false</default>
+                <label>Prenuptial Agreement</label>
+            </value>
+            <value>
+                <fullName>Probate</fullName>
+                <default>false</default>
+                <label>Probate</label>
+            </value>
+            <value>
+                <fullName>Product Liabilities (including medicine, medical equipment, supplies)</fullName>
+                <default>false</default>
+                <label>Product Liabilities (including medicine, medical equipment, supplies)</label>
+            </value>
+            <value>
+                <fullName>Promissory Note / Debt / Collections</fullName>
+                <default>false</default>
+                <label>Promissory Note / Debt / Collections</label>
+            </value>
+            <value>
+                <fullName>Quit Claim</fullName>
+                <default>false</default>
+                <label>Quit Claim</label>
+            </value>
+            <value>
+                <fullName>Residential</fullName>
+                <default>false</default>
+                <label>Residential</label>
+            </value>
+            <value>
+                <fullName>Sex Offense</fullName>
+                <default>false</default>
+                <label>Sex Offense</label>
+            </value>
+            <value>
+                <fullName>Small Claims</fullName>
+                <default>false</default>
+                <label>Small Claims</label>
+            </value>
+            <value>
+                <fullName>Termination</fullName>
+                <default>false</default>
+                <label>Termination</label>
+            </value>
+            <value>
+                <fullName>Theft (including Robbery, Shoplifting, Larceny, Burglary)</fullName>
+                <default>false</default>
+                <label>Theft (including Robbery, Shoplifting, Larceny, Burglary)</label>
+            </value>
+            <value>
+                <fullName>Title / Property</fullName>
+                <default>false</default>
+                <label>Title / Property</label>
+            </value>
+            <value>
+                <fullName>Traffic Offense (including Hit and Run)</fullName>
+                <default>false</default>
+                <label>Traffic Offense (including Hit and Run)</label>
+            </value>
+            <value>
+                <fullName>Transactional</fullName>
+                <default>false</default>
+                <label>Transactional</label>
+            </value>
+            <value>
+                <fullName>Trust</fullName>
+                <default>false</default>
+                <label>Trust</label>
+            </value>
+            <value>
+                <fullName>Uncontested</fullName>
+                <default>false</default>
+                <label>Uncontested</label>
+            </value>
+            <value>
+                <fullName>Wage Dispute</fullName>
+                <default>false</default>
+                <label>Wage Dispute</label>
+            </value>
+            <value>
+                <fullName>Will</fullName>
+                <default>false</default>
+                <label>Will</label>
+            </value>
+            <value>
+                <fullName>Workman&apos;s Comp</fullName>
+                <default>false</default>
+                <label>Workman&apos;s Comp</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

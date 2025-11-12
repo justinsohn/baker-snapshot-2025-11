@@ -1,0 +1,303 @@
+<!--
+  Lightning Web Component template for the Conflict Check tool.
+  This template provides a user interface for intake specialists to check for
+  potential conflicts of interest.
+-->
+<template>
+    <lightning-card title="Conflict Check" icon-name="standard:search">
+        <div class="slds-p-around_medium">
+            
+            <!-- Lead Search Section for Platform Users -->
+            <template if:true={showLeadSearch}>
+                <div class="slds-m-bottom_large">
+                    <h2 class="slds-text-heading_medium slds-m-bottom_medium">Select Lead</h2>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+                            <lightning-input
+                                label="Search for Lead"
+                                value={leadSearchTerm}
+                                onchange={handleLeadSearchTermChange}
+                                placeholder="Enter lead name, email, or phone..."
+                                type="search">
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                            <lightning-button
+                                label="Search"
+                                variant="brand"
+                                onclick={handleLeadSearch}
+                                disabled={isLeadSearchLoading}
+                                class="slds-m-top_medium">
+                            </lightning-button>
+                        </div>
+                    </div>
+                    
+                    <!-- Lead Search Results -->
+                    <template if:true={leadSearchResults.length}>
+                        <div class="slds-m-top_medium">
+                            <h3 class="slds-text-heading_small slds-m-bottom_small">Select a Lead:</h3>
+                            <div class="slds-scrollable_y" style="height: 300px;">
+                                <template for:each={leadSearchResults} for:item="lead">
+                                    <div key={lead.Id} 
+                                         class="slds-box slds-box_small slds-m-bottom_x-small slds-cursor_pointer"
+                                         data-lead-id={lead.Id}
+                                         onclick={handleLeadSelect}>
+                                        <div class="slds-grid">
+                                            <div class="slds-col slds-size_1-of-2">
+                                                <p class="slds-text-body_regular slds-text-color_default">
+                                                    <strong>{lead.FirstName} {lead.LastName}</strong>
+                                                </p>
+                                                <p class="slds-text-body_small slds-text-color_weak">{lead.Company}</p>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-2">
+                                                <p class="slds-text-body_small">{lead.Email}</p>
+                                                <p class="slds-text-body_small">{lead.Phone}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                    
+                    <!-- Loading spinner for lead search -->
+                    <template if:true={isLeadSearchLoading}>
+                        <div class="slds-m-top_medium slds-text-align_center">
+                            <lightning-spinner alternative-text="Searching leads..." size="small"></lightning-spinner>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Selected Lead Display (only show when not on a Lead record page) -->
+            <template if:true={showSelectedLeadSection}>
+                <div class="slds-box slds-theme_shade slds-m-bottom_medium">
+                    <div class="slds-grid slds-grid_align-spread">
+                        <div class="slds-col">
+                            <p class="slds-text-body_regular">
+                                <strong>Selected Lead:</strong> {selectedLeadName}
+                            </p>
+                        </div>
+                        <div class="slds-col slds-no-flex">
+                            <lightning-button
+                                label="Change Lead"
+                                variant="neutral"
+                                onclick={handleChangeLead}
+                                size="small">
+                            </lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Conflict Check Form -->
+            <template if:true={showConflictCheckForm}>
+            <!-- Input section for search criteria -->
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                    <lightning-input
+                        label="Name"
+                        value={name}
+                        onchange={handleNameChange}
+                        placeholder="Enter prospective client's name...">
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                    <lightning-input
+                        label="Business/Company Name"
+                        value={businessName}
+                        onchange={handleBusinessNameChange}
+                        placeholder="Enter business or company name...">
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                    <lightning-input
+                        type="email"
+                        label="Email"
+                        value={email}
+                        onchange={handleEmailChange}
+                        placeholder="Enter email address...">
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                    <lightning-input
+                        type="tel"
+                        label="Phone"
+                        value={phone}
+                        onchange={handlePhoneChange}
+                        placeholder="Enter phone number...">
+                    </lightning-input>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="slds-m-top_medium slds-text-align_center">
+                <lightning-button
+                    label="Run Conflict Check"
+                    variant="brand"
+                    onclick={handleSearch}
+                    disabled={isSearchDisabled}>
+                </lightning-button>
+            </div>
+            </template>
+
+            <!-- Results Section (MOVED ABOVE Conflict Check History) -->
+            <template if:true={showResults}>
+                <div class="slds-m-top_large">
+                    <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium">
+                        <h2 class="slds-text-heading_medium">Potential Conflicts</h2>
+                        <lightning-button
+                            label="Run New Check"
+                            variant="neutral"
+                            onclick={handleRunNewCheck}
+                            icon-name="utility:refresh">
+                        </lightning-button>
+                    </div>
+                    <!-- When conflicts ARE found - show clickable red tile -->
+                    <template if:true={hasResults}>
+                        <div class="slds-box slds-m-bottom_small slds-cursor_pointer slds-theme_alert-texture conflict-found-tile"
+                             onclick={handleCurrentResultsClick}>
+                            <div class="slds-m-bottom_x-small">
+                                <p class="slds-text-body_large slds-text-color_error">
+                                    <strong>{conflictCountText}</strong>
+                                </p>
+                            </div>
+                            <div class="slds-m-bottom_x-small">
+                                <p class="slds-text-body_small slds-text-color_default">
+                                    Highest Risk Score: {currentResultsHighestRisk}
+                                </p>
+                            </div>
+                            <span class="clickable-pill-red">
+                                Click to view details
+                            </span>
+                        </div>
+                    </template>
+                    <!-- When NO conflicts found - show green success box -->
+                    <template if:false={hasResults}>
+                        <div class="slds-box slds-theme_success slds-text-align_center">
+                            <p>No potential conflicts found.</p>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Conflict Check History Section (MOVED BELOW Results) -->
+            <template if:true={hasConflictCheckHistory}>
+                <div class="slds-m-top_large">
+                    <h2 class="slds-text-heading_medium slds-m-bottom_medium">Previous Conflict Checks</h2>
+
+                    <!-- New Format: Structured Data -->
+                    <template if:true={showNewFormatHistory}>
+                        <div class="slds-scrollable_y" style="max-height: 400px;">
+                            <template for:each={conflictCheckHistory} for:item="log">
+                                <div key={log.id}
+                                     class="slds-box slds-m-bottom_small slds-cursor_pointer slds-theme_shade history-tile"
+                                     data-log-id={log.id}
+                                     onclick={handleHistoryTileClick}>
+                                    <div class="slds-m-bottom_x-small">
+                                        <p class="slds-text-body_small slds-text-color_weak">
+                                            {log.formattedDate} by {log.performedBy}
+                                        </p>
+                                    </div>
+                                    <div class="slds-m-bottom_x-small">
+                                        <div class="slds-m-bottom_xx-small">
+                                            <template if:true={log.searchName}>
+                                                <p class="slds-text-body_regular slds-text-color_default">
+                                                    <strong>Name:</strong> {log.searchName}
+                                                </p>
+                                            </template>
+                                            <template if:true={log.searchEmail}>
+                                                <p class="slds-text-body_regular slds-text-color_default">
+                                                    <strong>Email:</strong> {log.searchEmail}
+                                                </p>
+                                            </template>
+                                            <template if:true={log.searchPhone}>
+                                                <p class="slds-text-body_regular slds-text-color_default">
+                                                    <strong>Phone:</strong> {log.searchPhone}
+                                                </p>
+                                            </template>
+                                            <template if:true={log.searchBusinessName}>
+                                                <p class="slds-text-body_regular slds-text-color_default">
+                                                    <strong>Business:</strong> {log.searchBusinessName}
+                                                </p>
+                                            </template>
+                                        </div>
+                                        <p class="slds-text-body_small slds-text-color_weak">
+                                            {log.totalMatches} matches found<template if:true={log.highestRiskScore}> | Highest Risk Score: {log.highestRiskScore}</template>
+                                        </p>
+                                    </div>
+                                    <span class="clickable-pill">
+                                        Click to view details
+                                    </span>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <!-- Old Format: Text (Backward Compatibility) -->
+                    <template if:true={showOldFormatHistory}>
+                        <div class="slds-box">
+                            <pre class="slds-text-body_small" style="white-space: pre-wrap; font-family: inherit;">{conflictCheckHistoryText}</pre>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Spinner for loading state -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </template>
+
+            <!-- Modal for viewing historical conflict check details -->
+            <template if:true={showModal}>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container" style="max-width: 98%; width: 98%;">
+                        <!-- Modal Header -->
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                    title="Close" onclick={handleCloseModal}>
+                                <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 class="slds-text-heading_medium slds-hyphenate">{modalTitle}</h2>
+                        </header>
+
+                        <!-- Modal Body -->
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <!-- Results Datatable -->
+                            <div>
+                                <h3 class="slds-text-heading_small slds-m-bottom_small">
+                                    Conflict Matches ({modalMatches.length})
+                                </h3>
+                                <template if:true={modalMatches.length}>
+                                    <lightning-datatable
+                                        key-field="id"
+                                        data={modalMatches}
+                                        columns={columns}
+                                        hide-checkbox-column="true"
+                                        show-row-number-column="true">
+                                    </lightning-datatable>
+                                </template>
+                                <template if:false={modalMatches.length}>
+                                    <div class="slds-box slds-theme_success slds-text-align_center">
+                                        <p>No conflicts were found in this check.</p>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Modal Footer -->
+                        <footer class="slds-modal__footer">
+                            <lightning-button
+                                label="Close"
+                                variant="neutral"
+                                onclick={handleCloseModal}>
+                            </lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

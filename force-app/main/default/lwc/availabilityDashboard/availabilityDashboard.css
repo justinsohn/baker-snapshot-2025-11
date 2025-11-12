@@ -1,0 +1,35 @@
+/* Styling for user rows to ensure proper alignment */
+.user-row {
+    align-items: center;
+    border-bottom: 1px solid #DDDBDA;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+}
+
+.user-row:last-child {
+    border-bottom: none;
+}
+
+/* Container for the availability list */
+.availability-list {
+    background-color: #FAFAF9;
+    border: 1px solid #DDDBDA;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+}
+
+/* --- Badge Color Classes --- */
+.badge-green {
+    background-color: #45C65A; /* Salesforce Success Green */
+    color: white;
+}
+
+.badge-yellow {
+    background-color: #FFB75D; /* Salesforce Warning Yellow */
+    color: white;
+}
+
+.badge-red {
+    background-color: #EA001E; /* Salesforce Error Red */
+    color: white;
+}

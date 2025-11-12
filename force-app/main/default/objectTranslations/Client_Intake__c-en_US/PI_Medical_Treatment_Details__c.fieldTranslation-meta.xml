@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- PI: Medical Treatment Details --></label>
+    <name>PI_Medical_Treatment_Details__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CONST: Project Owner Contact Information --></label>
+    <name>CONST_Project_Owner_Contact__c</name>
+</CustomFieldTranslation>

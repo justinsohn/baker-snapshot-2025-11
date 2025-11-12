@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CONST: Primary Parties - Contractor(s) --></label>
+    <name>CONST_Primary_Contractors__c</name>
+</CustomFieldTranslation>

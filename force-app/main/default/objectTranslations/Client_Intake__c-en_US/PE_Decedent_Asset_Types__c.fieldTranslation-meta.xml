@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- PE: Descendent Asset Types --></label>
+    <name>PE_Decedent_Asset_Types__c</name>
+    <picklistValues>
+        <masterLabel>Annuities</masterLabel>
+        <translation><!-- Annuities --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bank accounts</masterLabel>
+        <translation><!-- Bank accounts --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bonds</masterLabel>
+        <translation><!-- Bonds --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cars/vehicles</masterLabel>
+        <translation><!-- Cars/vehicles --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Home</masterLabel>
+        <translation><!-- Home --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other real estate inside of Colorado</masterLabel>
+        <translation><!-- Other real estate inside of Colorado --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other real estate outside of Colorado</masterLabel>
+        <translation><!-- Other real estate outside of Colorado --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stocks</masterLabel>
+        <translation><!-- Stocks --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Trusts</masterLabel>
+        <translation><!-- Trusts --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

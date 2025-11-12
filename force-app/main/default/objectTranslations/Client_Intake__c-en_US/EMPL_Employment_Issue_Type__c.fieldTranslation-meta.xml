@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- EMPL: Type of Employment Issue --></label>
+    <name>EMPL_Employment_Issue_Type__c</name>
+    <picklistValues>
+        <masterLabel>Discrimination</masterLabel>
+        <translation><!-- Discrimination --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FMLA Violations</masterLabel>
+        <translation><!-- FMLA Violations --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Harassment</masterLabel>
+        <translation><!-- Harassment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retaliation</masterLabel>
+        <translation><!-- Retaliation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unsafe Work Conditions</masterLabel>
+        <translation><!-- Unsafe Work Conditions --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wage/Hour Violations</masterLabel>
+        <translation><!-- Wage/Hour Violations --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrongful Termination</masterLabel>
+        <translation><!-- Wrongful Termination --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

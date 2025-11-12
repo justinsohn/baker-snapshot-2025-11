@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RE_Dispute_Nature__c</fullName>
+    <label>RE: Nature of Dispute</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Non-Payment of Rent</fullName>
+                <default>false</default>
+                <label>Non-Payment of Rent</label>
+            </value>
+            <value>
+                <fullName>Lease Violations</fullName>
+                <default>false</default>
+                <label>Lease Violations</label>
+            </value>
+            <value>
+                <fullName>Property Defects</fullName>
+                <default>false</default>
+                <label>Property Defects</label>
+            </value>
+            <value>
+                <fullName>Contract Breach</fullName>
+                <default>false</default>
+                <label>Contract Breach</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

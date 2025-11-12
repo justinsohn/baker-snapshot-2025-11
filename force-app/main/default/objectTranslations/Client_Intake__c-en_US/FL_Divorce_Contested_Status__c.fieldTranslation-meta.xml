@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- FL: Divorce Contested or Uncontested? --></label>
+    <name>FL_Divorce_Contested_Status__c</name>
+    <picklistValues>
+        <masterLabel>Contested</masterLabel>
+        <translation><!-- Contested --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Uncontested</masterLabel>
+        <translation><!-- Uncontested --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

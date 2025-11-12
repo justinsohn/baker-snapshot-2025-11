@@ -1,0 +1,261 @@
+<template>
+    <lightning-card title="AR Aging Analysis" icon-name="standard:timesheet">
+        <!-- Filter Section -->
+        <div class="slds-p-around_medium">
+            <lightning-layout horizontal-align="space" multiple-rows="false">
+                <lightning-layout-item size="6" padding="horizontal-small">
+                    <lightning-input 
+                        type="date" 
+                        label="As of Date" 
+                        value={asOfDate}
+                        onchange={handleDateChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="horizontal-small">
+                    <lightning-combobox
+                        label="Team Filter"
+                        value={selectedTeam}
+                        options={teamOptions}
+                        onchange={handleTeamChange}
+                        placeholder="Select Team">
+                    </lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium slds-text-align_center">
+                <lightning-spinner alternative-text="Loading AR Aging Data..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+        
+        <!-- Error Display -->
+        <template if:true={error}>
+            <div class="slds-p-around_medium">
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    <span class="slds-assistive-text">Error</span>
+                    <h2>{error}</h2>
+                </div>
+            </div>
+        </template>
+        
+        <!-- Aging Buckets - Stacked Vertically -->
+        <template if:true={agingData}>
+            <lightning-layout vertical-align="start" multiple-rows="true" class="slds-p-around_medium">
+                <!-- 0-30 Days Card -->
+                <lightning-layout-item size="12">
+                    <div class="metric-card aging-30 clickable-card" onclick={handle30DaysClick}>
+                        <div class="metric-title">0-30 DAYS</div>
+                        <div class="metric-value">
+                            <lightning-formatted-number
+                                value={aging30DaysTruncated}
+                                format-style="currency"
+                                currency-code="USD"
+                                minimum-fraction-digits="0"
+                                maximum-fraction-digits="0"
+                            ></lightning-formatted-number>
+                        </div>
+                        <div class="metric-count">{agingData.count30Days} invoices</div>
+                        <lightning-icon icon-name="utility:chevronright" size="small" class="card-chevron"></lightning-icon>
+                    </div>
+                </lightning-layout-item>
+                
+                <!-- 0-60 Days Card -->
+                <lightning-layout-item size="12">
+                    <div class="metric-card aging-60 clickable-card" onclick={handle60DaysClick}>
+                        <div class="metric-title">0-60 DAYS</div>
+                        <div class="metric-value">
+                            <lightning-formatted-number
+                                value={aging60DaysTruncated}
+                                format-style="currency"
+                                currency-code="USD"
+                                minimum-fraction-digits="0"
+                                maximum-fraction-digits="0"
+                            ></lightning-formatted-number>
+                        </div>
+                        <div class="metric-count">{agingData.count60Days} invoices</div>
+                        <lightning-icon icon-name="utility:chevronright" size="small" class="card-chevron"></lightning-icon>
+                    </div>
+                </lightning-layout-item>
+                
+                <!-- 0-90 Days Card -->
+                <lightning-layout-item size="12">
+                    <div class="metric-card aging-90 clickable-card" onclick={handle90DaysClick}>
+                        <div class="metric-title">0-90 DAYS</div>
+                        <div class="metric-value">
+                            <lightning-formatted-number
+                                value={aging90DaysTruncated}
+                                format-style="currency"
+                                currency-code="USD"
+                                minimum-fraction-digits="0"
+                                maximum-fraction-digits="0"
+                            ></lightning-formatted-number>
+                        </div>
+                        <div class="metric-count">{agingData.count90Days} invoices</div>
+                        <lightning-icon icon-name="utility:chevronright" size="small" class="card-chevron"></lightning-icon>
+                    </div>
+                </lightning-layout-item>
+                
+                <!-- 91+ Days Card -->
+                <lightning-layout-item size="12">
+                    <div class="metric-card aging-91plus clickable-card" onclick={handle91PlusDaysClick}>
+                        <div class="metric-title">0-91+ DAYS</div>
+                        <div class="metric-value">
+                            <lightning-formatted-number
+                                value={aging91PlusDaysTruncated}
+                                format-style="currency"
+                                currency-code="USD"
+                                minimum-fraction-digits="0"
+                                maximum-fraction-digits="0"
+                            ></lightning-formatted-number>
+                        </div>
+                        <div class="metric-count">{agingData.count91PlusDays} invoices</div>
+                        <lightning-icon icon-name="utility:chevronright" size="small" class="card-chevron"></lightning-icon>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+    </lightning-card>
+    
+    <!-- Modal for Invoice Details -->
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" 
+                 aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container" style="width: 95vw; max-width: 95vw;">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" 
+                            title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{modalTitle}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <!-- Loading Spinner for Modal -->
+                    <template if:true={isLoadingModal}>
+                        <div class="slds-text-align_center slds-p-around_large">
+                            <lightning-spinner alternative-text="Loading invoice details..." size="medium"></lightning-spinner>
+                        </div>
+                    </template>
+                    
+                    <!-- Modal Data Table -->
+                    <template if:false={isLoadingModal}>
+                        <template if:true={modalData}>
+                            <!-- CSV Download Button -->
+                            <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
+                                <div class="slds-col">
+                                    <lightning-button
+                                        variant="brand"
+                                        label="Download CSV"
+                                        icon-name="utility:download"
+                                        onclick={handleDownloadCSV}
+                                    ></lightning-button>
+                                </div>
+                            </div>
+                            
+                            <!-- Top Pagination Controls -->
+                            <template if:true={hasMultiplePages}>
+                                <div class="slds-p-around_small slds-border_bottom">
+                                    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                        <div class="slds-col">
+                                            <span class="slds-text-body_small">{pageInfo}</span>
+                                        </div>
+                                        <div class="slds-col slds-no-flex">
+                                            <div class="slds-button-group" role="group">
+                                                <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                        onclick={handleFirstPage} 
+                                                        disabled={isFirstPage}
+                                                        title="First Page">
+                                                    <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                                                    <lightning-icon icon-name="utility:chevronleft" size="x-small" class="slds-m-left_xxx-small"></lightning-icon>
+                                                    <span class="slds-assistive-text">First Page</span>
+                                                </button>
+                                                <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                        onclick={handlePreviousPage} 
+                                                        disabled={isFirstPage}
+                                                        title="Previous Page">
+                                                    <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                                                    <span class="slds-assistive-text">Previous Page</span>
+                                                </button>
+                                                <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                        onclick={handleNextPage} 
+                                                        disabled={isLastPage}
+                                                        title="Next Page">
+                                                    <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                                    <span class="slds-assistive-text">Next Page</span>
+                                                </button>
+                                                <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                        onclick={handleLastPage} 
+                                                        disabled={isLastPage}
+                                                        title="Last Page">
+                                                    <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                                    <lightning-icon icon-name="utility:chevronright" size="x-small" class="slds-m-left_xxx-small"></lightning-icon>
+                                                    <span class="slds-assistive-text">Last Page</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            
+                            <lightning-datatable
+                                key-field="invoiceId"
+                                data={paginatedData}
+                                columns={columns}
+                                onrowaction={handleRowAction}
+                                hide-checkbox-column="true">
+                            </lightning-datatable>
+                            
+                            <!-- Bottom Pagination Controls -->
+                            <template if:true={hasMultiplePages}>
+                                <div class="slds-p-around_small slds-border_top">
+                                    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                        <div class="slds-col">
+                                            <span class="slds-text-body_small">{pageInfo}</span>
+                                        </div>
+                                        <div class="slds-col slds-no-flex">
+                                            <div class="slds-button-group" role="group">
+                                                <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                        onclick={handleFirstPage} 
+                                                        disabled={isFirstPage}
+                                                        title="First Page">
+                                                    <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                                                    <lightning-icon icon-name="utility:chevronleft" size="x-small" class="slds-m-left_xxx-small"></lightning-icon>
+                                                    <span class="slds-assistive-text">First Page</span>
+                                                </button>
+                                                <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                        onclick={handlePreviousPage} 
+                                                        disabled={isFirstPage}
+                                                        title="Previous Page">
+                                                    <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                                                    <span class="slds-assistive-text">Previous Page</span>
+                                                </button>
+                                                <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                        onclick={handleNextPage} 
+                                                        disabled={isLastPage}
+                                                        title="Next Page">
+                                                    <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                                    <span class="slds-assistive-text">Next Page</span>
+                                                </button>
+                                                <button class="slds-button slds-button_icon slds-button_icon-border-filled" 
+                                                        onclick={handleLastPage} 
+                                                        disabled={isLastPage}
+                                                        title="Last Page">
+                                                    <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                                                    <lightning-icon icon-name="utility:chevronright" size="x-small" class="slds-m-left_xxx-small"></lightning-icon>
+                                                    <span class="slds-assistive-text">Last Page</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+                    </template>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

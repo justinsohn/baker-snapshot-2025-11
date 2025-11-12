@@ -1,0 +1,1014 @@
+/* --- General Layout & Theming --- */
+:host {
+  display: block;
+  background-color: #f3f4f6; /* Light gray background for the whole page */
+}
+
+.dashboard-container > lightning-card {
+  --sds-c-card-background-color: transparent;
+  --sds-c-card-body-padding: 0;
+  --sds-c-card-header-padding: 1rem 1.5rem;
+  --sds-c-card-shadow: none;
+  --sds-c-card-header-font-size: 1.25rem;
+}
+
+/* --- Column Card Styling --- */
+.column-card {
+  background-color: #ffffff;
+  border: 1px solid #dddbda;
+  border-radius: 0.75rem; /* Softer rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  height: 100%;
+  /* Add distinct top border color */
+  border-top-width: 4px;
+}
+
+.column-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Colored Header Accents --- */
+.column-card .slds-card__header {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 1.5rem;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+}
+
+.column-card .slds-card__header-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Specific header colors and borders */
+.card-sales {
+  border-top-color: #0070d2;
+}
+.card-delivery {
+  border-top-color: #04844b;
+}
+.card-finance {
+  border-top-color: #dd7a01;
+}
+
+.card-sales .slds-card__header-title,
+.card-sales .slds-media__figure .slds-icon {
+  color: #005fb2;
+}
+.card-delivery .slds-card__header-title,
+.card-delivery .slds-media__figure .slds-icon {
+  color: #04844b;
+}
+.card-finance .slds-card__header-title,
+.card-finance .slds-media__figure .slds-icon {
+  color: #c23934;
+}
+
+/* --- Component Sections within Cards --- */
+.component-header {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #5e5e5e;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f3f4f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Component header icon styling - overridden by specific icon classes above */
+.component-header .slds-media__figure lightning-icon {
+  --sds-c-icon-color-foreground-default: #706e6b; /* SLDS neutral color - fallback */
+}
+
+/* --- Metric Tile Styling --- */
+.metric-tile {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  padding: 1rem;
+}
+
+.metric-tile.clickable-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  border-color: #0070d2;
+  background-color: #ffffff; /* On hover, revert to white for a pop effect */
+}
+
+/* NEW: Subtle background colors for metric tiles */
+.metric-tile-leads {
+  background-color: #f3f8fd;
+}
+.metric-tile-time {
+  background-color: #f3fcf7;
+}
+.metric-tile-capacity {
+  background-color: #fff8f0;
+}
+.metric-tile-collection {
+  background-color: #f9f5fc;
+}
+
+.metric-value {
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #181818;
+}
+
+.metric-value-small {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #181818;
+}
+
+/* --- List Styling (Attorneys, Sources) --- */
+.data-list .slds-item {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid #f3f2f2;
+  transition: background-color 0.2s ease;
+}
+
+.data-list .slds-item:last-child {
+  border-bottom: none;
+}
+
+.data-list .slds-item:hover {
+  background-color: #f3f4f6;
+}
+
+.data-list .slds-badge {
+  font-weight: 600;
+}
+
+/* --- Invoice Summary Specifics --- */
+.invoice-tile--billable {
+  border-left: 4px solid #ffb75d;
+}
+.invoice-tile--trust {
+  border-left: 4px solid #549ded;
+}
+.invoice-tile--paid {
+  border-left: 4px solid #4bca81;
+}
+.invoice-tile--overdue {
+  border-left: 4px solid #ea001e;
+}
+
+/* --- Utility & Responsive --- */
+.period-selector {
+  width: 9rem;
+}
+
+.tree-grid-container {
+  max-height: 22rem;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+}
+
+.dashboard-filters {
+  padding: 0 1.5rem 1rem 1.5rem;
+}
+
+.column-card .slds-card__body {
+  padding: 1.5rem;
+}
+
+/* --- Stacked Bar Chart Styles --- */
+.stacked-bar-chart {
+  width: 100%;
+}
+
+.chart-row {
+  display: flex;
+  align-items: center;
+  height: 28px;
+}
+
+.chart-label {
+  width: 120px;
+  min-width: 120px;
+  padding-right: 0.5rem;
+  text-align: right;
+}
+
+.chart-bars {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chart-bar-container {
+  flex: 1;
+  height: 20px;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.chart-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.chart-bar-open {
+  background-color: #34a853;
+  color: white;
+}
+
+.chart-bar-pending {
+  background-color: #ffb74d;
+  color: white;
+}
+
+.chart-bar-value {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0 4px;
+  white-space: nowrap;
+}
+
+.chart-bar-empty {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+}
+
+.chart-total {
+  min-width: 35px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.legend-color-open {
+  background-color: #34a853;
+}
+
+.legend-color-pending {
+  background-color: #ffb74d;
+}
+
+/* --- Export Button Styling --- */
+.slds-card__header .slds-no-flex {
+  display: flex;
+  align-items: center;
+}
+
+.slds-card__header lightning-button-icon {
+  margin-left: 0.5rem;
+}
+
+/* Ensure export buttons are visible and styled */
+.column-card .slds-card__header lightning-button-icon {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- Component Download Button Styling --- */
+.component-header {
+  position: relative;
+}
+
+.component-download {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Help text icon styling */
+.component-download lightning-helptext {
+  display: flex;
+  align-items: center;
+}
+
+/* Ensure help text button is properly sized and visible */
+.component-download lightning-helptext button {
+  min-width: 1rem;
+  min-height: 1rem;
+}
+
+/* Ensure help text icon appears with proper color */
+.component-download lightning-helptext .slds-button__icon {
+  color: #706e6b;
+  fill: #706e6b;
+}
+
+/* Hover state for help text icon */
+.component-download lightning-helptext:hover .slds-button__icon {
+  color: #0070d2;
+  fill: #0070d2;
+}
+
+.download-icon {
+  transition: all 0.3s ease-in-out;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  border: none !important;
+  flex-shrink: 0 !important;
+}
+
+.download-icon:hover {
+  transform: scale(1.15) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Download icon colors matching component border colors */
+.download-icon-leads {
+  background-color: #7db3f5 !important;
+  border: none !important;
+}
+
+.download-icon-leads:hover {
+  background-color: #5a9df2 !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-leads lightning-primitive-icon,
+.download-icon-leads .slds-button__icon,
+.download-icon-leads lightning-primitive-icon svg,
+.download-icon-leads .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.download-icon-leadmetrics {
+  background-color: #10b981 !important;
+  border: none !important;
+}
+
+.download-icon-leadmetrics:hover {
+  background-color: #059669 !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-leadmetrics lightning-primitive-icon,
+.download-icon-leadmetrics .slds-button__icon,
+.download-icon-leadmetrics lightning-primitive-icon svg,
+.download-icon-leadmetrics .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.download-icon-intake {
+  background-color: #66e88a !important;
+  border: none !important;
+}
+
+.download-icon-intake:hover {
+  background-color: #4de371 !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-intake lightning-primitive-icon,
+.download-icon-intake .slds-button__icon,
+.download-icon-intake lightning-primitive-icon svg,
+.download-icon-intake .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.download-icon-closerate {
+  background-color: #ffb299 !important;
+  border: none !important;
+}
+
+.download-icon-closerate:hover {
+  background-color: #ff9f80 !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-closerate lightning-primitive-icon,
+.download-icon-closerate .slds-button__icon,
+.download-icon-closerate lightning-primitive-icon svg,
+.download-icon-closerate .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.download-icon-intakespec {
+  background-color: #fcd34d !important;
+  border: none !important;
+}
+
+.download-icon-intakespec:hover {
+  background-color: #fbbf24 !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-intakespec lightning-primitive-icon,
+.download-icon-intakespec .slds-button__icon,
+.download-icon-intakespec lightning-primitive-icon svg,
+.download-icon-intakespec .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.download-icon-conversion {
+  background-color: #c899f1 !important;
+  border: none !important;
+}
+
+.download-icon-conversion:hover {
+  background-color: #b880ed !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-conversion lightning-primitive-icon,
+.download-icon-conversion .slds-button__icon,
+.download-icon-conversion lightning-primitive-icon svg,
+.download-icon-conversion .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.download-icon-totalsource {
+  background-color: #f08080 !important;
+  border: none !important;
+}
+
+.download-icon-totalsource:hover {
+  background-color: #ed6b6b !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-totalsource lightning-primitive-icon,
+.download-icon-totalsource .slds-button__icon,
+.download-icon-totalsource lightning-primitive-icon svg,
+.download-icon-totalsource .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.download-icon-landing {
+  background-color: #7cc7d9 !important;
+  border: none !important;
+}
+
+.download-icon-landing:hover {
+  background-color: #60bdd1 !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-landing lightning-primitive-icon,
+.download-icon-landing .slds-button__icon,
+.download-icon-landing lightning-primitive-icon svg,
+.download-icon-landing .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.download-icon-sql {
+  background-color: #80b8e9 !important;
+  border: none !important;
+}
+
+.download-icon-sql:hover {
+  background-color: #66abe6 !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-sql lightning-primitive-icon,
+.download-icon-sql .slds-button__icon,
+.download-icon-sql lightning-primitive-icon svg,
+.download-icon-sql .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.download-icon-practicearea {
+  background-color: #a78bfa !important;
+  border: none !important;
+}
+
+.download-icon-practicearea:hover {
+  background-color: #8b5cf6 !important;
+  transform: scale(1.1) !important;
+}
+
+.download-icon-practicearea lightning-primitive-icon,
+.download-icon-practicearea .slds-button__icon,
+.download-icon-practicearea lightning-primitive-icon svg,
+.download-icon-practicearea .slds-button__icon svg {
+  color: white !important;
+  fill: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Ensure the SVG icons inside are white and properly sized */
+.download-icon svg,
+.download-icon lightning-primitive-icon svg,
+.download-icon .slds-button__icon svg {
+  fill: white !important;
+  color: white !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Override Lightning button icon styles for proper centering */
+.download-icon .slds-button__icon {
+  margin: 0 !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Ensure proper icon positioning within the circular button */
+.download-icon lightning-primitive-icon {
+  width: 14px !important;
+  height: 14px !important;
+  margin: 0 !important;
+}
+
+.download-icon lightning-primitive-icon svg {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0 !important;
+}
+
+/* Force white color on all possible icon elements - VERY IMPORTANT */
+.download-icon *,
+.download-icon lightning-primitive-icon *,
+.download-icon .slds-button__icon *,
+.download-icon svg *,
+.download-icon path,
+.download-icon lightning-primitive-icon path,
+.download-icon .slds-button__icon path {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+}
+
+/* --- Grid Component Card Styling --- */
+.component-card {
+  background-color: #ffffff;
+  border: 1px solid #dddbda;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  height: 350px; /* Fixed height for all components */
+  border-top-width: 4px;
+  border-top-style: solid;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Component-specific colors */
+.component-card-leads {
+  border-top-color: #1589ee;
+}
+
+.component-card-leadmetrics {
+  border-top-color: #10b981;
+}
+
+.component-card-intake {
+  border-top-color: #00d924;
+}
+
+.component-card-closerate {
+  border-top-color: #ff6b35;
+}
+
+.component-card-intakespec {
+  border-top-color: #fcd34d;
+}
+
+.component-card-conversion {
+  border-top-color: #9333ea;
+}
+
+.component-card-totalsource {
+  border-top-color: #dc2626;
+}
+
+.component-card-landing {
+  border-top-color: #0891b2;
+}
+
+.component-card-practicearea {
+  border-top-color: #8b5cf6;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.component-card-practicearea .slds-p-bottom_large {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Icon colors to match borders */
+.icon-leads {
+  --sds-c-icon-color-foreground: #1589ee;
+  --sds-c-icon-color-foreground-default: #1589ee;
+  --sds-c-icon-color-background: rgba(21, 137, 238, 0.12);
+}
+
+.icon-leadmetrics {
+  --sds-c-icon-color-foreground: #10b981;
+  --sds-c-icon-color-foreground-default: #10b981;
+  --sds-c-icon-color-background: rgba(16, 185, 129, 0.12);
+}
+
+.icon-intake {
+  --sds-c-icon-color-foreground: #00d924;
+  --sds-c-icon-color-foreground-default: #00d924;
+  --sds-c-icon-color-background: rgba(0, 217, 36, 0.12);
+}
+
+.icon-closerate {
+  --sds-c-icon-color-background: rgba(255, 107, 53, 0.15) !important;
+}
+
+.icon-intakespec {
+  --sds-c-icon-color-foreground: #fcd34d;
+  --sds-c-icon-color-foreground-default: #fcd34d;
+  --sds-c-icon-color-background: rgba(252, 211, 77, 0.15);
+}
+
+.icon-conversion {
+  --sds-c-icon-color-foreground: #9333ea;
+  --sds-c-icon-color-foreground-default: #9333ea;
+  --sds-c-icon-color-background: rgba(147, 51, 234, 0.12);
+}
+
+.icon-totalsource {
+  --sds-c-icon-color-foreground: #dc2626;
+  --sds-c-icon-color-foreground-default: #dc2626;
+  --sds-c-icon-color-background: rgba(220, 38, 38, 0.12);
+}
+
+.icon-landing {
+  --sds-c-icon-color-foreground: #0891b2;
+  --sds-c-icon-color-foreground-default: #0891b2;
+  --sds-c-icon-color-background: rgba(8, 145, 178, 0.12);
+}
+
+.icon-sql-trend {
+  --sds-c-icon-color-foreground: #0070d2;
+  --sds-c-icon-color-foreground-default: #0070d2;
+  --sds-c-icon-color-background: rgba(0, 112, 210, 0.12);
+}
+
+.icon-practicearea {
+  --sds-c-icon-color-foreground: #8b5cf6;
+  --sds-c-icon-color-foreground-default: #8b5cf6;
+  --sds-c-icon-color-background: rgba(139, 92, 246, 0.12);
+}
+
+/* Ensure media figure shows icons */
+.component-header .slds-media__figure {
+  display: flex !important;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.component-header .slds-media__figure lightning-icon {
+  display: block !important;
+  visibility: visible !important;
+}
+
+.component-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Component card structure for fixed height with scrolling */
+.component-card .slds-p-around_medium {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.component-card .slds-p-bottom_large {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.5rem; /* Space for scrollbar */
+}
+
+.component-card .component-header {
+  flex-shrink: 0; /* Header doesn't shrink */
+  margin-bottom: 1rem;
+}
+
+/* Custom scrollbar styling */
+.component-card .slds-p-bottom_large::-webkit-scrollbar {
+  width: 6px;
+}
+
+.component-card .slds-p-bottom_large::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.component-card .slds-p-bottom_large::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.component-card .slds-p-bottom_large::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Ensure equal height columns */
+.slds-col .component-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Add vertical spacing between grid rows */
+.slds-grid.slds-wrap > .slds-col {
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 768px) {
+  .component-card {
+    height: 300px; /* Smaller on tablet */
+  }
+
+  .slds-grid.slds-wrap > .slds-col {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .component-card {
+    height: 250px; /* Even smaller on mobile */
+  }
+}
+
+/* --- Chart Container Styling --- */
+.chart-container {
+  height: 200px;
+  width: 100%;
+  position: relative;
+  padding: 0.5rem 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 217, 36, 0.02) 0%,
+    rgba(74, 222, 128, 0.02) 100%
+  );
+  border-radius: 8px;
+  margin: 0.5rem 0;
+}
+
+.intake-chart {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 8px;
+}
+
+/* Ensure chart container fits within component card - increased height for more data */
+.component-card-intake .chart-container {
+  height: 280px;
+}
+
+/* Add subtle shadow and modern styling */
+.component-card-intake .chart-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 150px;
+  }
+
+  .component-card-intake .chart-container {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container {
+    height: 120px;
+  }
+
+  .component-card-intake .chart-container {
+    height: 150px;
+  }
+}
+
+/* --- SQL Trend Chart Styling --- */
+.sql-chart-container {
+  background-color: #ffffff;
+  border: 1px solid #dddbda;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  border-top-width: 4px;
+  border-top-style: solid;
+  border-top-color: #0070d2;
+}
+
+.sql-chart-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sql-chart-wrapper {
+  height: 280px;
+  width: 100%;
+  position: relative;
+  padding: 0.5rem 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 112, 210, 0.02) 0%,
+    rgba(21, 137, 238, 0.02) 100%
+  );
+  border-radius: 8px;
+  margin: 0.5rem 0;
+}
+
+.sql-trend-chart {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 8px;
+}
+
+/* Add subtle shadow and modern styling */
+.sql-chart-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .sql-chart-wrapper {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sql-chart-wrapper {
+    height: 180px;
+  }
+}
+
+/* --- Lead Metrics Component Styling --- */
+.lead-metrics-full-height {
+  height: 100%;
+}
+
+.lead-metrics-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.lead-metrics-content > template,
+.lead-metrics-content > template > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metric-tile-expanded {
+  padding: 1.5rem 0.75rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80px;
+}
+
+.metric-tile-leadmetrics {
+  background-color: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.metric-tile-leadmetrics:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.15);
+}
+
+/* --- Inline Checkbox Styling --- */
+.checkbox-inline {
+  display: inline-flex;
+  align-items: center;
+}
+
+.checkbox-inline .slds-form-element__label {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+/* --- SQL Total Badge Styling --- */
+.sql-total-badge {
+  font-size: 0.75rem;
+  color: #5e5e5e;
+  background-color: rgba(0, 112, 210, 0.08);
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 112, 210, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.sql-total-badge:hover {
+  background-color: rgba(0, 112, 210, 0.12);
+  border-color: rgba(0, 112, 210, 0.3);
+}
+
+.sql-total-badge strong {
+  color: #0070d2;
+  font-weight: 700;
+  font-size: 0.875rem;
+}

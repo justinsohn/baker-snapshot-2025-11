@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FL_Seeking_Action__c</fullName>
+    <label>Seeking Divorce or Legal Separation?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Divorce</fullName>
+                <default>false</default>
+                <label>Divorce</label>
+            </value>
+            <value>
+                <fullName>Legal Separation</fullName>
+                <default>false</default>
+                <label>Legal Separation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

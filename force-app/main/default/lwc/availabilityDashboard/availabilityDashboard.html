@@ -1,0 +1,61 @@
+<template>
+    <lightning-card title="Resource Availability Dashboard" icon-name="standard:groups">
+        <!-- Refresh Button at the top -->
+        <div slot="actions">
+            <lightning-button
+                label="Refresh"
+                variant="neutral"
+                icon-name="utility:refresh"
+                onclick={handleRefresh}
+                disabled={isLoading}>
+            </lightning-button>
+        </div>
+        
+        <div class="slds-m-around_medium">
+            <!-- Loading spinner -->
+            <template if:true={isLoading}>
+                <div class="slds-text-align_center slds-m-bottom_medium">
+                    <lightning-spinner alternative-text="Refreshing..." size="small"></lightning-spinner>
+                </div>
+            </template>
+            
+            <!-- User List -->
+            <template if:true={hasUsers}>
+                <div class="availability-list">
+                    <template for:each={users} for:item="user">
+                        <div key={user.Id} class="slds-grid slds-gutters slds-var-m-bottom_small user-row">
+                            <div class="slds-col_bump-right">
+                                <lightning-avatar src={user.SmallPhotoUrl} variant="circle" alternative-text={user.fullName}></lightning-avatar>
+                            </div>
+                            <div class="slds-col slds-align-middle">
+                                <div class="slds-text-body_regular slds-text-color_default">{user.fullName}</div>
+                                <div class="slds-text-body_small slds-text-color_weak">{user.practiceAreaDisplay}</div>
+                            </div>
+                            <div class="slds-col slds-align-middle slds-text-align_right">
+                                <span class={user.badgeClass}>{user.weekly_availability__c}</span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            
+            <!-- Error State -->
+            <template if:true={error}>
+                <div class="slds-text-align_center">
+                    <p class="slds-text-color_error">Could not load availability data.</p>
+                </div>
+            </template>
+            
+            <!-- No Data State -->
+            <template if:false={hasUsers}>
+                <template if:false={isLoading}>
+                    <template if:false={error}>
+                        <div class="slds-text-align_center">
+                            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                        </div>
+                    </template>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

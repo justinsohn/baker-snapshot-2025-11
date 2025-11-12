@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Why didn&apos;t you hire prior attorney? --></label>
+    <name>Reason_No_Hire_Prior_Attorney__c</name>
+    <picklistValues>
+        <masterLabel>Cost</masterLabel>
+        <translation><!-- Cost --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lack of experience in this area of law</masterLabel>
+        <translation><!-- Lack of experience in this area of law --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Poor communication</masterLabel>
+        <translation><!-- Poor communication --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

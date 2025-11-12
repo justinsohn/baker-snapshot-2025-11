@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Matter__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Matters and Time Entries share a one-to-many relationship. Legal professionals meticulously track the time they spend working on specific legal cases (Matters). Over the duration of a case, numerous Time Entries can be recorded, all associated with that single Matter. This relationship is fundamental for the process of billing clients based on the actual time invested in their legal matters. Lawyers&apos; compensation is often directly tied to the time they dedicate to client cases, making the recording and association of this time with the correct Matter essential for accurate billing.</description>
+    <label>Matter</label>
+    <referenceTo>Matter__c</referenceTo>
+    <relationshipLabel>Time Entries</relationshipLabel>
+    <relationshipName>Time_Entries</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

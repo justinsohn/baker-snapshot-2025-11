@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Matter__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The relationship between Matters and Clients is one-to-one. Each legal case or project (Matter) is primarily associated with a single Client who is the recipient of the legal services. While multiple Contacts might be involved in a Matter, there is typically one designated Client who is the main point of contact and the party ultimately responsible for the matter. This direct association is fundamental for identifying who is receiving and is accountable for a specific legal engagement. The very definition of a &quot;client&quot; in a legal context implies a direct service relationship with a specific case.</description>
+    <inlineHelpText>The specific case or project associated with the Client.</inlineHelpText>
+    <label>Matter</label>
+    <referenceTo>Matter__c</referenceTo>
+    <relationshipLabel>Clients</relationshipLabel>
+    <relationshipName>Clients</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Matter_Number__c</fullName>
+    <description>This is the matter number that will display if the account is set to a manual numbering system, otherwise this can be left blank and matters will use Clio’s automated matter numbering.</description>
+    <externalId>false</externalId>
+    <label>Matter Number</label>
+    <trackTrending>false</trackTrending>
+    <type>AutoNumber</type>
+</CustomField>

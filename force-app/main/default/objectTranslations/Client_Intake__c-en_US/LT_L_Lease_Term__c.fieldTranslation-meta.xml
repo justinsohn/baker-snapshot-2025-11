@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- LT_L: What is the lease term? --></label>
+    <name>LT_L_Lease_Term__c</name>
+    <picklistValues>
+        <masterLabel>Fixed-term</masterLabel>
+        <translation><!-- Fixed-term --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Month-to-month</masterLabel>
+        <translation><!-- Month-to-month --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

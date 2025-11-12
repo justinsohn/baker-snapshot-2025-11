@@ -1,0 +1,1108 @@
+<template>
+  <div class="dashboard-container">
+    <lightning-card
+      title="Sales and Marketing Dashboard"
+      icon-name="standard:dashboard_ea"
+    >
+      <div slot="actions" class="dashboard-filters">
+        <div class="slds-grid slds-gutters_x-small slds-wrap">
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4 slds-p-bottom_x-small"
+          >
+            <lightning-combobox
+              name="dateFilter"
+              label="Period"
+              value={selectedDateFilter}
+              placeholder="Select Period"
+              options={dateFilterOptions}
+              onchange={handleDateFilterChange}
+              variant="label-hidden"
+            ></lightning-combobox>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4 slds-p-bottom_x-small"
+          >
+            <lightning-combobox
+              name="practiceAreaFilter"
+              label="Practice Area"
+              value={selectedPracticeArea}
+              placeholder="All Practice Areas"
+              options={practiceAreaOptions}
+              onchange={handlePracticeAreaChange}
+              variant="label-hidden"
+            ></lightning-combobox>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4 slds-p-bottom_x-small"
+          >
+            <lightning-combobox
+              name="typeOfCivilLawFilter"
+              label="Type of Civil Law"
+              value={selectedTypeOfCivilLaw}
+              placeholder="All Types of Civil Law"
+              options={typeOfCivilLawOptions}
+              onchange={handleTypeOfCivilLawChange}
+              variant="label-hidden"
+            ></lightning-combobox>
+          </div>
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4 slds-p-bottom_x-small"
+          >
+            <lightning-combobox
+              name="officeLocationFilter"
+              label="Office Location"
+              value={selectedOfficeLocation}
+              placeholder="All Office Locations"
+              options={officeLocationOptions}
+              onchange={handleOfficeLocationChange}
+              variant="label-hidden"
+            ></lightning-combobox>
+          </div>
+        </div>
+      </div>
+
+      <div class="slds-p-around_large">
+        <!-- Row 1: SQLs + Lead Metrics + Leads by Practice Area -->
+        <div class="slds-grid slds-wrap slds-gutters_large slds-m-bottom_large">
+          <!-- SQLs Chart - 1/3 Width -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div class="slds-box sql-chart-container">
+              <div class="slds-p-around_medium">
+                <h3 class="component-header slds-m-bottom_medium">
+                  <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                      <lightning-icon
+                        icon-name="utility:trending"
+                        size="x-small"
+                        class="icon-sql-trend"
+                      ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">SQLs {getFilterLabel}</div>
+                  </div>
+                  <div
+                    class="component-download slds-grid slds-grid_vertical-align-center"
+                  >
+                    <span class="sql-total-badge slds-m-right_small"
+                      >Total SQLs: <strong>{totalSQLs}</strong></span
+                    >
+                    <lightning-helptext
+                      content={sqlTrendHelpText}
+                      icon-name="utility:info"
+                      class="slds-m-right_x-small"
+                    ></lightning-helptext>
+                    <lightning-button-icon
+                      icon-name="utility:download"
+                      variant="bare"
+                      size="small"
+                      alternative-text="Download CSV"
+                      title="Download CSV"
+                      class="download-icon download-icon-sql"
+                      onclick={handleDownloadSQLTrend}
+                    ></lightning-button-icon>
+                  </div>
+                </h3>
+                <template if:true={sqlTrendResult.data}>
+                  <div
+                    class="chart-container sql-chart-wrapper"
+                    onclick={handleSQLTrendClick}
+                    style="cursor: pointer"
+                  >
+                    <canvas
+                      lwc:ref="sqlTrendChart"
+                      class="sql-trend-chart"
+                    ></canvas>
+                  </div>
+                </template>
+                <template if:true={sqlTrendError}
+                  ><div class="slds-text-color_error slds-text-align_center">
+                    {sqlTrendError}
+                  </div></template
+                >
+                <template if:false={sqlTrendResult.data}>
+                  <template if:false={sqlTrendError}>
+                    <div
+                      class="slds-text-align_center slds-p-vertical_large slds-text-color_weak"
+                    >
+                      <lightning-icon
+                        icon-name="utility:chart"
+                        size="medium"
+                        class="slds-m-bottom_small"
+                      ></lightning-icon>
+                      <p>Loading SQL trend data...</p>
+                    </div>
+                  </template>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lead Metrics - 1/3 Width (1 component width) -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div
+              class="slds-p-around_medium slds-box component-card component-card-leadmetrics lead-metrics-full-height"
+            >
+              <div class="slds-p-bottom_large lead-metrics-content">
+                <h3 class="component-header slds-m-bottom_medium">
+                  <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                      <lightning-icon
+                        icon-name="utility:metrics"
+                        size="x-small"
+                        class="icon-leadmetrics"
+                      ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                      Lead Metrics {getFilterLabel}
+                    </div>
+                  </div>
+                  <div
+                    class="component-download slds-grid slds-grid_vertical-align-center"
+                  >
+                    <lightning-helptext
+                      content={leadMetricsHelpText}
+                      icon-name="utility:info"
+                      class="slds-m-right_x-small"
+                    ></lightning-helptext>
+                    <lightning-button-icon
+                      icon-name="utility:download"
+                      variant="bare"
+                      size="small"
+                      alternative-text="Download CSV"
+                      title="Download CSV"
+                      class="download-icon download-icon-leadmetrics"
+                      onclick={handleDownloadLeadMetrics}
+                    ></lightning-button-icon>
+                  </div>
+                </h3>
+                <template if:true={leadMetricsResult.data}>
+                  <!-- Row 1: New Leads | Total Intake Specialist Calls -->
+                  <div class="slds-grid slds-gutters_small slds-m-bottom_small">
+                    <div class="slds-col slds-size_1-of-2">
+                      <div
+                        class="metric-tile metric-tile-expanded slds-text-align_center clickable-tile metric-tile-leadmetrics"
+                        onclick={handleNewLeadsMetricClick}
+                      >
+                        <p
+                          class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                        >
+                          New Leads
+                        </p>
+                        <p class="metric-value-small">
+                          <lightning-formatted-number
+                            value={leadMetricsResult.data.newLeads}
+                          ></lightning-formatted-number>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                      <div
+                        class="metric-tile metric-tile-expanded slds-text-align_center clickable-tile metric-tile-leadmetrics"
+                        onclick={handleIntakeSpecialistCallsClick}
+                      >
+                        <p
+                          class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                        >
+                          Intake Spec. Post-Consults
+                        </p>
+                        <p class="metric-value-small">
+                          <lightning-formatted-number
+                            value={leadMetricsResult.data.intakeSpecialistCalls}
+                          ></lightning-formatted-number>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Row 2: Total Intake Attorney Calls | Intake Attorney No Shows -->
+                  <div class="slds-grid slds-gutters_small slds-m-bottom_small">
+                    <div class="slds-col slds-size_1-of-2">
+                      <div
+                        class="metric-tile metric-tile-expanded slds-text-align_center clickable-tile metric-tile-leadmetrics"
+                        onclick={handleIntakeAttorneyCallsClick}
+                      >
+                        <p
+                          class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                        >
+                          Intake Atty. Post-Consults
+                        </p>
+                        <p class="metric-value-small">
+                          <lightning-formatted-number
+                            value={leadMetricsResult.data.intakeAttorneyCalls}
+                          ></lightning-formatted-number>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                      <div
+                        class="metric-tile metric-tile-expanded slds-text-align_center clickable-tile metric-tile-leadmetrics"
+                        onclick={handleIntakeAttorneyNoShowsClick}
+                      >
+                        <p
+                          class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                        >
+                          Intake Atty. No Shows
+                        </p>
+                        <p class="metric-value-small">
+                          <lightning-formatted-number
+                            value={leadMetricsResult.data.intakeAttorneyNoShows}
+                          ></lightning-formatted-number>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Row 3: Total Closed by IS | Total Closed by IA -->
+                  <div class="slds-grid slds-gutters_small">
+                    <div class="slds-col slds-size_1-of-2">
+                      <div
+                        class="metric-tile metric-tile-expanded slds-text-align_center clickable-tile metric-tile-leadmetrics"
+                        onclick={handleTotalClosedByISClick}
+                      >
+                        <p
+                          class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                        >
+                          Closed by Intake Spec.
+                        </p>
+                        <p class="metric-value-small">
+                          <lightning-formatted-number
+                            value={leadMetricsResult.data.totalClosedByIS}
+                          ></lightning-formatted-number>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                      <div
+                        class="metric-tile metric-tile-expanded slds-text-align_center clickable-tile metric-tile-leadmetrics"
+                        onclick={handleTotalClosedByIAClick}
+                      >
+                        <p
+                          class="slds-text-body_small slds-text-color_weak slds-m-bottom_xx-small"
+                        >
+                          Closed by Intake Atty.
+                        </p>
+                        <p class="metric-value-small">
+                          <lightning-formatted-number
+                            value={leadMetricsResult.data.totalClosedByIA}
+                          ></lightning-formatted-number>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+                <template if:true={leadMetricsError}
+                  ><div class="slds-text-color_error slds-text-align_center">
+                    {leadMetricsError}
+                  </div></template
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Leads by Practice Area - 1/3 Width -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div
+              class="slds-p-around_medium slds-box component-card component-card-practicearea"
+            >
+              <div class="slds-p-bottom_large">
+                <h3 class="component-header slds-m-bottom_medium">
+                  <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                      <lightning-icon
+                        icon-name="utility:layers"
+                        size="x-small"
+                        class="icon-practicearea"
+                      ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                      Leads by Practice Area {getFilterLabel}
+                    </div>
+                  </div>
+                  <div
+                    class="component-download slds-grid slds-grid_vertical-align-center"
+                  >
+                    <lightning-helptext
+                      content={leadsByPracticeAreaHelpText}
+                      icon-name="utility:info"
+                      class="slds-m-right_x-small"
+                    ></lightning-helptext>
+                    <lightning-button-icon
+                      icon-name="utility:download"
+                      variant="bare"
+                      size="small"
+                      alternative-text="Download CSV"
+                      title="Download CSV"
+                      class="download-icon download-icon-practicearea"
+                      onclick={handleDownloadLeadsByPracticeArea}
+                    ></lightning-button-icon>
+                  </div>
+                </h3>
+                <template if:true={leadsByPracticeAreaResult.data}>
+                  <ul class="slds-list_vertical data-list">
+                    <template
+                      for:each={leadsByPracticeAreaResult.data}
+                      for:item="item"
+                    >
+                      <li key={item.practiceArea} class="slds-item slds-media">
+                        <div class="slds-media__figure">
+                          <lightning-icon
+                            icon-name="utility:cases"
+                            size="x-small"
+                            class="slds-m-right_x-small"
+                          ></lightning-icon>
+                        </div>
+                        <div
+                          class="slds-media__body slds-grid slds-grid_align-spread"
+                        >
+                          <span class="slds-truncate">{item.practiceArea}</span>
+                          <span class="slds-badge slds-badge_lightest"
+                            >{item.leadCount}</span
+                          >
+                        </div>
+                      </li>
+                    </template>
+                  </ul>
+                </template>
+                <template if:true={leadsByPracticeAreaError}
+                  ><div class="slds-text-color_error slds-text-align_center">
+                    {leadsByPracticeAreaError}
+                  </div></template
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Intake Specialist Completions, Intake Spec. Close Rate, Intake Attorney Close Rate -->
+        <div class="slds-grid slds-wrap slds-gutters_large">
+          <!-- Row 2 Column 1: Intake Specialist Completions -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div
+              class="slds-p-around_medium slds-box component-card component-card-intake"
+            >
+              <div class="slds-p-bottom_large">
+                <h3 class="component-header slds-m-bottom_medium">
+                  <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                      <lightning-icon
+                        icon-name="utility:check"
+                        size="x-small"
+                        class="icon-intake"
+                      ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                      Intake Specialist Completions {getFilterLabel}
+                    </div>
+                  </div>
+                  <div
+                    class="component-download slds-grid slds-grid_vertical-align-center"
+                  >
+                    <lightning-helptext
+                      content={intakeCompletionsHelpText}
+                      icon-name="utility:info"
+                      class="slds-m-right_x-small"
+                    ></lightning-helptext>
+                    <lightning-button-icon
+                      icon-name="utility:download"
+                      variant="bare"
+                      size="small"
+                      alternative-text="Download CSV"
+                      title="Download CSV"
+                      class="download-icon download-icon-intake"
+                      onclick={handleDownloadIntakeCompletions}
+                    ></lightning-button-icon>
+                  </div>
+                </h3>
+                <template if:true={intakeCompletionsResult.data}>
+                  <div
+                    class="chart-container"
+                    onclick={handleIntakeCompletionClick}
+                    style="cursor: pointer"
+                  >
+                    <canvas lwc:ref="intakeChart" class="intake-chart"></canvas>
+                  </div>
+                </template>
+                <template if:true={intakeCompletionsError}
+                  ><div class="slds-text-color_error slds-text-align_center">
+                    {intakeCompletionsError}
+                  </div></template
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 Column 2: Intake Spec. Close Rate -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div
+              class="slds-p-around_medium slds-box component-card component-card-intakespec"
+            >
+              <div class="slds-p-bottom_large">
+                <h3 class="component-header slds-m-bottom_medium">
+                  <div
+                    class="slds-media slds-media_center slds-grid slds-grid_align-spread"
+                    style="width: 100%"
+                  >
+                    <div class="slds-media slds-media_center">
+                      <div class="slds-media__figure">
+                        <lightning-icon
+                          icon-name="utility:percent"
+                          size="x-small"
+                          class="icon-intakespec"
+                        ></lightning-icon>
+                      </div>
+                      <div class="slds-media__body">
+                        Intake Spec. Close Rate {getFilterLabel}
+                      </div>
+                    </div>
+                    <div
+                      class="slds-grid slds-grid_vertical-align-center"
+                      style="gap: 0.5rem"
+                    >
+                      <lightning-input
+                        type="checkbox"
+                        label="Incl. Attorney"
+                        checked={includeAttorneyInIS}
+                        onchange={handleIncludeAttorneyToggle}
+                        class="checkbox-inline"
+                      ></lightning-input>
+                      <lightning-helptext
+                        content={intakeSpecialistCloseRateHelpText}
+                        icon-name="utility:info"
+                        class="slds-m-right_x-small"
+                      ></lightning-helptext>
+                      <lightning-button-icon
+                        icon-name="utility:download"
+                        variant="bare"
+                        size="small"
+                        alternative-text="Download CSV"
+                        title="Download CSV"
+                        class="download-icon download-icon-intakespec"
+                        onclick={handleDownloadIntakeSpecialistCloseRate}
+                      ></lightning-button-icon>
+                    </div>
+                  </div>
+                </h3>
+                <template if:true={intakeSpecialistCloseRateResult.data}>
+                  <ul class="slds-list_vertical data-list">
+                    <template
+                      for:each={intakeSpecialistCloseRateResult.data}
+                      for:item="summary"
+                    >
+                      <li
+                        key={summary.attorneyName}
+                        class="slds-item slds-media slds-has-hover"
+                        style="cursor: pointer"
+                        data-owner-name={summary.attorneyName}
+                        onclick={handleIntakeSpecialistCloseRateClick}
+                      >
+                        <div class="slds-media__figure">
+                          <lightning-icon
+                            icon-name="standard:avatar"
+                            size="x-small"
+                            class="slds-m-right_x-small"
+                          ></lightning-icon>
+                        </div>
+                        <div
+                          class="slds-media__body slds-grid slds-grid_align-spread"
+                        >
+                          <span
+                            class="slds-truncate"
+                            title={summary.attorneyName}
+                            >{summary.attorneyName}</span
+                          >
+                          <div class="slds-grid slds-gutters_xx-small">
+                            <span
+                              class="slds-badge slds-badge_lightest slds-m-right_xx-small slds-text-align_center"
+                              style="min-width: 2rem"
+                              title="Total Closes"
+                            >
+                              {summary.totalClosed}
+                            </span>
+                            <span
+                              class="slds-badge slds-badge_lightest slds-text-align_center"
+                              style="min-width: 3rem"
+                              title="Close Rate"
+                            >
+                              <lightning-formatted-number
+                                value={summary.closeRate}
+                                format-style="decimal"
+                                maximum-fraction-digits="0"
+                                minimum-fraction-digits="0"
+                              ></lightning-formatted-number
+                              >%
+                            </span>
+                          </div>
+                        </div>
+                      </li>
+                    </template>
+                  </ul>
+                </template>
+                <template if:true={intakeSpecialistCloseRateError}
+                  ><div class="slds-text-color_error slds-text-align_center">
+                    {intakeSpecialistCloseRateError}
+                  </div></template
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 Column 3: Intake Attorney Close Rate -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div
+              class="slds-p-around_medium slds-box component-card component-card-closerate"
+            >
+              <div class="slds-p-bottom_large">
+                <h3 class="component-header slds-m-bottom_medium">
+                  <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                      <lightning-icon
+                        icon-name="utility:percent"
+                        size="x-small"
+                        class="icon-closerate"
+                      ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                      Intake Attorney Close Rate {getFilterLabel}
+                    </div>
+                  </div>
+                  <div
+                    class="component-download slds-grid slds-grid_vertical-align-center"
+                  >
+                    <lightning-helptext
+                      content={intakeAttorneyCloseRateHelpText}
+                      icon-name="utility:info"
+                      class="slds-m-right_x-small"
+                    ></lightning-helptext>
+                    <lightning-button-icon
+                      icon-name="utility:download"
+                      variant="bare"
+                      size="small"
+                      alternative-text="Download CSV"
+                      title="Download CSV"
+                      class="download-icon download-icon-closerate"
+                      onclick={handleDownloadCloseRateByAttorney}
+                    ></lightning-button-icon>
+                  </div>
+                </h3>
+                <template if:true={closeRateByAttorneyResult.data}>
+                  <ul class="slds-list_vertical data-list">
+                    <template
+                      for:each={closeRateByAttorneyResult.data}
+                      for:item="summary"
+                    >
+                      <li
+                        key={summary.attorneyName}
+                        class="slds-item slds-media slds-has-hover"
+                        style="cursor: pointer"
+                        data-attorney-name={summary.attorneyName}
+                        onclick={handleCloseRateClick}
+                      >
+                        <div class="slds-media__figure">
+                          <lightning-icon
+                            icon-name="standard:avatar"
+                            size="x-small"
+                            class="slds-m-right_x-small"
+                          ></lightning-icon>
+                        </div>
+                        <div
+                          class="slds-media__body slds-grid slds-grid_align-spread"
+                        >
+                          <span
+                            class="slds-truncate"
+                            title={summary.attorneyName}
+                            >{summary.attorneyName}</span
+                          >
+                          <div class="slds-grid slds-gutters_xx-small">
+                            <span
+                              class="slds-badge slds-badge_lightest slds-m-right_xx-small slds-text-align_center"
+                              style="min-width: 2rem"
+                              title="Total Closes"
+                            >
+                              {summary.totalClosed}
+                            </span>
+                            <span
+                              class="slds-badge slds-badge_lightest slds-text-align_center"
+                              style="min-width: 3rem"
+                              title="Close Rate"
+                            >
+                              <lightning-formatted-number
+                                value={summary.closeRate}
+                                format-style="decimal"
+                                maximum-fraction-digits="0"
+                                minimum-fraction-digits="0"
+                              ></lightning-formatted-number
+                              >%
+                            </span>
+                          </div>
+                        </div>
+                      </li>
+                    </template>
+                  </ul>
+                </template>
+                <template if:true={closeRateByAttorneyError}
+                  ><div class="slds-text-color_error slds-text-align_center">
+                    {closeRateByAttorneyError}
+                  </div></template
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 Column 1 -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div
+              class="slds-p-around_medium slds-box component-card component-card-conversion"
+            >
+              <div class="slds-p-bottom_large">
+                <h3 class="component-header slds-m-bottom_medium">
+                  <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                      <lightning-icon
+                        icon-name="utility:chart"
+                        size="x-small"
+                        class="icon-conversion"
+                        alternative-text="Lead Conversion"
+                      ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                      Lead Conversion by Source {getFilterLabel}
+                    </div>
+                  </div>
+                  <div
+                    class="component-download slds-grid slds-grid_vertical-align-center"
+                  >
+                    <lightning-helptext
+                      content={leadConversionBySourceHelpText}
+                      icon-name="utility:info"
+                      class="slds-m-right_x-small"
+                    ></lightning-helptext>
+                    <lightning-button-icon
+                      icon-name="utility:download"
+                      variant="bare"
+                      size="small"
+                      alternative-text="Download CSV"
+                      title="Download CSV"
+                      class="download-icon download-icon-conversion"
+                      onclick={handleDownloadLeadConversionBySource}
+                    ></lightning-button-icon>
+                  </div>
+                </h3>
+                <template if:true={leadSourceConversionResult.data}>
+                  <ul class="slds-list_vertical data-list">
+                    <template
+                      for:each={leadSourceConversionResult.data}
+                      for:item="summary"
+                    >
+                      <li key={summary.source} class="slds-item slds-media">
+                        <div class="slds-media__figure">
+                          <lightning-icon
+                            icon-name="utility:forward"
+                            size="x-small"
+                            class="slds-m-right_x-small"
+                          ></lightning-icon>
+                        </div>
+                        <div
+                          class="slds-media__body slds-grid slds-grid_align-spread"
+                        >
+                          <span class="slds-truncate" title={summary.source}
+                            >{summary.source}</span
+                          >
+                          <div class="slds-grid slds-gutters_xx-small">
+                            <span
+                              class="slds-badge slds-badge_lightest slds-m-right_xx-small slds-text-align_center"
+                              style="min-width: 2rem"
+                              title="Total Converted"
+                            >
+                              {summary.totalClosed}
+                            </span>
+                            <span
+                              class="slds-badge slds-badge_lightest slds-text-align_center"
+                              style="min-width: 3rem"
+                              title="Conversion Rate"
+                            >
+                              <lightning-formatted-number
+                                value={summary.conversionRate}
+                                format-style="percent-fixed"
+                                maximum-fraction-digits="0"
+                              ></lightning-formatted-number>
+                            </span>
+                          </div>
+                        </div>
+                      </li>
+                    </template>
+                  </ul>
+                </template>
+                <template if:true={leadSourceConversionError}
+                  ><div class="slds-text-color_error slds-text-align_center">
+                    {leadSourceConversionError}
+                  </div></template
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 Column 2 -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div
+              class="slds-p-around_medium slds-box component-card component-card-totalsource"
+            >
+              <div class="slds-p-bottom_large">
+                <h3 class="component-header slds-m-bottom_medium">
+                  <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                      <lightning-icon
+                        icon-name="utility:groups"
+                        size="x-small"
+                        class="icon-totalsource"
+                        alternative-text="Total Leads"
+                      ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                      Total Leads by Source {getFilterLabel}
+                    </div>
+                  </div>
+                  <div
+                    class="component-download slds-grid slds-grid_vertical-align-center"
+                  >
+                    <lightning-helptext
+                      content={totalLeadsBySourceHelpText}
+                      icon-name="utility:info"
+                      class="slds-m-right_x-small"
+                    ></lightning-helptext>
+                    <lightning-button-icon
+                      icon-name="utility:download"
+                      variant="bare"
+                      size="small"
+                      alternative-text="Download CSV"
+                      title="Download CSV"
+                      class="download-icon download-icon-totalsource"
+                      onclick={handleDownloadTotalLeadsBySource}
+                    ></lightning-button-icon>
+                  </div>
+                </h3>
+                <template if:true={totalLeadsBySourceResult.data}>
+                  <ul class="slds-list_vertical data-list">
+                    <template
+                      for:each={totalLeadsBySourceResult.data}
+                      for:item="summary"
+                    >
+                      <li key={summary.source} class="slds-item slds-media">
+                        <div class="slds-media__figure">
+                          <lightning-icon
+                            icon-name="utility:chart"
+                            size="x-small"
+                            class="slds-m-right_x-small"
+                          ></lightning-icon>
+                        </div>
+                        <div
+                          class="slds-media__body slds-grid slds-grid_align-spread"
+                        >
+                          <span class="slds-truncate">{summary.source}</span>
+                          <span class="slds-badge slds-badge_lightest"
+                            >{summary.leadCount}</span
+                          >
+                        </div>
+                      </li>
+                    </template>
+                  </ul>
+                </template>
+                <template if:true={totalLeadsBySourceError}
+                  ><div class="slds-text-color_error slds-text-align_center">
+                    {totalLeadsBySourceError}
+                  </div></template
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 Column 3 -->
+          <div
+            class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3"
+          >
+            <div
+              class="slds-p-around_medium slds-box component-card component-card-landing"
+            >
+              <div class="slds-p-bottom_large">
+                <h3 class="component-header slds-m-bottom_medium">
+                  <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                      <lightning-icon
+                        icon-name="utility:world"
+                        size="x-small"
+                        class="icon-landing"
+                      ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                      Leads by Landing Page {getFilterLabel}
+                    </div>
+                  </div>
+                  <div
+                    class="component-download slds-grid slds-grid_vertical-align-center"
+                  >
+                    <lightning-helptext
+                      content={leadsByLandingPageHelpText}
+                      icon-name="utility:info"
+                      class="slds-m-right_x-small"
+                    ></lightning-helptext>
+                    <lightning-button-icon
+                      icon-name="utility:download"
+                      variant="bare"
+                      size="small"
+                      alternative-text="Download CSV"
+                      title="Download CSV"
+                      class="download-icon download-icon-landing"
+                      onclick={handleDownloadLeadsByLandingPage}
+                    ></lightning-button-icon>
+                  </div>
+                </h3>
+                <template if:true={leadsByLandingPageResult.data}>
+                  <template if:true={leadsByLandingPageResult.data.length}>
+                    <ul class="slds-list_vertical data-list">
+                      <template
+                        for:each={leadsByLandingPageResult.data}
+                        for:item="summary"
+                      >
+                        <li
+                          key={summary.landingPage}
+                          class="slds-item slds-media"
+                        >
+                          <div class="slds-media__figure">
+                            <lightning-icon
+                              icon-name="utility:page"
+                              size="x-small"
+                              class="slds-m-right_x-small"
+                            ></lightning-icon>
+                          </div>
+                          <div
+                            class="slds-media__body slds-grid slds-grid_align-spread"
+                          >
+                            <span
+                              class="slds-truncate"
+                              title={summary.landingPage}
+                              >{summary.landingPage}</span
+                            >
+                            <span class="slds-badge slds-badge_lightest"
+                              >{summary.leadCount}</span
+                            >
+                          </div>
+                        </li>
+                      </template>
+                    </ul>
+                  </template>
+                  <template if:false={leadsByLandingPageResult.data.length}>
+                    <div
+                      class="slds-text-align_center slds-p-vertical_small slds-text-color_weak"
+                    >
+                      No landing page data for this period.
+                    </div>
+                  </template>
+                </template>
+                <template if:true={leadsByLandingPageError}>
+                  <div class="slds-text-color_error slds-text-align_center">
+                    {leadsByLandingPageError}
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </lightning-card>
+  </div>
+
+  <template if:true={isModalOpen}>
+    <section
+      role="dialog"
+      tabindex="-1"
+      aria-modal="true"
+      class="slds-modal slds-fade-in-open slds-modal_large"
+    >
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <button
+            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+            title="Close"
+            onclick={closeModal}
+          >
+            <lightning-icon
+              icon-name="utility:close"
+              size="small"
+              alternative-text="Close"
+            ></lightning-icon>
+            <span class="slds-assistive-text">Close</span>
+          </button>
+          <h2 class="slds-modal__title slds-hyphenate">{modalTitle}</h2>
+          <template if:true={showFirstCallFilter}>
+            <div
+              class="slds-grid slds-grid_vertical-align-center slds-gutters_small"
+              style="position: absolute; right: 3.5rem; top: 50%; transform: translateY(-50%);"
+            >
+              <template if:true={isFiltering}>
+                <div class="slds-col">
+                  <lightning-spinner
+                    alternative-text="Loading"
+                    size="x-small"
+                  ></lightning-spinner>
+                </div>
+              </template>
+              <template if:false={isFiltering}>
+                <div class="slds-col">
+                  <span
+                    class="slds-badge slds-badge_lightest slds-text-body_regular"
+                  >
+                    First Call: <strong>{firstCallLeadsCount}</strong>
+                  </span>
+                </div>
+              </template>
+              <div class="slds-col">
+                <lightning-input
+                  type="checkbox"
+                  label="First Call Only"
+                  checked={filterFirstCallOnly}
+                  onchange={handleFirstCallFilterChange}
+                  class="checkbox-inline"
+                  disabled={isFiltering}
+                ></lightning-input>
+              </div>
+            </div>
+          </template>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium">
+          <template if:true={modalLoading}>
+            <div class="slds-align_absolute-center slds-m-around_large">
+              <lightning-spinner
+                alternative-text="Loading"
+                size="medium"
+              ></lightning-spinner>
+            </div>
+          </template>
+          <template if:false={modalLoading}>
+            <template if:true={modalError}
+              ><div class="slds-text-color_error slds-text-align_center">
+                {modalError}
+              </div></template
+            >
+            <template if:false={modalError}>
+              <template if:true={modalData.length}>
+                <lightning-datatable
+                  key-field="Id"
+                  data={modalData}
+                  columns={modalColumns}
+                  hide-checkbox-column
+                  show-row-number-column
+                  sorted-by={currentSortField}
+                  sorted-direction={currentSortDirection}
+                  onsort={handleModalSort}
+                >
+                </lightning-datatable>
+              </template>
+              <template if:false={modalData.length}>
+                <div class="slds-align_absolute-center slds-m-around_large">
+                  <div class="slds-text-align_center">
+                    <p class="slds-text-heading_small slds-m-bottom_x-small">
+                      No Records Found
+                    </p>
+                    <p class="slds-text-body_regular slds-text-color_weak">
+                      No records match the selected criteria.
+                    </p>
+                  </div>
+                </div>
+              </template>
+            </template>
+          </template>
+        </div>
+        <footer class="slds-modal__footer slds-modal__footer_directional">
+          <div
+            class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center"
+          >
+            <!-- Pagination controls -->
+            <div class="slds-col">
+              <div class="slds-button-group" role="group">
+                <button
+                  class="slds-button slds-button_neutral"
+                  onclick={handleFirstPage}
+                  disabled={isFirstPage}
+                  title="First Page"
+                >
+                  <lightning-icon
+                    icon-name="utility:left"
+                    size="xx-small"
+                    class="slds-m-right_xx-small"
+                  ></lightning-icon>
+                  First
+                </button>
+                <button
+                  class="slds-button slds-button_neutral"
+                  onclick={handlePreviousPage}
+                  disabled={isFirstPage}
+                  title="Previous Page"
+                >
+                  <lightning-icon
+                    icon-name="utility:chevronleft"
+                    size="xx-small"
+                  ></lightning-icon>
+                  Previous
+                </button>
+                <span
+                  class="slds-button slds-button_neutral slds-p-horizontal_medium"
+                >
+                  {paginationInfo}
+                </span>
+                <button
+                  class="slds-button slds-button_neutral"
+                  onclick={handleNextPage}
+                  disabled={isLastPage}
+                  title="Next Page"
+                >
+                  Next
+                  <lightning-icon
+                    icon-name="utility:chevronright"
+                    size="xx-small"
+                  ></lightning-icon>
+                </button>
+                <button
+                  class="slds-button slds-button_neutral"
+                  onclick={handleLastPage}
+                  disabled={isLastPage}
+                  title="Last Page"
+                >
+                  Last
+                  <lightning-icon
+                    icon-name="utility:right"
+                    size="xx-small"
+                    class="slds-m-left_xx-small"
+                  ></lightning-icon>
+                </button>
+              </div>
+            </div>
+            <!-- Close button -->
+            <div class="slds-col slds-no-flex">
+              <button
+                class="slds-button slds-button_neutral"
+                onclick={closeModal}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>

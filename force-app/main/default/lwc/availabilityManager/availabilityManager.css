@@ -1,0 +1,55 @@
+/* Style for each radio button option container */
+.radio-option {
+    display: block;
+    border: 1px solid #DDDBDA; /* Salesforce Neutral Border */
+    border-radius: .25rem;
+    margin-bottom: .5rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer; /* Make the whole block feel clickable */
+}
+
+/* Hide the actual radio button circle */
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+/* Style the label to act as the visible button */
+.radio-option label {
+    display: block;
+    padding: .75rem;
+    font-weight: bold;
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+/* --- Color Styling for Each Option --- */
+
+.radio-green {
+    background-color: #F1F9F1; /* Light Green */
+    border-left: 5px solid #45C65A; /* Salesforce Success Green */
+}
+
+.radio-yellow {
+    background-color: #FFF9E9; /* Light Yellow */
+    border-left: 5px solid #FFB75D; /* Salesforce Warning Yellow */
+}
+
+.radio-red {
+    background-color: #FDF1F1; /* Light Red */
+    border-left: 5px solid #EA001E; /* Salesforce Error Red */
+}
+
+/* --- Interaction Styling --- */
+
+/* Hover effect */
+.radio-option:hover {
+    border-color: #0176D3; /* Salesforce Blue */
+    box-shadow: 0 0 3px #0176D3;
+}
+
+/* Style for the selected option */
+.radio-option input[type="radio"]:checked + label {
+    background-color: #F1F6FD; /* Light Blue Selection */
+    border-color: #0176D3;
+    box-shadow: 0 0 5px #0176D3 inset;
+}

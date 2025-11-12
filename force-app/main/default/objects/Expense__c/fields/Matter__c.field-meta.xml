@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Matter__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>A Matter can have multiple Expenses associated with it, indicating a one-to-many relationship. Law firms routinely incur various expenses, such as court filing fees, travel costs for depositions, or payments to expert witnesses, that are directly related to specific legal cases (Matters). Multiple Expense entries can be associated with a single Matter throughout its lifecycle. Tracking these expenses at the Matter level is crucial for ensuring accurate client billing and for the firm&apos;s own financial accounting and cost recovery. Beyond the professional time spent, lawyers also incur direct costs related to the progression of a case, and these costs need to be accurately tracked and billed to the client.</description>
+    <label>Matter</label>
+    <referenceTo>Matter__c</referenceTo>
+    <relationshipLabel>Expenses</relationshipLabel>
+    <relationshipName>Expenses</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

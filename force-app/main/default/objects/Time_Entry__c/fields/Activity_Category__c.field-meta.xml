@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Category__c</fullName>
+    <description>This must be an exact match for an activity category (for time entries) or expense category (for expenses) in Clio or a new one will be created. It can be left blank. Note: Leave this field blank if your firm uses UTBMS codes and the row contains values for utbms_activity_code and utbms_task_code. Otherwise, a validation error will occur for the row.</description>
+    <label>Activity Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>placeholder value</fullName>
+                <default>false</default>
+                <label>placeholder value</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

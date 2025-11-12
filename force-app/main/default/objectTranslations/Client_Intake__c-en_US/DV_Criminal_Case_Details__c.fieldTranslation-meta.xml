@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DV: Criminal Case Details (Related... --></label>
+    <name>DV_Criminal_Case_Details__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,39 @@
+.history-tile {
+    transition: all 0.2s ease-in-out !important;
+    border-left: 4px solid #0070d2 !important;
+}
+
+.history-tile:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.conflict-found-tile {
+    transition: all 0.2s ease-in-out !important;
+    border-left: 4px solid #c23934 !important;
+}
+
+.conflict-found-tile:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 6px 12px rgba(194, 57, 52, 0.3) !important;
+}
+
+.clickable-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #0070d2;
+    color: white;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-style: normal;
+}
+
+.clickable-pill-red {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #c23934;
+    color: white;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-style: normal;
+}

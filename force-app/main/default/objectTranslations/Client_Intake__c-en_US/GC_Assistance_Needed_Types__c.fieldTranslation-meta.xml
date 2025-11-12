@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- GC: Need Assistance With (Check all) --></label>
+    <name>GC_Assistance_Needed_Types__c</name>
+    <picklistValues>
+        <masterLabel>Emergency Guardianship/Conservatorship</masterLabel>
+        <translation><!-- Emergency Guardianship/Conservatorship --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Petition for Conservatorship</masterLabel>
+        <translation><!-- Petition for Conservatorship --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Petition for Guardianship</masterLabel>
+        <translation><!-- Petition for Guardianship --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Petition to Transfer Guardianship/Conservatorship</masterLabel>
+        <translation><!-- Petition to Transfer Guardianship/Conservatorship --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

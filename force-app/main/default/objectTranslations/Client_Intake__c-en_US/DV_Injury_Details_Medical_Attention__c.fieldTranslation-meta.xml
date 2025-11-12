@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DV: Injury Details &amp; Medical Attention --></label>
+    <name>DV_Injury_Details_Medical_Attention__c</name>
+</CustomFieldTranslation>

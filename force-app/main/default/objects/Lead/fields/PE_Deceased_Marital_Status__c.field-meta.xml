@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PE_Deceased_Marital_Status__c</fullName>
+    <label>Deceased Marital Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Married – traditional ceremony</fullName>
+                <default>false</default>
+                <label>Married – traditional ceremony</label>
+            </value>
+            <value>
+                <fullName>Married – certificate or common law</fullName>
+                <default>false</default>
+                <label>Married – certificate or common law</label>
+            </value>
+            <value>
+                <fullName>Divorced</fullName>
+                <default>false</default>
+                <label>Divorced</label>
+            </value>
+            <value>
+                <fullName>Single</fullName>
+                <default>false</default>
+                <label>Single</label>
+            </value>
+            <value>
+                <fullName>Widowed</fullName>
+                <default>false</default>
+                <label>Widowed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

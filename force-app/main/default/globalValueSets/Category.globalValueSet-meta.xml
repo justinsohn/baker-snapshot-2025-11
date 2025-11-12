@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Assault</fullName>
+        <default>false</default>
+        <label>Assault</label>
+    </customValue>
+    <customValue>
+        <fullName>Business</fullName>
+        <default>false</default>
+        <label>Business</label>
+    </customValue>
+    <customValue>
+        <fullName>Civil Rights</fullName>
+        <default>false</default>
+        <label>Civil Rights</label>
+    </customValue>
+    <customValue>
+        <fullName>Construction</fullName>
+        <default>false</default>
+        <label>Construction</label>
+    </customValue>
+    <customValue>
+        <fullName>Defamation</fullName>
+        <default>false</default>
+        <label>Defamation</label>
+    </customValue>
+    <customValue>
+        <fullName>Domestic Violence</fullName>
+        <default>false</default>
+        <label>Domestic Violence</label>
+    </customValue>
+    <customValue>
+        <fullName>Drug Related</fullName>
+        <default>false</default>
+        <label>Drug Related</label>
+    </customValue>
+    <customValue>
+        <fullName>DUI Defense</fullName>
+        <default>false</default>
+        <label>DUI Defense</label>
+    </customValue>
+    <customValue>
+        <fullName>Economic Crime (Fraud/Laundering)</fullName>
+        <default>false</default>
+        <label>Economic Crime (Fraud/Laundering)</label>
+    </customValue>
+    <customValue>
+        <fullName>Education</fullName>
+        <default>false</default>
+        <label>Education</label>
+    </customValue>
+    <customValue>
+        <fullName>Employment</fullName>
+        <default>false</default>
+        <label>Employment</label>
+    </customValue>
+    <customValue>
+        <fullName>Expungements</fullName>
+        <default>false</default>
+        <label>Expungements</label>
+    </customValue>
+    <customValue>
+        <fullName>Family</fullName>
+        <default>false</default>
+        <label>Family</label>
+    </customValue>
+    <customValue>
+        <fullName>Federal Criminal Defense</fullName>
+        <default>false</default>
+        <label>Federal Criminal Defense</label>
+    </customValue>
+    <customValue>
+        <fullName>Felony</fullName>
+        <default>false</default>
+        <label>Felony</label>
+    </customValue>
+    <customValue>
+        <fullName>General Civil</fullName>
+        <default>false</default>
+        <label>General Civil</label>
+    </customValue>
+    <customValue>
+        <fullName>Guardianship/Conservatorship</fullName>
+        <default>false</default>
+        <label>Guardianship/Conservatorship</label>
+    </customValue>
+    <customValue>
+        <fullName>HOA</fullName>
+        <default>false</default>
+        <label>HOA</label>
+    </customValue>
+    <customValue>
+        <fullName>Homicide</fullName>
+        <default>false</default>
+        <label>Homicide</label>
+    </customValue>
+    <customValue>
+        <fullName>Immigration</fullName>
+        <default>false</default>
+        <label>Immigration</label>
+    </customValue>
+    <customValue>
+        <fullName>Insurance</fullName>
+        <default>false</default>
+        <label>Insurance</label>
+    </customValue>
+    <customValue>
+        <fullName>Landlord/Tenant</fullName>
+        <default>false</default>
+        <label>Landlord/Tenant</label>
+    </customValue>
+    <customValue>
+        <fullName>Misdemeanor</fullName>
+        <default>false</default>
+        <label>Misdemeanor</label>
+    </customValue>
+    <customValue>
+        <fullName>Personal Injury</fullName>
+        <default>false</default>
+        <label>Personal Injury</label>
+    </customValue>
+    <customValue>
+        <fullName>POA (Limited Scope Criminal Consultation)</fullName>
+        <default>false</default>
+        <label>POA (Limited Scope Criminal Consultation)</label>
+    </customValue>
+    <customValue>
+        <fullName>Probate</fullName>
+        <default>false</default>
+        <label>Probate</label>
+    </customValue>
+    <customValue>
+        <fullName>Protective Orders</fullName>
+        <default>false</default>
+        <label>Protective Orders</label>
+    </customValue>
+    <customValue>
+        <fullName>Real Estate</fullName>
+        <default>false</default>
+        <label>Real Estate</label>
+    </customValue>
+    <customValue>
+        <fullName>Sex Offense</fullName>
+        <default>false</default>
+        <label>Sex Offense</label>
+    </customValue>
+    <customValue>
+        <fullName>Theft (Robbery, Shoplifting, Larceny, Burglary)</fullName>
+        <default>false</default>
+        <label>Theft (Robbery, Shoplifting, Larceny, Burglary)</label>
+    </customValue>
+    <customValue>
+        <fullName>Traffic Offense (including Hit-and-Run)</fullName>
+        <default>false</default>
+        <label>Traffic Offense (including Hit-and-Run)</label>
+    </customValue>
+    <customValue>
+        <fullName>Trusts and Estates</fullName>
+        <default>false</default>
+        <label>Trusts and Estates</label>
+    </customValue>
+    <customValue>
+        <fullName>White-Collar Crime</fullName>
+        <default>false</default>
+        <label>White-Collar Crime</label>
+    </customValue>
+    <masterLabel>Category</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

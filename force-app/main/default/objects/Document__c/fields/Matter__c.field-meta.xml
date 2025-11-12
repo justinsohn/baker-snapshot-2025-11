@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Matter__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The relationship between Matters and Documents is one-to-many. Each legal case (Matter) can have a multitude of documents associated with it, including pleadings, evidence, correspondence, and other relevant materials. A Document typically pertains to a specific Matter, providing a clear organizational structure for case-related files. This relationship highlights the document-intensive nature of legal practice and the critical need to organize these documents according to the respective case they belong to. Every legal case generates a significant volume of documentation that requires systematic storage and easy retrieval.</description>
+    <label>Matter</label>
+    <referenceTo>Matter__c</referenceTo>
+    <relationshipLabel>Documents</relationshipLabel>
+    <relationshipName>Documents</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

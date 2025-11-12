@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <masterLabel>AR Aging</masterLabel>
+    <description>Accounts Receivable Aging analysis component that displays outstanding invoice balances segmented by aging periods (30, 60, 90 days) based on a user-selected date.</description>
+</LightningComponentBundle>

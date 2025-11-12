@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Team --></label>
+    <name>Team__c</name>
+    <picklistValues>
+        <masterLabel>Team AW</masterLabel>
+        <translation><!-- Team AW --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Admin</masterLabel>
+        <translation><!-- Team Admin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Ashley</masterLabel>
+        <translation><!-- Team Ashley --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team BRP</masterLabel>
+        <translation><!-- Team BRP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Brian</masterLabel>
+        <translation><!-- Team Brian --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team CJS</masterLabel>
+        <translation><!-- Team CJS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Carl</masterLabel>
+        <translation><!-- Team Carl --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team DF</masterLabel>
+        <translation><!-- Team DF --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Dillon</masterLabel>
+        <translation><!-- Team Dillon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Marketing</masterLabel>
+        <translation><!-- Team Marketing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team TSG</masterLabel>
+        <translation><!-- Team TSG --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Tyler</masterLabel>
+        <translation><!-- Team Tyler --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

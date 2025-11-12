@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CLIT: Are you Plaintiff or Defendant? --></label>
+    <name>CLIT_Plaintiff_Or_Defendant__c</name>
+    <picklistValues>
+        <masterLabel>Defendant</masterLabel>
+        <translation><!-- Defendant --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Plaintiff</masterLabel>
+        <translation><!-- Plaintiff --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

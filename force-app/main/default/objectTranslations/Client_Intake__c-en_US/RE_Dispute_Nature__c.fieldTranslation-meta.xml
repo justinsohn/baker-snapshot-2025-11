@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- RE: Nature of Dispute --></label>
+    <name>RE_Dispute_Nature__c</name>
+    <picklistValues>
+        <masterLabel>Contract Breach</masterLabel>
+        <translation><!-- Contract Breach --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lease Violations</masterLabel>
+        <translation><!-- Lease Violations --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non-Payment of Rent</masterLabel>
+        <translation><!-- Non-Payment of Rent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Property Defects</masterLabel>
+        <translation><!-- Property Defects --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

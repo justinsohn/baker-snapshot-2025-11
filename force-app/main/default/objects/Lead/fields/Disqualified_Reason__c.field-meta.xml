@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disqualified_Reason__c</fullName>
+    <label>Disqualified Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Already Hired Another Firm</fullName>
+                <default>false</default>
+                <label>Already Hired Another Firm</label>
+            </value>
+            <value>
+                <fullName>Conflict of Interest</fullName>
+                <default>false</default>
+                <label>Conflict of Interest</label>
+            </value>
+            <value>
+                <fullName>Out of Jurisdiction / Practice Area</fullName>
+                <default>false</default>
+                <label>Out of Jurisdiction / Practice Area</label>
+            </value>
+            <value>
+                <fullName>Statute of Limitations Expired</fullName>
+                <default>false</default>
+                <label>Statute of Limitations Expired</label>
+            </value>
+            <value>
+                <fullName>Low Case Value / Not Economically Viable</fullName>
+                <default>false</default>
+                <label>Low Case Value / Not Economically Viable</label>
+            </value>
+            <value>
+                <fullName>Client Red Flags</fullName>
+                <default>false</default>
+                <label>Client Red Flags</label>
+            </value>
+            <value>
+                <fullName>Lack of Merit or Evidence</fullName>
+                <default>false</default>
+                <label>Lack of Merit or Evidence</label>
+            </value>
+            <value>
+                <fullName>Firm Availability</fullName>
+                <default>false</default>
+                <label>Firm Availability</label>
+            </value>
+            <value>
+                <fullName>Client Financial Position</fullName>
+                <default>false</default>
+                <label>Client Financial Position</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

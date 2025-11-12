@@ -1,0 +1,61 @@
+.summary-section {
+    margin-bottom: 1.5rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.25rem;
+}
+
+.section-header {
+    background-color: #f4f6f9;
+    color: #0176d3;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    border-bottom: 1px solid #e5e5e5;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.section-content {
+    padding: 1rem;
+}
+
+.field-row {
+    display: flex;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.field-row:last-child {
+    margin-bottom: 0;
+}
+
+.field-label {
+    font-weight: 600;
+    color: #3e3e3c;
+    margin-right: 0.5rem;
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+.field-value {
+    color: #181818;
+    flex: 1;
+    word-break: break-word;
+}
+
+.field-value.legal-matters {
+    font-weight: 600;
+    color: #0176d3;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .field-row {
+        flex-direction: column;
+    }
+    
+    .field-label {
+        margin-bottom: 0.25rem;
+        min-width: auto;
+    }
+}

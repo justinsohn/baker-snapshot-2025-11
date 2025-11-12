@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- LT_L: What is included in the rent?... --></label>
+    <name>LT_L_Rent_Includes__c</name>
+    <picklistValues>
+        <masterLabel>Laundry Facilities</masterLabel>
+        <translation><!-- Laundry Facilities --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Parking</masterLabel>
+        <translation><!-- Parking --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Utilities</masterLabel>
+        <translation><!-- Utilities --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

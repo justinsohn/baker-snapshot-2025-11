@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DEF_P: Actions Taken in Response to... --></label>
+    <name>DEF_P_Actions_In_Response__c</name>
+    <picklistValues>
+        <masterLabel>Contacted the person making the statement</masterLabel>
+        <translation><!-- Contacted the person making the statement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Filed a formal complaint</masterLabel>
+        <translation><!-- Filed a formal complaint --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Issued a public statement/retraction</masterLabel>
+        <translation><!-- Issued a public statement/retraction --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pursued legal action</masterLabel>
+        <translation><!-- Pursued legal action --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

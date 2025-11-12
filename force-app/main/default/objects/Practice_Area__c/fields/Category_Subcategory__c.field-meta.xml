@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category_Subcategory__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK( TEXT(Subcategory__c) ), TEXT( Category__c ), TEXT( Category__c ) &amp; &apos; | &apos; &amp; TEXT( Subcategory__c ))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Category | Subcategory</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

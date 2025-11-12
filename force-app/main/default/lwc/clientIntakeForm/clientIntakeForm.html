@@ -1,0 +1,2439 @@
+<template>
+    <lightning-card title="Client Intake Form" icon-name="standard:lead">
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-gutters slds-m-bottom_small">
+                <div class="slds-col slds-size_10-of-12 slds-align-middle">
+                    <lightning-progress-bar
+                        value={progressValue}
+                        size="large"
+                        variant="circular">
+                    </lightning-progress-bar>
+                </div>
+                <div class="slds-col slds-size_2-of-12 slds-text-align_right slds-align-middle">
+                    <lightning-badge label={progressPercentageText}></lightning-badge>
+                </div>
+            </div>
+
+            <div class="slds-m-bottom_medium slds-p-bottom_small slds-text-align_center" style="border-bottom: 1px solid #dddbda;">
+                <lightning-button
+                    label={launchButtonLabel}
+                    icon-name={launchButtonIcon}
+                    onclick={toggleFormVisibility}
+                    variant="brand"
+                    class="slds-button_stretch">
+                </lightning-button>
+            </div>
+
+            <template if:true={isFormLaunched}>
+                <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                    <div class="slds-col slds-size_2-of-12">
+                        <template if:true={showPreviousButton}>
+                            <lightning-button
+                                label="Previous"
+                                icon-name="utility:chevronleft"
+                                onclick={handlePreviousSection}>
+                            </lightning-button>
+                        </template>
+                    </div>
+                    <div class="slds-col slds-size_8-of-12 slds-text-align_center">
+                        <h2 class="slds-text-heading_medium">
+                            Section {currentSection} of {totalSections}: {currentSectionName}
+                        </h2>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12 slds-text-align_right">
+                        <template if:true={showNextButton}>
+                            <lightning-button
+                                label="Next"
+                                icon-name="utility:chevronright"
+                                icon-position="right"
+                                onclick={handleNextSection}>
+                            </lightning-button>
+                        </template>
+                    </div>
+                </div>
+
+                <template if:true={showSection1}>
+                    <div class="slds-box slds-theme_shade">
+                        <h3 class="slds-text-heading_small slds-m-bottom_medium">Personal Information</h3>
+                        
+
+                        <lightning-textarea
+                            label="Mailing Address (if different)"
+                            name="Mailing_Address_Different__c"
+                            value={intakeRecord.Mailing_Address_Different__c}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-textarea>
+
+
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-input
+                                    label="Work Phone"
+                                    name="Work_Phone_Custom__c"
+                                    type="phone"
+                                    value={intakeRecord.Work_Phone_Custom__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-combobox
+                                    name="Can_Text_You__c"
+                                    label="Can we text you?"
+                                    value={intakeRecord.Can_Text_You__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                            </div>
+                        </div>
+
+                        <lightning-combobox
+                            name="Preferred_Method_Communication__c"
+                            label="Preferred Method of Communication"
+                            value={intakeRecord.Preferred_Method_Communication__c}
+                            options={preferredCommunicationOptions}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-combobox>
+
+                        <lightning-input
+                            label="Preferred Language"
+                            name="Preferred_Language__c"
+                            value={intakeRecord.Preferred_Language__c}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-input>
+
+                        <lightning-input
+                            type="date"
+                            name="Date_Of_Birth__c"
+                            label="Date of Birth"
+                            value={intakeRecord.Date_Of_Birth__c}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-input>
+
+                        <lightning-textarea
+                            label="Occupation and Employer"
+                            name="Occupation_Employer__c"
+                            value={intakeRecord.Occupation_Employer__c}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-textarea>
+
+                        <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Office and Scheduling Preferences</h3>
+
+                        <lightning-input
+                            label="Preferred office location"
+                            name="Preferred_Office_Location__c"
+                            value={intakeRecord.Preferred_Office_Location__c}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-input>
+
+                        <lightning-combobox
+                            name="Require_Appointment_Accommodations__c"
+                            label="Do you require accommodations for appointments?"
+                            value={intakeRecord.Require_Appointment_Accommodations__c}
+                            options={yesNoOptions}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-combobox>
+
+                        <template if:true={showAccommodationsSpecify}>
+                            <lightning-input
+                                label="Please specify accommodations needed"
+                                name="Appointment_Accommodations_Specify__c"
+                                value={intakeRecord.Appointment_Accommodations_Specify__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+                        </template>
+
+                        <lightning-textarea
+                            label="Specific times or days when you are available"
+                            name="Specific_Availability_Times_Days__c"
+                            value={intakeRecord.Specific_Availability_Times_Days__c}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-textarea>
+
+                        <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Conflicts Check</h3>
+
+                        <lightning-textarea
+                            label="What other parties are involved in this matter?"
+                            name="Other_Parties_Involved__c"
+                            value={intakeRecord.Other_Parties_Involved__c}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-textarea>
+
+                        <lightning-combobox
+                            name="Legal_Matters_With_Parties_Before__c"
+                            label="Have you been involved in legal matters with these parties before?"
+                            value={intakeRecord.Legal_Matters_With_Parties_Before__c}
+                            options={yesNoOptions}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-combobox>
+
+                        <lightning-combobox
+                            name="Aware_Of_Conflicts__c"
+                            label="Are you aware of any conflicts of interest we might have?"
+                            value={intakeRecord.Aware_Of_Conflicts__c}
+                            options={yesNoOptions}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-combobox>
+
+                        <lightning-combobox
+                            name="Represented_Other_Parties_In_Case__c"
+                            label="Have we represented any other parties in this case previously?"
+                            value={intakeRecord.Represented_Other_Parties_In_Case__c}
+                            options={yesNoOptions}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-combobox>
+
+                        <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">General Legal Matter Information</h3>
+
+                        <lightning-dual-listbox
+                            name="Legal_Matter_Type__c"
+                            label="What type of legal matter are you seeking assistance with? (Check all that apply)"
+                            source-label="Available"
+                            selected-label="Selected"
+                            field-level-help="Select all applicable legal matter types."
+                            options={legalMatterTypeOptions}
+                            value={selectedLegalMatterTypes}
+                            onchange={handleLegalMatterChange}
+                            required
+                            class="slds-m-bottom_medium">
+                        </lightning-dual-listbox>
+
+                        <template if:true={showLegalMatterOtherSpecify}>
+                            <lightning-input
+                                label="Legal Matter Type Other (Specify)"
+                                name="Legal_Matter_Type_Other_Specify__c"
+                                value={intakeRecord.Legal_Matter_Type_Other_Specify__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+                        </template>
+
+                        <lightning-textarea
+                            label="Briefly describe the issue"
+                            name="Issue_Description__c"
+                            value={intakeRecord.Issue_Description__c}
+                            onchange={handleInputChange}
+                            required
+                            class="slds-m-bottom_small">
+                        </lightning-textarea>
+
+                        <lightning-textarea
+                            label="What specific outcome are you hoping to achieve?"
+                            name="Desired_Outcome__c"
+                            value={intakeRecord.Desired_Outcome__c}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-textarea>
+                    </div>
+                </template>
+
+                <template if:true={showSection2}>
+                    <template if:true={showCriminalLawSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">General Criminal Law Questions</h3>
+
+                            <lightning-textarea
+                                label="What are the charges or allegations?"
+                                name="CL_Charges_Allegations__c"
+                                value={intakeRecord.CL_Charges_Allegations__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-combobox
+                                name="CL_Charge_Classification__c"
+                                label="Are these classified as:"
+                                value={intakeRecord.CL_Charge_Classification__c}
+                                options={chargeClassificationOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <h4 class="slds-text-body_regular slds-m-top_small slds-m-bottom_x-small">Where did the alleged incident occur?</h4>
+                            <div class="slds-grid slds-gutters">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-input
+                                        label="City/County"
+                                        name="CL_Incident_Location_City_County__c"
+                                        value={intakeRecord.CL_Incident_Location_City_County__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-input
+                                        label="State"
+                                        name="CL_Incident_Location_State__c"
+                                        value={intakeRecord.CL_Incident_Location_State__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </div>
+                            </div>
+
+                            <lightning-input
+                                type="date"
+                                name="CL_Incident_Date__c"
+                                label="When did the alleged incident occur?"
+                                value={intakeRecord.CL_Incident_Date__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-combobox
+                                name="CL_Investigating_Agency__c"
+                                label="Which agency investigated or filed the charges?"
+                                value={intakeRecord.CL_Investigating_Agency__c}
+                                options={investigatingAgencyOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showAgencyPoliceSpecify}>
+                                <lightning-input
+                                    label="Police Department (Specify)"
+                                    name="CL_Agency_Police_Specify__c"
+                                    value={intakeRecord.CL_Agency_Police_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+                            <template if:true={showAgencyOtherSpecify}>
+                                <lightning-input
+                                    label="Other Agency (Specify)"
+                                    name="CL_Agency_Other_Specify__c"
+                                    value={intakeRecord.CL_Agency_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-combobox
+                                name="CL_Case_Filed__c"
+                                label="Has a criminal case been filed?"
+                                value={intakeRecord.CL_Case_Filed__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showCaseFiledDetails}>
+                                <lightning-input
+                                    label="Case Number"
+                                    name="CL_Case_Number__c"
+                                    value={intakeRecord.CL_Case_Number__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                                <lightning-input
+                                    label="Court Location"
+                                    name="CL_Court_Location__c"
+                                    value={intakeRecord.CL_Court_Location__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+                            <template if:true={showMatterUnderInvestigation}>
+                                <lightning-combobox
+                                    name="CL_Under_Investigation__c"
+                                    label="Is the matter under investigation?"
+                                    value={intakeRecord.CL_Under_Investigation__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                            </template>
+
+                            <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Case Details</h3>
+
+                            <lightning-combobox
+                                name="CL_Case_Status__c"
+                                label="What is the status of the case?"
+                                value={intakeRecord.CL_Case_Status__c}
+                                options={caseStatusOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+                            <template if:true={showCaseStatusOtherSpecify}>
+                                <lightning-input
+                                    label="Other Status (Specify)"
+                                    name="CL_Case_Status_Other_Specify__c"
+                                    value={intakeRecord.CL_Case_Status_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-combobox
+                                name="CL_In_Custody__c"
+                                label="Are you currently in custody?"
+                                value={intakeRecord.CL_In_Custody__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-combobox
+                                name="CL_Needs_Bail_Bond_Help__c"
+                                label="Do you need help with bail or bond?"
+                                value={intakeRecord.CL_Needs_Bail_Bond_Help__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-dual-listbox
+                                name="CL_Case_Involvement_Types__c"
+                                label="Does the case involve any of the following? (Check all that apply)"
+                                source-label="Available"
+                                selected-label="Selected"
+                                options={caseInvolvementTypeOptions}
+                                value={selectedCaseInvolvementTypes}
+                                onchange={handleCaseInvolvementChange}
+                                class="slds-m-bottom_small">
+                            </lightning-dual-listbox>
+
+                            <template if:true={showCaseInvolvementOtherSpecify}>
+                                <lightning-input
+                                    label="Other Involvement (Specify)"
+                                    name="CL_Case_Involvement_Other_Specify__c"
+                                    value={intakeRecord.CL_Case_Involvement_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <template if:true={showDUIDWISection}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">DUI/DWI-Specific Questions</h3>
+                                <lightning-combobox
+                                    name="CL_DUI_Pulled_Over_Reason__c"
+                                    label="Why were you pulled over?"
+                                    value={intakeRecord.CL_DUI_Pulled_Over_Reason__c}
+                                    options={duiPulledOverReasonOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                                <template if:true={showDUIPulledOverOtherSpecify}>
+                                    <lightning-input
+                                        label="Other Reason (Specify)"
+                                        name="CL_DUI_Pulled_Over_Other_Specify__c"
+                                        value={intakeRecord.CL_DUI_Pulled_Over_Other_Specify__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </template>
+                                <lightning-textarea
+                                    label="What tests were conducted (e.g., breath, blood)?"
+                                    name="CL_DUI_Tests_Conducted__c"
+                                    value={intakeRecord.CL_DUI_Tests_Conducted__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                                <lightning-textarea
+                                    label="What were the results of those tests?"
+                                    name="CL_DUI_Test_Results__c"
+                                    value={intakeRecord.CL_DUI_Test_Results__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                                <lightning-combobox
+                                    name="CL_DUI_Prior_Convictions__c"
+                                    label="Do you have prior DUI/DWI convictions?"
+                                    value={intakeRecord.CL_DUI_Prior_Convictions__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                                <template if:true={showDUIPriorConvictionsDetails}>
+                                    <lightning-textarea
+                                        label="When and where?"
+                                        name="CL_DUI_Prior_Convictions_Details__c"
+                                        value={intakeRecord.CL_DUI_Prior_Convictions_Details__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-textarea>
+                                </template>
+                            </template>
+
+                            <template if:true={showRecordSealingSection}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Record Sealing or Expungement</h3>
+                                <lightning-textarea
+                                    label="What charges are you seeking to seal?"
+                                    name="CL_Charges_To_Seal__c"
+                                    value={intakeRecord.CL_Charges_To_Seal__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                                <lightning-combobox
+                                    name="CL_Case_Dismissed_Acquitted__c"
+                                    label="Was the case dismissed, or were you acquitted?"
+                                    value={intakeRecord.CL_Case_Dismissed_Acquitted__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                                <lightning-combobox
+                                    name="CL_Completed_Court_Conditions__c"
+                                    label="Did you complete all court-ordered conditions?"
+                                    value={intakeRecord.CL_Completed_Court_Conditions__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                            </template>
+
+                            <template if:true={showDomesticViolenceSection}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Domestic Violence Case Questions</h3>
+                                <lightning-combobox
+                                    name="DV_Physically_Harmed__c"
+                                    label="Have you been physically harmed by someone in your household or relationship?"
+                                    value={intakeRecord.DV_Physically_Harmed__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                                <template if:true={showDVRecentIncidentDetails}>
+                                    <h4 class="slds-text-body_regular slds-m-top_small slds-m-bottom_x-small">Please describe the most recent incident</h4>
+                                    <lightning-input
+                                        type="date"
+                                        name="DV_Recent_Incident_Date__c"
+                                        label="Date"
+                                        value={intakeRecord.DV_Recent_Incident_Date__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                    <lightning-input
+                                        label="Location"
+                                        name="DV_Recent_Incident_Location__c"
+                                        value={intakeRecord.DV_Recent_Incident_Location__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                    <lightning-textarea
+                                        label="Description"
+                                        name="DV_Recent_Incident_Description__c"
+                                        value={intakeRecord.DV_Recent_Incident_Description__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-textarea>
+
+                                    <lightning-combobox
+                                        name="DV_Violence_Occurred_Before__c"
+                                        label="Has this type of violence occurred before?"
+                                        value={intakeRecord.DV_Violence_Occurred_Before__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    
+                                        <lightning-input
+                                            label="How often has it occurred? (e.g., daily, weekly, monthly, etc.)"
+                                            name="DV_Violence_Frequency__c"
+                                            value={intakeRecord.DV_Violence_Frequency__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    
+
+                                    <lightning-combobox
+                                        name="DV_Violence_Past_Or_Ongoing__c"
+                                        label="Was the violence in the past or ongoing?"
+                                        value={intakeRecord.DV_Violence_Past_Or_Ongoing__c}
+                                        options={violencePastOngoingOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    
+                                        <lightning-textarea
+                                            label="Please describe the current situation"
+                                            name="DV_Ongoing_Violence_Situation__c"
+                                            value={intakeRecord.DV_Ongoing_Violence_Situation__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-textarea>
+                                    
+
+                                    <lightning-dual-listbox
+                                        name="DV_Types_Of_Abuse__c"
+                                        label="What type(s) of abuse have you experienced? (Check all that apply)"
+                                        source-label="Available"
+                                        selected-label="Selected"
+                                        options={abuseTypeOptions}
+                                        value={selectedAbuseTypes}
+                                        onchange={handleAbuseTypeChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-dual-listbox>
+
+                                    <template if:true={showDVAbuseTypeOther}>
+                                        <lightning-input
+                                            label="Other type of abuse (please describe)"
+                                            name="DV_Abuse_Type_Other_Specify__c"
+                                            value={intakeRecord.DV_Abuse_Type_Other_Specify__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    </template>
+
+                                    <h4 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Perpetrator Information</h4>
+
+                                    <lightning-combobox
+                                        name="DV_Perpetrator_Identity__c"
+                                        label="Who is the person responsible for the abuse?"
+                                        value={intakeRecord.DV_Perpetrator_Identity__c}
+                                        options={perpetratorIdentityOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVPerpetratorOther}>
+                                        <lightning-input
+                                            label="Other (please specify)"
+                                            name="DV_Perpetrator_Identity_Other__c"
+                                            value={intakeRecord.DV_Perpetrator_Identity_Other__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    </template>
+
+                                    <template if:true={showDVPerpetratorFamily}>
+                                        <lightning-input
+                                            label="Please specify family member relationship"
+                                            name="DV_Perpetrator_Family_Specify__c"
+                                            value={intakeRecord.DV_Perpetrator_Family_Specify__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Relationship_To_Perpetrator__c"
+                                        label="What is your relationship to the person responsible for the abuse?"
+                                        value={intakeRecord.DV_Relationship_To_Perpetrator__c}
+                                        options={relationshipToPerpetratorOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVRelationshipOther}>
+                                        <lightning-input
+                                            label="Other relationship (please specify)"
+                                            name="DV_Rel_To_Perpetrator_Other_Specify__c"
+                                            value={intakeRecord.DV_Rel_To_Perpetrator_Other_Specify__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Abuser_Lives_With_You__c"
+                                        label="Does the abuser live with you?"
+                                        value={intakeRecord.DV_Abuser_Lives_With_You__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVAbuserContactFrequency}>
+                                        <lightning-input
+                                            label="How often do they have contact with you?"
+                                            name="DV_Abuser_Contact_Frequency__c"
+                                            value={intakeRecord.DV_Abuser_Contact_Frequency__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Have_Children__c"
+                                        label="Do you have children?"
+                                        value={intakeRecord.DV_Have_Children__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVChildrenDetails}>
+                                        <lightning-textarea
+                                            label="Do the children witness or are they affected by the abuse? (Please describe)"
+                                            name="DV_Children_Witness_Abuse_Details__c"
+                                            value={intakeRecord.DV_Children_Witness_Abuse_Details__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-textarea>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Abuser_Threatened_Harm__c"
+                                        label="Has the abuser ever threatened to harm you or anyone else?"
+                                        value={intakeRecord.DV_Abuser_Threatened_Harm__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVThreatDetails}>
+                                        <lightning-textarea
+                                            label="Please provide details"
+                                            name="DV_Abuser_Threat_Details__c"
+                                            value={intakeRecord.DV_Abuser_Threat_Details__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-textarea>
+                                    </template>
+
+                                    <h4 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Safety & Risk Assessment</h4>
+
+                                    <lightning-combobox
+                                        name="DV_Immediate_Danger__c"
+                                        label="Are you in immediate danger of harm?"
+                                        value={intakeRecord.DV_Immediate_Danger__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <lightning-combobox
+                                        name="DV_Injured_From_Abuse__c"
+                                        label="Have you or someone else ever been injured as a result of this abuse?"
+                                        value={intakeRecord.DV_Injured_From_Abuse__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVInjuryDetails}>
+                                        <lightning-textarea
+                                            label="Please describe the injuries and if you received medical attention"
+                                            name="DV_Injury_Details_Medical_Attention__c"
+                                            value={intakeRecord.DV_Injury_Details_Medical_Attention__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-textarea>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Abuser_Threatened_Weapon__c"
+                                        label="Has the abuser ever threatened or attempted to use a weapon against you?"
+                                        value={intakeRecord.DV_Abuser_Threatened_Weapon__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVWeaponDetails}>
+                                        <lightning-textarea
+                                            label="Please describe the situation"
+                                            name="DV_Abuser_Weapon_Situation__c"
+                                            value={intakeRecord.DV_Abuser_Weapon_Situation__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-textarea>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Firearms_Present__c"
+                                        label="Are there firearms or weapons in the home or in the possession of the abuser?"
+                                        value={intakeRecord.DV_Firearms_Present__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVFirearmTypes}>
+                                        <lightning-input
+                                            label="What type of weapon(s)?"
+                                            name="DV_Firearm_Types__c"
+                                            value={intakeRecord.DV_Firearm_Types__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    </template>
+
+                                    <h4 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Legal Actions Taken</h4>
+
+                                    <lightning-combobox
+                                        name="DV_Contacted_Law_Enforcement__c"
+                                        label="Have you ever contacted law enforcement or filed a police report?"
+                                        value={intakeRecord.DV_Contacted_Law_Enforcement__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVLawEnforcementDetails}>
+                                        <lightning-textarea
+                                            label="What was the outcome? (Include case number, if available)"
+                                            name="DV_Law_Enforcement_Outcome__c"
+                                            value={intakeRecord.DV_Law_Enforcement_Outcome__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-textarea>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Sought_Protection_Order__c"
+                                        label="Have you ever sought a protection order or restraining order?"
+                                        value={intakeRecord.DV_Sought_Protection_Order__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVProtectionOrderDetails}>
+                                        <lightning-combobox
+                                            name="DV_Protection_Order_Granted__c"
+                                            label="Was it granted?"
+                                            value={intakeRecord.DV_Protection_Order_Granted__c}
+                                            options={yesNoOptions}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-combobox>
+
+                                        <lightning-combobox
+                                            name="DV_Current_Protection_Order__c"
+                                            label="Are there any current protection orders in place?"
+                                            value={intakeRecord.DV_Current_Protection_Order__c}
+                                            options={yesNoOptions}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-combobox>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Involved_In_Criminal_Case__c"
+                                        label="Have you ever been involved in a criminal case related to the abuse?"
+                                        value={intakeRecord.DV_Involved_In_Criminal_Case__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVCriminalCaseDetails}>
+                                        <lightning-textarea
+                                            label="Please provide details"
+                                            name="DV_Criminal_Case_Details__c"
+                                            value={intakeRecord.DV_Criminal_Case_Details__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-textarea>
+                                    </template>
+
+                                    <h4 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Support & Resources</h4>
+
+                                    <lightning-dual-listbox
+                                        name="DV_Receiving_Support_Services__c"
+                                        label="Are you currently receiving support from any of the following services? (Check all that apply)"
+                                        source-label="Available"
+                                        selected-label="Selected"
+                                        options={supportServicesOptions}
+                                        value={selectedSupportServices}
+                                        onchange={handleSupportServicesChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-dual-listbox>
+
+                                    <template if:true={showDVSupportServicesOther}>
+                                        <lightning-input
+                                            label="Other support services (please specify)"
+                                            name="DV_Support_Services_Other__c"
+                                            value={intakeRecord.DV_Support_Services_Other__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Safe_Place_To_Stay__c"
+                                        label="Do you have a safe place to stay right now?"
+                                        value={intakeRecord.DV_Safe_Place_To_Stay__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <template if:true={showDVNeedShelter}>
+                                        <lightning-combobox
+                                            name="DV_Need_Shelter_Assistance__c"
+                                            label="Would you need assistance with finding shelter or a safe location?"
+                                            value={intakeRecord.DV_Need_Shelter_Assistance__c}
+                                            options={yesNoOptions}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-combobox>
+                                    </template>
+
+                                    <lightning-combobox
+                                        name="DV_Speak_With_Attorney_Options__c"
+                                        label="Would you like to speak with an attorney about your legal options?"
+                                        value={intakeRecord.DV_Speak_With_Attorney_Options__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+
+                                    <lightning-combobox
+                                        name="DV_Assistance_Filing_Protective_Order__c"
+                                        label="Would you like assistance with filing a protective order?"
+                                        value={intakeRecord.DV_Assistance_Filing_Protective_Order__c}
+                                        options={yesNoOptions}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-combobox>
+                                </template>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection3}>
+                    <template if:true={showFamilyLawSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Family Law Questions</h3>
+
+                            <lightning-combobox
+                                name="FL_Currently_Married__c"
+                                label="Are you currently married?"
+                                value={intakeRecord.FL_Currently_Married__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showMarriageDetails}>
+                                <lightning-combobox
+                                    name="FL_Marriage_Type__c"
+                                    label="Type of marriage"
+                                    value={intakeRecord.FL_Marriage_Type__c}
+                                    options={marriageTypeOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <lightning-input
+                                    type="date"
+                                    name="FL_Marriage_Date__c"
+                                    label="Date of marriage"
+                                    value={intakeRecord.FL_Marriage_Date__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-input
+                                    label="Location of marriage"
+                                    name="FL_Marriage_Location__c"
+                                    value={intakeRecord.FL_Marriage_Location__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-combobox
+                                    name="FL_Seeking_Action__c"
+                                    label="What action are you seeking?"
+                                    value={intakeRecord.FL_Seeking_Action__c}
+                                    options={seekingActionOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <lightning-combobox
+                                    name="FL_Divorce_Property_Division__c"
+                                    label="Will there be property division?"
+                                    value={intakeRecord.FL_Divorce_Property_Division__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <template if:true={showPropertyDivisionDetails}>
+                                    <lightning-textarea
+                                        label="Real estate details"
+                                        name="FL_Property_Division_Real_Estate__c"
+                                        value={intakeRecord.FL_Property_Division_Real_Estate__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-textarea>
+
+                                    <lightning-textarea
+                                        label="Bank accounts"
+                                        name="FL_Property_Division_Bank_Accounts__c"
+                                        value={intakeRecord.FL_Property_Division_Bank_Accounts__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-textarea>
+
+                                    <lightning-textarea
+                                        label="Other assets"
+                                        name="FL_Property_Division_Other_Assets__c"
+                                        value={intakeRecord.FL_Property_Division_Other_Assets__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-textarea>
+                                </template>
+
+                                <lightning-combobox
+                                    name="FL_Divorce_Contested_Status__c"
+                                    label="Is this contested or uncontested?"
+                                    value={intakeRecord.FL_Divorce_Contested_Status__c}
+                                    options={divorceContestedOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                            </template>
+
+                            <lightning-combobox
+                                name="FL_Spouse_Children_Together__c"
+                                label="Do you have children together?"
+                                value={intakeRecord.FL_Spouse_Children_Together__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showChildrenDetails}>
+                                <lightning-input
+                                    label="How many children?"
+                                    name="FL_Children_Involved_Count__c"
+                                    type="number"
+                                    value={intakeRecord.FL_Children_Involved_Count__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-textarea
+                                    label="Children's details (names, ages)"
+                                    name="FL_Children_Details__c"
+                                    value={intakeRecord.FL_Children_Details__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+
+                                <lightning-combobox
+                                    name="FL_Existing_Custody_Orders__c"
+                                    label="Are there existing custody orders?"
+                                    value={intakeRecord.FL_Existing_Custody_Orders__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                                
+                                <lightning-combobox
+                                    label="Any child safety concerns?"
+                                    name="FL_Child_Safety_Concerns__c"
+                                    value={intakeRecord.FL_Child_Safety_Concerns__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                            </template>
+
+                            <lightning-combobox
+                                name="FL_Previously_Filed_Family_Case__c"
+                                label="Have you previously filed any family law cases?"
+                                value={intakeRecord.FL_Previously_Filed_Family_Case__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection4}>
+                    <template if:true={showProbateSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Probate Questions</h3>
+
+                            <lightning-input
+                                label="Name of deceased"
+                                name="PE_Deceased_Name__c"
+                                value={intakeRecord.PE_Deceased_Name__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-input
+                                type="date"
+                                name="PE_Deceased_Date_Of_Death__c"
+                                label="Date of death"
+                                value={intakeRecord.PE_Deceased_Date_Of_Death__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-input
+                                label="Location of death"
+                                name="PE_Deceased_Location_Of_Death__c"
+                                value={intakeRecord.PE_Deceased_Location_Of_Death__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-textarea
+                                name="PE_PC_Relationship_To_Deceased__c"
+                                label="Your relationship to deceased"
+                                value={intakeRecord.PE_PC_Relationship_To_Deceased__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <template if:true={showPERelationshipOther}>
+                                <lightning-input
+                                    label="Specify relationship"
+                                    name="PE_PC_Relationship_Other_Specify__c"
+                                    value={intakeRecord.PE_PC_Relationship_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Estate Planning Questions</h3>
+
+                            <lightning-input
+                                label="Who is the estate plan for?"
+                                name="EP_Plan_For_Whom__c"
+                                value={intakeRecord.EP_Plan_For_Whom__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-combobox
+                                name="EP_Previous_Estate_Plan__c"
+                                label="Do you have a previous estate plan?"
+                                value={intakeRecord.EP_Previous_Estate_Plan__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-dual-listbox
+                                name="EP_Documents_Needed__c"
+                                label="Which documents do you need?"
+                                source-label="Available"
+                                selected-label="Selected"
+                                options={estatePlanDocumentOptions}
+                                value={selectedEPDocuments}
+                                onchange={handleEPDocumentsChange}
+                                class="slds-m-bottom_small">
+                            </lightning-dual-listbox>
+
+                            <template if:true={showEPDocumentsOther}>
+                                <lightning-input
+                                    label="Other documents (specify)"
+                                    name="EP_Documents_Needed_Other_Specify__c"
+                                    value={intakeRecord.EP_Documents_Needed_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection5}>
+                    <template if:true={showRealEstateSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Real Estate Questions</h3>
+
+                            <lightning-combobox
+                                name="RE_Assistance_Type__c"
+                                label="What type of assistance do you need?"
+                                value={intakeRecord.RE_Assistance_Type__c}
+                                options={reAssistanceTypeOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showREAssistanceOther}>
+                                <lightning-input
+                                    label="Other assistance (specify)"
+                                    name="RE_Assistance_Type_Other_Specify__c"
+                                    value={intakeRecord.RE_Assistance_Type_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-textarea
+                                name="RE_Your_Role__c"
+                                label="Your role in this transaction"
+                                value={intakeRecord.RE_Your_Role__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <h4 class="slds-text-body_regular slds-m-top_small slds-m-bottom_x-small">Property Address</h4>
+                            <lightning-input
+                                label="Street"
+                                name="RE_Property_Street__c"
+                                value={intakeRecord.RE_Property_Street__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <div class="slds-grid slds-gutters">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <lightning-input
+                                        label="City"
+                                        name="RE_Property_City__c"
+                                        value={intakeRecord.RE_Property_City__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-3">
+                                    <lightning-input
+                                        label="State"
+                                        name="RE_Property_State__c"
+                                        value={intakeRecord.RE_Property_State__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-3">
+                                    <lightning-input
+                                        label="ZIP"
+                                        name="RE_Property_ZIP__c"
+                                        value={intakeRecord.RE_Property_ZIP__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </div>
+                            </div>
+
+                            <lightning-combobox
+                                name="RE_Property_Type__c"
+                                label="Property type"
+                                value={intakeRecord.RE_Property_Type__c}
+                                options={propertyTypeOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showREPurchaseSaleDetails}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Purchase/Sale Details</h3>
+                                
+                                <lightning-combobox
+                                    name="RE_Property_Under_Contract__c"
+                                    label="Is the property under contract?"
+                                    value={intakeRecord.RE_Property_Under_Contract__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <lightning-combobox
+                                    name="RE_Working_With_Realtor__c"
+                                    label="Are you working with a realtor?"
+                                    value={intakeRecord.RE_Working_With_Realtor__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <template if:true={showRERealtorInfo}>
+                                    <lightning-textarea
+                                        label="Realtor information"
+                                        name="RE_Realtor_Info__c"
+                                        value={intakeRecord.RE_Realtor_Info__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-textarea>
+                                </template>
+
+                                <lightning-input
+                                    label="Purchase/Sale price"
+                                    name="RE_Purchase_Sale_Price__c"
+                                    type="currency"
+                                    value={intakeRecord.RE_Purchase_Sale_Price__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-combobox
+                                    name="RE_Financing_Type__c"
+                                    label="Financing type"
+                                    value={intakeRecord.RE_Financing_Type__c}
+                                    options={financingTypeOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <template if:true={showREFinancingOther}>
+                                    <lightning-input
+                                        label="Other financing (specify)"
+                                        name="RE_Financing_Type_Other_Specify__c"
+                                        value={intakeRecord.RE_Financing_Type_Other_Specify__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </template>
+
+                                <lightning-input
+                                    type="date"
+                                    name="RE_Closing_Date__c"
+                                    label="Expected closing date"
+                                    value={intakeRecord.RE_Closing_Date__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <template if:true={showRELeaseDetails}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Lease Details</h3>
+                                
+                                <lightning-combobox
+                                    name="RE_Lease_Type__c"
+                                    label="Lease type"
+                                    value={intakeRecord.RE_Lease_Type__c}
+                                    options={leaseTypeOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <lightning-input
+                                    type="date"
+                                    name="RE_Lease_Start_Date__c"
+                                    label="Lease start date"
+                                    value={intakeRecord.RE_Lease_Start_Date__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-input
+                                    type="date"
+                                    name="RE_Lease_End_Date__c"
+                                    label="Lease end date"
+                                    value={intakeRecord.RE_Lease_End_Date__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-input
+                                    label="Monthly rent"
+                                    name="RE_Monthly_Rent__c"
+                                    type="currency"
+                                    value={intakeRecord.RE_Monthly_Rent__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-combobox
+                                    name="RE_Specific_Lease_Terms__c"
+                                    label="Any specific lease terms to address?"
+                                    value={intakeRecord.RE_Specific_Lease_Terms__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <template if:true={showRELeaseTermsSpecify}>
+                                    <lightning-textarea
+                                        label="Specify lease terms"
+                                        name="RE_Specific_Lease_Terms_Specify__c"
+                                        value={intakeRecord.RE_Specific_Lease_Terms_Specify__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-textarea>
+                                </template>
+                            </template>
+
+                            <template if:true={showREDisputeDetails}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Dispute Details</h3>
+                                
+                                <lightning-combobox
+                                    name="RE_Dispute_Nature__c"
+                                    label="Nature of dispute"
+                                    value={intakeRecord.RE_Dispute_Nature__c}
+                                    options={disputeNatureOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <template if:true={showREDisputeOther}>
+                                    <lightning-input
+                                        label="Other dispute (specify)"
+                                        name="RE_Dispute_Nature_Other_Specify__c"
+                                        value={intakeRecord.RE_Dispute_Nature_Other_Specify__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </template>
+
+                                <lightning-combobox
+                                    name="RE_Dispute_Legal_Action_Taken__c"
+                                    label="Has legal action been taken?"
+                                    value={intakeRecord.RE_Dispute_Legal_Action_Taken__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <template if:true={showRELegalActionDetails}>
+                                    <lightning-textarea
+                                        label="Legal action details"
+                                        name="RE_Dispute_Legal_Action_Details__c"
+                                        value={intakeRecord.RE_Dispute_Legal_Action_Details__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-textarea>
+                                </template>
+                            </template>
+
+                            <lightning-combobox
+                                name="RE_Environmental_Zoning_Issues__c"
+                                label="Any environmental or zoning issues?"
+                                value={intakeRecord.RE_Environmental_Zoning_Issues__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showREZoningDetails}>
+                                <lightning-textarea
+                                    label="Environmental/zoning issue details"
+                                    name="RE_Env_Zoning_Issues_Details__c"
+                                    value={intakeRecord.RE_Env_Zoning_Issues_Details__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                            </template>
+
+                            <lightning-combobox
+                                name="RE_Property_In_HOA__c"
+                                label="Is the property in an HOA?"
+                                value={intakeRecord.RE_Property_In_HOA__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showREHOADocs}>
+                                <lightning-combobox
+                                    name="RE_Access_To_HOA_Docs__c"
+                                    label="Do you have access to HOA documents?"
+                                    value={intakeRecord.RE_Access_To_HOA_Docs__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection6}>
+                    <template if:true={showPersonalInjurySection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Personal Injury Questions</h3>
+
+                            <lightning-textarea
+                                label="Describe the incident"
+                                name="PI_Incident_Description__c"
+                                value={intakeRecord.PI_Incident_Description__c}
+                                onchange={handleInputChange}
+                                required
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <div class="slds-grid slds-gutters">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-input
+                                        type="date"
+                                        name="PI_Incident_Date__c"
+                                        label="Date of incident"
+                                        value={intakeRecord.PI_Incident_Date__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning-input
+                                        type="time"
+                                        name="PI_Incident_Time__c"
+                                        label="Time of incident"
+                                        value={intakeRecord.PI_Incident_Time__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </div>
+                            </div>
+
+                            <lightning-input
+                                label="Incident location (address)"
+                                name="PI_Incident_Location_Address__c"
+                                value={intakeRecord.PI_Incident_Location_Address__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-input
+                                label="City, County, State"
+                                name="PI_Incident_Location_City_County_State__c"
+                                value={intakeRecord.PI_Incident_Location_City_County_State__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-combobox
+                                name="PI_Your_Role__c"
+                                label="Your role in the incident"
+                                value={intakeRecord.PI_Your_Role__c}
+                                options={piYourRoleOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showPIRoleOther}>
+                                <lightning-input
+                                    label="Other role (specify)"
+                                    name="PI_Your_Role_Other_Specify__c"
+                                    value={intakeRecord.PI_Your_Role_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-textarea
+                                label="Injuries sustained"
+                                name="PI_Injuries_Sustained__c"
+                                value={intakeRecord.PI_Injuries_Sustained__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-combobox
+                                name="PI_Received_Medical_Treatment__c"
+                                label="Did you receive medical treatment?"
+                                value={intakeRecord.PI_Received_Medical_Treatment__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showPIMedicalDetails}>
+                                <lightning-textarea
+                                    label="Medical treatment details"
+                                    name="PI_Medical_Treatment_Details__c"
+                                    value={intakeRecord.PI_Medical_Treatment_Details__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+
+                                <lightning-combobox
+                                    name="PI_Currently_Undergoing_Treatment__c"
+                                    label="Are you still undergoing treatment?"
+                                    value={intakeRecord.PI_Currently_Undergoing_Treatment__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <lightning-combobox
+                                    name="PI_Records_Medical_Expenses__c"
+                                    label="Do you have records of medical expenses?"
+                                    value={intakeRecord.PI_Records_Medical_Expenses__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                            </template>
+
+                            <lightning-combobox
+                                name="PI_Incident_Witnesses__c"
+                                label="Were there witnesses?"
+                                value={intakeRecord.PI_Incident_Witnesses__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showPIWitnessDetails}>
+                                <lightning-textarea
+                                    label="Witness information"
+                                    name="PI_Witness_Info__c"
+                                    value={intakeRecord.PI_Witness_Info__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                            </template>
+
+                            <lightning-combobox
+                                name="PI_Police_Report_Filed__c"
+                                label="Was a police report filed?"
+                                value={intakeRecord.PI_Police_Report_Filed__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showPIPoliceDetails}>
+                                <lightning-textarea
+                                    label="Police report details"
+                                    name="PI_Police_Report_Details__c"
+                                    value={intakeRecord.PI_Police_Report_Details__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                            </template>
+
+                            <lightning-combobox
+                                name="PI_Has_Documentation__c"
+                                label="Do you have photos/videos/other documentation?"
+                                value={intakeRecord.PI_Has_Documentation__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-combobox
+                                name="PI_Has_Insurance_Coverage__c"
+                                label="Do you have insurance coverage?"
+                                value={intakeRecord.PI_Has_Insurance_Coverage__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showPIInsuranceDetails}>
+                                <lightning-textarea
+                                    label="Your insurance information"
+                                    name="PI_Your_Insurance_Info__c"
+                                    value={intakeRecord.PI_Your_Insurance_Info__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                            </template>
+
+                            <lightning-combobox
+                                name="PI_Other_Party_Has_Insurance__c"
+                                label="Does the other party have insurance?"
+                                value={intakeRecord.PI_Other_Party_Has_Insurance__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showPIOtherPartyInsurance}>
+                                <lightning-textarea
+                                    label="Other party insurance information"
+                                    name="PI_Other_Party_Insurance_Info__c"
+                                    value={intakeRecord.PI_Other_Party_Insurance_Info__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                            </template>
+
+                            <lightning-dual-listbox
+                                name="PI_Damages_Sought__c"
+                                label="What damages are you seeking? (Check all that apply)"
+                                source-label="Available"
+                                selected-label="Selected"
+                                options={damagesSoughtOptions}
+                                value={selectedDamagesSought}
+                                onchange={handleDamagesSoughtChange}
+                                class="slds-m-bottom_small">
+                            </lightning-dual-listbox>
+
+                            <template if:true={showPIDamagesOther}>
+                                <lightning-input
+                                    label="Other damages (specify)"
+                                    name="PI_Damages_Sought_Other_Specify__c"
+                                    value={intakeRecord.PI_Damages_Sought_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection7}>
+                    <template if:true={showCivilLitigationSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Civil Litigation Questions</h3>
+
+                            <lightning-textarea
+                                label="Nature of dispute"
+                                name="CLIT_Dispute_Nature__c"
+                                value={intakeRecord.CLIT_Dispute_Nature__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-input
+                                label="Estimated value of damages"
+                                name="CLIT_Estimated_Damages_Value__c"
+                                type="currency"
+                                value={intakeRecord.CLIT_Estimated_Damages_Value__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-combobox
+                                name="CLIT_Claim_Basis__c"
+                                label="Basis of claim"
+                                value={intakeRecord.CLIT_Claim_Basis__c}
+                                options={claimBasisOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showCLITClaimBasisOther}>
+                                <lightning-input
+                                    label="Other claim basis (specify)"
+                                    name="CLIT_Claim_Basis_Other_Specify__c"
+                                    value={intakeRecord.CLIT_Claim_Basis_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-combobox
+                                name="CLIT_Lawsuits_Filed__c"
+                                label="Have any lawsuits been filed?"
+                                value={intakeRecord.CLIT_Lawsuits_Filed__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showCLITLawsuitDetails}>
+                                <lightning-textarea
+                                    label="Lawsuit details"
+                                    name="CLIT_Lawsuit_Details__c"
+                                    value={intakeRecord.CLIT_Lawsuit_Details__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                            </template>
+
+                            <lightning-combobox
+                                name="CLIT_Plaintiff_Or_Defendant__c"
+                                label="Are you plaintiff or defendant?"
+                                value={intakeRecord.CLIT_Plaintiff_Or_Defendant__c}
+                                options={plaintiffDefendantOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection8}>
+                    <template if:true={showEmploymentLawSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Employment Law Questions</h3>
+
+                            <lightning-combobox
+                                name="EMPL_Employment_Issue_Type__c"
+                                label="Type of employment issue"
+                                value={intakeRecord.EMPL_Employment_Issue_Type__c}
+                                options={employmentIssueTypeOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showEMPLIssueOther}>
+                                <lightning-input
+                                    label="Other issue (specify)"
+                                    name="EMPL_Issue_Other_Specify__c"
+                                    value={intakeRecord.EMPL_Issue_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-combobox
+                                name="EMPL_Issue_Stage__c"
+                                label="Stage of issue"
+                                value={intakeRecord.EMPL_Issue_Stage__c}
+                                options={issueStageOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-combobox
+                                name="EMPL_Desired_Outcome__c"
+                                label="Desired outcome"
+                                value={intakeRecord.EMPL_Desired_Outcome__c}
+                                options={desiredOutcomeOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showEMPLOutcomeOther}>
+                                <lightning-input
+                                    label="Other outcome (specify)"
+                                    name="EMPL_Desired_Outcome_Other_Specify__c"
+                                    value={intakeRecord.EMPL_Desired_Outcome_Other_Specify__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection9}>
+                    <template if:true={showLandlordTenantSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Landlord/Tenant Questions</h3>
+
+                            <lightning-combobox
+                                name="LT_Role__c"
+                                label="Are you the landlord or tenant?"
+                                value={intakeRecord.LT_Role__c}
+                                options={ltRoleOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-textarea
+                                label="Property address"
+                                name="LT_Property_Address__c"
+                                value={intakeRecord.LT_Property_Address__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-textarea
+                                label="Nature of dispute"
+                                name="LT_Dispute_Nature__c"
+                                value={intakeRecord.LT_Dispute_Nature__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-input
+                                label="Monthly rent amount"
+                                name="LT_Monthly_Rent_Amount__c"
+                                type="currency"
+                                value={intakeRecord.LT_Monthly_Rent_Amount__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-combobox
+                                label="Lease term type"
+                                name="LT_Lease_Term_Type__c"
+                                value={intakeRecord.LT_Lease_Term_Type__c}
+                                options={ltLeaseTermTypeOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-combobox
+                                name="LT_Legal_Action_Taken__c"
+                                label="Has legal action been taken?"
+                                value={intakeRecord.LT_Legal_Action_Taken__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showLTLegalActionDetails}>
+                                <lightning-textarea
+                                    label="Legal action details"
+                                    name="LT_Legal_Action_Details__c"
+                                    value={intakeRecord.LT_Legal_Action_Details__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                            </template>
+
+                            <template if:true={showLandlordQuestions}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Landlord-Specific Questions</h3>
+                                </template>
+
+                            <template if:true={showTenantQuestions}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Tenant-Specific Questions</h3>
+                                </template>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection10}>
+                    <template if:true={showDefamationSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Defamation Questions</h3>
+
+                            <lightning-combobox
+                                name="DEF_Status__c"
+                                label="Are you the victim of defamation or accused of defaming others?"
+                                value={intakeRecord.DEF_Status__c}
+                                options={defamationStatusOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-input
+                                label="Name of person who made/alleges statements"
+                                name="DEF_Statement_Maker_Name__c"
+                                value={intakeRecord.DEF_Statement_Maker_Name__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-input
+                                label="Their occupation/position"
+                                name="DEF_Statement_Maker_Occupation__c"
+                                value={intakeRecord.DEF_Statement_Maker_Occupation__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-textarea
+                                label="Context of statements"
+                                name="DEF_Statement_Context__c"
+                                value={intakeRecord.DEF_Statement_Context__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-combobox
+                                name="DEF_Statements_In_Writing__c"
+                                label="Were statements made in writing?"
+                                value={intakeRecord.DEF_Statements_In_Writing__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showWrittenStatementDetails}>
+                                <lightning-input
+                                    label="Where published"
+                                    name="DEF_Written_Publication_Location__c"
+                                    value={intakeRecord.DEF_Written_Publication_Location__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-input
+                                    label="Medium (website, newspaper, etc.)"
+                                    name="DEF_Written_Medium__c"
+                                    value={intakeRecord.DEF_Written_Medium__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-combobox
+                                name="DEF_Statements_Spoken__c"
+                                label="Were statements spoken?"
+                                value={intakeRecord.DEF_Statements_Spoken__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showSpokenStatementDetails}>
+                                <lightning-input
+                                    label="Location"
+                                    name="DEF_Spoken_Location__c"
+                                    value={intakeRecord.DEF_Spoken_Location__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-input
+                                    label="Setting/audience"
+                                    name="DEF_Spoken_Setting__c"
+                                    value={intakeRecord.DEF_Spoken_Setting__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection11}>
+                    <template if:true={showHOASection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">HOA Questions</h3>
+
+                            <lightning-textarea
+                                label="Your address within the HOA"
+                                name="HOA_Your_Address__c"
+                                value={intakeRecord.HOA_Your_Address__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-input
+                                label="HOA name"
+                                name="HOA_Name__c"
+                                value={intakeRecord.HOA_Name__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-combobox
+                                name="HOA_Can_Send_Org_Docs__c"
+                                label="Can you provide HOA organizational documents?"
+                                value={intakeRecord.HOA_Can_Send_Org_Docs__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-combobox
+                                name="HOA_Is_Board_Member__c"
+                                label="Are you a board member?"
+                                value={intakeRecord.HOA_Is_Board_Member__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-textarea
+                                label="Nature of HOA issue"
+                                name="HOA_Nature_Of_Issue__c"
+                                value={intakeRecord.HOA_Nature_Of_Issue__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-textarea
+                                label="Parties involved"
+                                name="HOA_Parties_Involved__c"
+                                value={intakeRecord.HOA_Parties_Involved__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-combobox
+                                name="HOA_Lawsuit_Filed_On_Issue__c"
+                                label="Has a lawsuit been filed?"
+                                value={intakeRecord.HOA_Lawsuit_Filed_On_Issue__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showHOALawsuitDetails}>
+                                <lightning-input
+                                    label="Court"
+                                    name="HOA_Lawsuit_Court__c"
+                                    value={intakeRecord.HOA_Lawsuit_Court__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <div class="slds-grid slds-gutters">
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning-input
+                                            label="County"
+                                            name="HOA_Lawsuit_County__c"
+                                            value={intakeRecord.HOA_Lawsuit_County__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning-input
+                                            label="State"
+                                            name="HOA_Lawsuit_State__c"
+                                            value={intakeRecord.HOA_Lawsuit_State__c}
+                                            onchange={handleInputChange}
+                                            class="slds-m-bottom_small">
+                                        </lightning-input>
+                                    </div>
+                                </div>
+
+                                <lightning-input
+                                    label="Case number"
+                                    name="HOA_Lawsuit_Case_Number__c"
+                                    value={intakeRecord.HOA_Lawsuit_Case_Number__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection12}>
+                    <template if:true={showConstructionSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Construction Questions</h3>
+
+                            <lightning-textarea
+                                label="Project address"
+                                name="CONST_Project_Address__c"
+                                value={intakeRecord.CONST_Project_Address__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-combobox
+                                name="CONST_Construction_Type__c"
+                                label="Type of construction"
+                                value={intakeRecord.CONST_Construction_Type__c}
+                                options={constructionTypeOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showConstructionTypeOther}>
+                                <lightning-input
+                                    label="Other construction type"
+                                    name="CONST_Construction_Type_Other__c"
+                                    value={intakeRecord.CONST_Construction_Type_Other__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-combobox
+                                name="CONST_Issue_Nature__c"
+                                label="Nature of issue"
+                                value={intakeRecord.CONST_Issue_Nature__c}
+                                options={constructionIssueOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showIssueNatureOther}>
+                                <lightning-input
+                                    label="Other issue"
+                                    name="CONST_Issue_Nature_Other__c"
+                                    value={intakeRecord.CONST_Issue_Nature_Other__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-dual-listbox
+                                name="CONST_Defect_Types__c"
+                                label="Types of defects (if applicable)"
+                                source-label="Available"
+                                selected-label="Selected"
+                                options={constructionDefectOptions}
+                                value={selectedConstructionDefects}
+                                onchange={handleConstructionDefectChange}
+                                class="slds-m-bottom_small">
+                            </lightning-dual-listbox>
+
+                            <template if:true={showDefectTypesOther}>
+                                <lightning-input
+                                    label="Other defects"
+                                    name="CONST_Defect_Types_Other__c"
+                                    value={intakeRecord.CONST_Defect_Types_Other__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-input
+                                type="date"
+                                name="CONST_Defect_Apparent_Date__c"
+                                label="When did defects become apparent?"
+                                value={intakeRecord.CONST_Defect_Apparent_Date__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-combobox
+                                name="CONST_Defect_Severity__c"
+                                label="Severity of defects"
+                                value={intakeRecord.CONST_Defect_Severity__c}
+                                options={defectSeverityOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection13}>
+                    <template if:true={showBusinessLawSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Business Law Questions</h3>
+
+                            <lightning-combobox
+                                name="BUS_Assistance_Type__c"
+                                label="What type of business assistance do you need?"
+                                value={intakeRecord.BUS_Assistance_Type__c}
+                                options={businessAssistanceTypeOptions}
+                                onchange={handleInputChange}
+                                required
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showBusinessDisputeDetails}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Business Partner Dispute Details</h3>
+                                
+                                <lightning-textarea
+                                    label="Nature of dispute"
+                                    name="BUS_Partner_Dispute_Nature__c"
+                                    value={intakeRecord.BUS_Partner_Dispute_Nature__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+
+                                <lightning-combobox
+                                    name="BUS_Partner_Dispute_Has_Gov_Doc__c"
+                                    label="Do you have governing documents?"
+                                    value={intakeRecord.BUS_Partner_Dispute_Has_Gov_Doc__c}
+                                    options={yesNoOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <lightning-combobox
+                                    label="What assistance do you need?"
+                                    name="BUS_Partner_Dispute_Assistance__c"
+                                    value={intakeRecord.BUS_Partner_Dispute_Assistance__c}
+                                    options={disputeAssistanceOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+                            </template>
+
+                            <template if:true={showContractDraftingDetails}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Contract Drafting Details</h3>
+                                
+                                <lightning-input
+                                    label="Nature of business"
+                                    name="BUS_Contract_Draft_Business_Nature__c"
+                                    value={intakeRecord.BUS_Contract_Draft_Business_Nature__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-combobox
+                                    name="BUS_Contract_Draft_Type__c"
+                                    label="Type of contract"
+                                    value={intakeRecord.BUS_Contract_Draft_Type__c}
+                                    options={contractTypeOptions}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-combobox>
+
+                                <template if:true={showContractDraftingOther}>
+                                    <lightning-input
+                                        label="Other contract type"
+                                        name="BUS_Contract_Draft_Type_Other__c"
+                                        value={intakeRecord.BUS_Contract_Draft_Type_Other__c}
+                                        onchange={handleInputChange}
+                                        class="slds-m-bottom_small">
+                                    </lightning-input>
+                                </template>
+                            </template>
+
+                            <template if:true={showBusinessCreationDetails}>
+                                <h3 class="slds-text-heading_small slds-m-top_medium slds-m-bottom_small">Business Creation Details</h3>
+                                
+                                <lightning-input
+                                    label="Type of business"
+                                    name="BUS_Create_Business_Type__c"
+                                    value={intakeRecord.BUS_Create_Business_Type__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-input
+                                    label="Number of people involved"
+                                    name="BUS_Create_People_Involved_Count__c"
+                                    type="number"
+                                    value={intakeRecord.BUS_Create_People_Involved_Count__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-input
+                                    label="Desired business name"
+                                    name="BUS_Create_Desired_Name__c"
+                                    value={intakeRecord.BUS_Create_Desired_Name__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection14}>
+                    <template if:true={showGuardianshipSection}>
+                        <div class="slds-box slds-theme_shade">
+                            <h3 class="slds-text-heading_small slds-m-bottom_medium">Guardianship/Conservatorship Questions</h3>
+
+                            <lightning-dual-listbox
+                                name="GC_Involvement_Type__c"
+                                label="What is your involvement?"
+                                source-label="Available"
+                                selected-label="Selected"
+                                options={gcInvolvementOptions}
+                                value={selectedGCInvolvementTypes}
+                                onchange={handleGCInvolvementChange}
+                                class="slds-m-bottom_small">
+                            </lightning-dual-listbox>
+
+                            <lightning-input
+                                label="Full name of ward"
+                                name="GC_Ward_Full_Name__c"
+                                value={intakeRecord.GC_Ward_Full_Name__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-textarea
+                                label="Reason for incapacity"
+                                name="GC_Ward_Incapacity_Reason__c"
+                                value={intakeRecord.GC_Ward_Incapacity_Reason__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-combobox
+                                name="GC_Ward_Formally_Diagnosed__c"
+                                label="Has the ward been formally diagnosed?"
+                                value={intakeRecord.GC_Ward_Formally_Diagnosed__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showGCDiagnosisDetails}>
+                                <lightning-input
+                                    label="Diagnosing professional"
+                                    name="GC_Ward_Diagnosing_Professional__c"
+                                    value={intakeRecord.GC_Ward_Diagnosing_Professional__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+
+                                <lightning-input
+                                    type="date"
+                                    name="GC_Ward_Diagnosis_Date__c"
+                                    label="Date of diagnosis"
+                                    value={intakeRecord.GC_Ward_Diagnosis_Date__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-input>
+                            </template>
+
+                            <lightning-combobox
+                                name="GC_Is_Emergency_Situation__c"
+                                label="Is this an emergency situation?"
+                                value={intakeRecord.GC_Is_Emergency_Situation__c}
+                                options={yesNoOptions}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <template if:true={showGCEmergencyDetails}>
+                                <lightning-textarea
+                                    label="Why is this an emergency?"
+                                    name="GC_Emergency_Reason__c"
+                                    value={intakeRecord.GC_Emergency_Reason__c}
+                                    onchange={handleInputChange}
+                                    class="slds-m-bottom_small">
+                                </lightning-textarea>
+                            </template>
+
+                            </div>
+                    </template>
+                </template>
+
+                <template if:true={showSection15}>
+                    <div class="slds-box slds-theme_shade">
+                        <h3 class="slds-text-heading_small slds-m-bottom_medium">Closing Questions</h3>
+
+                        <lightning-combobox
+                            name="CQ_Docs_For_Review__c"
+                            label="Do you have documents for us to review?"
+                            value={intakeRecord.CQ_Docs_For_Review__c}
+                            options={yesNoOptions}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-combobox>
+
+                        <template if:true={showDocumentReviewSpecify}>
+                            <lightning-textarea
+                                label="What types of documents?"
+                                name="CQ_Docs_For_Review_Specify__c"
+                                value={intakeRecord.CQ_Docs_For_Review_Specify__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-textarea>
+
+                            <lightning-input
+                                label="Approximate number of pages"
+                                name="CQ_Docs_For_Review_Pages__c"
+                                type="number"
+                                value={intakeRecord.CQ_Docs_For_Review_Pages__c}
+                                onchange={handleInputChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+                        </template>
+
+                        <lightning-input
+                            label="Total amount of damages (if applicable)"
+                            name="CQ_Total_Damages_Amount__c"
+                            type="currency"
+                            value={intakeRecord.CQ_Total_Damages_Amount__c}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-input>
+
+                        <lightning-combobox
+                            label="Nature of Matter (brief summary)"
+                            name="Nature_of_Matter__c"
+                            value={intakeRecord.Nature_of_Matter__c}
+                            options={natureOfMatterOptions}
+                            onchange={handleInputChange}
+                            class="slds-m-bottom_small">
+                        </lightning-combobox>
+
+                        <lightning-dual-listbox
+                            label="Additional contacts or people involved"
+                            name="Additional_Contacts__c"
+                            source-label="Available"
+                            selected-label="Selected"
+                            options={additionalContactsOptions}
+                            value={selectedAdditionalContacts}
+                            onchange={handleAdditionalContactsChange}
+                            class="slds-m-bottom_small">
+                        </lightning-dual-listbox>
+                    </div>
+                </template>
+
+                <div class="slds-m-top_large slds-text-align_center">
+                    <lightning-button
+                        label="Save Intake"
+                        variant="brand"
+                        onclick={handleSave}
+                        disabled={isLoading}>
+                    </lightning-button>
+                </div>
+            </template>
+
+            <template if:true={isLoading}>
+                <lightning-spinner
+                    alternative-text="Loading"
+                    size="medium">
+                </lightning-spinner>
+            </template>
+        </div>
+    </lightning-card>
+</template>

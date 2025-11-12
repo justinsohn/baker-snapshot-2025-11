@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DEF_P_Reputation_Affected_How__c</fullName>
+    <label>DEF_P: How Reputation Affected</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Personal reputation harmed</fullName>
+                <default>false</default>
+                <label>Personal reputation harmed</label>
+            </value>
+            <value>
+                <fullName>Professional reputation harmed</fullName>
+                <default>false</default>
+                <label>Professional reputation harmed</label>
+            </value>
+            <value>
+                <fullName>Public perception altered</fullName>
+                <default>false</default>
+                <label>Public perception altered</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

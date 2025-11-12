@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DEF_D: Context of Defamatory... --></label>
+    <name>DEF_D_Statement_Context__c</name>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Private conversation</masterLabel>
+        <translation><!-- Private conversation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Public speech</masterLabel>
+        <translation><!-- Public speech --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Social media post</masterLabel>
+        <translation><!-- Social media post --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Written publication</masterLabel>
+        <translation><!-- Written publication --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,38 @@
+<template>
+    <lightning-card title="My Weekly Availability" icon-name="standard:user">
+        <template if:false={currentAvailability}>
+            <div class="slds-m-around_medium">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={currentAvailability}>
+            <div class="slds-m-around_medium">
+                <fieldset class="slds-form-element">
+                    <legend class="slds-form-element__legend slds-form-element__label">
+                        Set your availability to accept new work:
+                    </legend>
+                    <div class="slds-form-element__control">
+                        <template for:each={availabilityOptions} for:item="option">
+                            <div key={option.value} class="radio-option" onchange={handleChange}>
+                                <input
+                                    type="radio"
+                                    id={option.value}
+                                    name="availability"
+                                    value={option.value}
+                                    checked={option.checked}>
+                                <label class={option.className} for={option.value}>
+                                    {option.label}
+                                </label>
+                            </div>
+                        </template>
+                    </div>
+                </fieldset>
+            </div>
+        </template>
+
+        <div if:true={error} class="slds-text-color_error slds-m-around_small">
+            {error}
+        </div>
+    </lightning-card>
+</template>

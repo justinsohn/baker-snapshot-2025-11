@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PI_Damages_Sought__c</fullName>
+    <label>PI: Damages Sought</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Medical Bills</fullName>
+                <default>false</default>
+                <label>Medical Bills</label>
+            </value>
+            <value>
+                <fullName>Lost Wages</fullName>
+                <default>false</default>
+                <label>Lost Wages</label>
+            </value>
+            <value>
+                <fullName>Pain and Suffering</fullName>
+                <default>false</default>
+                <label>Pain and Suffering</label>
+            </value>
+            <value>
+                <fullName>Property Damage</fullName>
+                <default>false</default>
+                <label>Property Damage</label>
+            </value>
+            <value>
+                <fullName>Emotional Distress</fullName>
+                <default>false</default>
+                <label>Emotional Distress</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

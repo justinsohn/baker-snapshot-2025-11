@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Lead</entityName>
+    <fieldName>Status</fieldName>
+    <masterLabel>Default</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Rating</fieldNames>
+        <info>&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt;&quot;&gt;Conduct intake call&lt;/span&gt;&lt;/li&gt;&lt;li&gt;Make an initial determination of qualification&lt;/li&gt;&lt;li&gt;If disqualified, provide a reason&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Fee Agreement Sent</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Name</fieldNames>
+        <fieldNames>Phone</fieldNames>
+        <fieldNames>Email</fieldNames>
+        <fieldNames>Address</fieldNames>
+        <picklistValueName>New</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Hooray! You have a new deal to bring across the finish line.&lt;/b&gt;&lt;/p&gt;</info>
+        <picklistValueName>Qualified</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>LeadSource</fieldNames>
+        <fieldNames>Disqualified_Reason__c</fieldNames>
+        <info>&lt;p&gt;&lt;b style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Keep track of the info related to your unqualified leads.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Your lead may be unqualified if they are not interested in your products or they have left the company associated with the prospect.&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt;&quot;&gt;Document lessons learned for future reference&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt;&quot;&gt;Save outreach details and contact information&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Unqualified</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Email</fieldNames>
+        <fieldNames>Phone</fieldNames>
+        <info>&lt;p&gt;&lt;strong style=&quot;font-size: 10pt; font-family: Arial;&quot;&gt;Qualify promising leads&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Review lead details for initial qualification details&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt;&quot;&gt;Schedule Intake Call&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Working</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- PE: Probate Case Stage --></label>
+    <name>PE_Probate_Case_Stage__c</name>
+    <picklistValues>
+        <masterLabel>Administration stage</masterLabel>
+        <translation><!-- Administration stage --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed</masterLabel>
+        <translation><!-- Closed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Distribution stage</masterLabel>
+        <translation><!-- Distribution stage --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Opened</masterLabel>
+        <translation><!-- Opened --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Petition pending</masterLabel>
+        <translation><!-- Petition pending --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

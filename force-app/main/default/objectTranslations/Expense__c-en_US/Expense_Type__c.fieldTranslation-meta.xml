@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Expense Type --></label>
+    <name>Expense_Type__c</name>
+    <picklistValues>
+        <masterLabel>HardCostEntry</masterLabel>
+        <translation><!-- HardCostEntry --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SoftCostEntry</masterLabel>
+        <translation><!-- SoftCostEntry --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The intake specialist who input the lead (pulled from the associated Lead) --></help>
+    <label><!-- Intake Specialist --></label>
+    <name>Intake_Specialist__c</name>
+</CustomFieldTranslation>

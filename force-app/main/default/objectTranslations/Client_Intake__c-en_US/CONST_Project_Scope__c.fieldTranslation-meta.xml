@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CONST: Scope of the Project --></label>
+    <name>CONST_Project_Scope__c</name>
+    <picklistValues>
+        <masterLabel>Addition</masterLabel>
+        <translation><!-- Addition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New construction</masterLabel>
+        <translation><!-- New construction --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Renovation/Remodel</masterLabel>
+        <translation><!-- Renovation/Remodel --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

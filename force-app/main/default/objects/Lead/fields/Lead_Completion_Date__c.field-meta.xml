@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Completion_Date__c</fullName>
+    <description>Set by Clio through integration. Once matching field in Clio is filled, this field in Salesforce will be automatically stamped with the same value</description>
+    <inlineHelpText>Date that the Fee Agreement in Clio was signed. Set automatically</inlineHelpText>
+    <label>Date FA was Signed</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

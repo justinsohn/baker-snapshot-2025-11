@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CLIT: Basis for Claim --></label>
+    <name>CLIT_Claim_Basis__c</name>
+    <picklistValues>
+        <masterLabel>Breach of Contract</masterLabel>
+        <translation><!-- Breach of Contract --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Civil Theft</masterLabel>
+        <translation><!-- Civil Theft --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fraud</masterLabel>
+        <translation><!-- Fraud --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Property Damage</masterLabel>
+        <translation><!-- Property Damage --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

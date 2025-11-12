@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EMPL_Desired_Outcome__c</fullName>
+    <label>EMPL: Outcome/Resolution Seeking for...</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Compensation for Lost Wages</fullName>
+                <default>false</default>
+                <label>Compensation for Lost Wages</label>
+            </value>
+            <value>
+                <fullName>Reinstatement of Position</fullName>
+                <default>false</default>
+                <label>Reinstatement of Position</label>
+            </value>
+            <value>
+                <fullName>Policy Change at the Workplace</fullName>
+                <default>false</default>
+                <label>Policy Change at the Workplace</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

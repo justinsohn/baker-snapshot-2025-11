@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Status --></label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Draft</masterLabel>
+        <translation><!-- Draft --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Overdue</masterLabel>
+        <translation><!-- Overdue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paid</masterLabel>
+        <translation><!-- Paid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Received</masterLabel>
+        <translation><!-- Received --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>awaiting_approval</masterLabel>
+        <translation><!-- awaiting_approval --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>awaiting_payment</masterLabel>
+        <translation><!-- awaiting_payment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>deleted</masterLabel>
+        <translation><!-- deleted --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>void</masterLabel>
+        <translation><!-- void --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The relationship between Clients and Contacts is one-to-one. A Client, within the context of Clio Manage, represents a specific role that a Contact plays in relation to a particular Matter. Every Client record will also exist as a Contact record in the system, but not every Contact is necessarily designated as a Client. This highlights a hierarchical relationship where Clients are a specialized subset within the broader category of all Contacts managed by the firm. While all clients are contacts, the reverse is not true; for example, opposing counsel would be a contact but not a client of the firm.</description>
+    <label>Client</label>
+    <referenceTo>Client__c</referenceTo>
+    <relationshipLabel>Contacts</relationshipLabel>
+    <relationshipName>Contacts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Lookup</type>
+</CustomField>

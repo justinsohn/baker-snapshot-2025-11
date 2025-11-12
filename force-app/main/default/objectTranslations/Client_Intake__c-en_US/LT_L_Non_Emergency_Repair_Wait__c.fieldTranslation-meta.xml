@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- LT_L: Expected wait for... --></label>
+    <name>LT_L_Non_Emergency_Repair_Wait__c</name>
+</CustomFieldTranslation>

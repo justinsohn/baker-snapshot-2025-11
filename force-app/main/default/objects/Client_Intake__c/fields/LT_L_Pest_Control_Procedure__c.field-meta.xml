@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LT_L_Pest_Control_Procedure__c</fullName>
+    <label>LT_L: Procedure for dealing with...</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Landlord handles</fullName>
+                <default>false</default>
+                <label>Landlord handles</label>
+            </value>
+            <value>
+                <fullName>Tenant is responsible</fullName>
+                <default>false</default>
+                <label>Tenant is responsible</label>
+            </value>
+            <value>
+                <fullName>Shared responsibility</fullName>
+                <default>false</default>
+                <label>Shared responsibility</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

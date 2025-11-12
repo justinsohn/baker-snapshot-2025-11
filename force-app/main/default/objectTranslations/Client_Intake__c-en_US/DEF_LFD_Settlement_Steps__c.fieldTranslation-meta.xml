@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DEF_LFD: Steps Taken to Settle... --></label>
+    <name>DEF_LFD_Settlement_Steps__c</name>
+    <picklistValues>
+        <masterLabel>Lawsuit</masterLabel>
+        <translation><!-- Lawsuit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mediation</masterLabel>
+        <translation><!-- Mediation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Negotiation</masterLabel>
+        <translation><!-- Negotiation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- DEF: Statement Content Other (Specify) --></label>
+    <name>DEF_Statement_Content_Other_Specify__c</name>
+</CustomFieldTranslation>

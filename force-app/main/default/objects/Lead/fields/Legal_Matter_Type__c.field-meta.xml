@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_Matter_Type__c</fullName>
+    <label>Type of Legal Matter</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Business Law</fullName>
+                <default>false</default>
+                <label>Business Law</label>
+            </value>
+            <value>
+                <fullName>Civil Litigation</fullName>
+                <default>false</default>
+                <label>Civil Litigation</label>
+            </value>
+            <value>
+                <fullName>Criminal Law</fullName>
+                <default>false</default>
+                <label>Criminal Law</label>
+            </value>
+            <value>
+                <fullName>Employment Law</fullName>
+                <default>false</default>
+                <label>Employment Law</label>
+            </value>
+            <value>
+                <fullName>Family Law</fullName>
+                <default>false</default>
+                <label>Family Law</label>
+            </value>
+            <value>
+                <fullName>Landlord-Tenant Dispute</fullName>
+                <default>false</default>
+                <label>Landlord-Tenant Dispute</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Personal Injury</fullName>
+                <default>false</default>
+                <label>Personal Injury</label>
+            </value>
+            <value>
+                <fullName>Probate/Estate Planning</fullName>
+                <default>false</default>
+                <label>Probate/Estate Planning</label>
+            </value>
+            <value>
+                <fullName>Real Estate</fullName>
+                <default>false</default>
+                <label>Real Estate</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

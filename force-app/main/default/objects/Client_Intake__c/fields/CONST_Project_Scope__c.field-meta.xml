@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CONST_Project_Scope__c</fullName>
+    <label>CONST: Scope of the Project</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New construction</fullName>
+                <default>false</default>
+                <label>New construction</label>
+            </value>
+            <value>
+                <fullName>Renovation/Remodel</fullName>
+                <default>false</default>
+                <label>Renovation/Remodel</label>
+            </value>
+            <value>
+                <fullName>Addition</fullName>
+                <default>false</default>
+                <label>Addition</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

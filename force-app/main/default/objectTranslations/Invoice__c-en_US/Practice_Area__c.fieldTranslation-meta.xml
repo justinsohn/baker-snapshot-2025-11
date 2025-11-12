@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Practice Area --></label>
+    <name>Practice_Area__c</name>
+    <picklistValues>
+        <masterLabel>Business</masterLabel>
+        <translation><!-- Business --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Civil Litigation</masterLabel>
+        <translation><!-- Civil Litigation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Construction</masterLabel>
+        <translation><!-- Construction --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Criminal Law</masterLabel>
+        <translation><!-- Criminal Law --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Defamation</masterLabel>
+        <translation><!-- Defamation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Employment Law</masterLabel>
+        <translation><!-- Employment Law --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Family Law</masterLabel>
+        <translation><!-- Family Law --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Guardianship/Conservatorship</masterLabel>
+        <translation><!-- Guardianship/Conservatorship --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HOA</masterLabel>
+        <translation><!-- HOA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Landlord/Tenant Matters</masterLabel>
+        <translation><!-- Landlord/Tenant Matters --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Personal Injury</masterLabel>
+        <translation><!-- Personal Injury --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Probate and Estate Planning</masterLabel>
+        <translation><!-- Probate and Estate Planning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Real Estate</masterLabel>
+        <translation><!-- Real Estate --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

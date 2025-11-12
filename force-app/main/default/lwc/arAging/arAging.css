@@ -1,0 +1,198 @@
+/* BLG Design Standards for AR Aging Component */
+
+
+/* Metric Card Base Styles */
+.metric-card {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 120px;
+}
+
+/* Aging Bucket Color Coding */
+.aging-30 {
+    border-top: 4px solid #28a745;
+}
+
+.aging-60 {
+    border-top: 4px solid #ffc107;
+}
+
+.aging-90 {
+    border-top: 4px solid #fd7e14;
+}
+
+.aging-91plus {
+    border-top: 4px solid #dc3545;
+}
+
+/* Clickable Card Interactions */
+.clickable-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clickable-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.clickable-card:focus {
+    outline: 2px solid #0176d3;
+    outline-offset: 2px;
+}
+
+/* Typography - Following BLG Standards */
+.metric-title {
+    font-size: 0.8rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.metric-count {
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #6c757d;
+    margin-top: auto;
+}
+
+/* Card Chevron Icon */
+.card-chevron {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.clickable-card:hover .card-chevron {
+    opacity: 1;
+}
+
+/* Modal Styling */
+.slds-modal__container {
+    max-height: 90vh;
+}
+
+.slds-modal__content {
+    overflow-y: auto;
+    max-height: calc(90vh - 120px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .metric-card {
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .metric-title {
+        font-size: 0.75rem;
+    }
+    
+    .metric-count {
+        font-size: 0.8rem;
+    }
+}
+
+/* Loading States */
+.slds-spinner_container {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Accessibility Improvements */
+.metric-card:focus-visible {
+    outline: 2px solid #0176d3;
+    outline-offset: 2px;
+}
+
+/* Data Table Enhancements */
+.slds-table th,
+.slds-table td {
+    padding: 0.75rem 0.5rem;
+}
+
+/* Pagination Controls */
+.slds-button {
+    margin: 0 0.25rem;
+}
+
+/* Error States */
+.slds-notify_alert {
+    margin: 1rem 0;
+}
+
+/* Card Layout Improvements */
+.lightning-layout {
+    gap: 0;
+}
+
+.lightning-layout-item {
+    padding: 0 0.5rem;
+}
+
+/* Enhanced Visual Hierarchy */
+.metric-card .slds-icon {
+    color: #6c757d;
+}
+
+/* Focus Management for Modals */
+.slds-modal[aria-hidden="false"] .slds-modal__header .slds-button {
+    position: relative;
+    z-index: 1;
+}
+
+/* Animation for Card Transitions */
+@keyframes cardHover {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    }
+    100% {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.clickable-card:hover {
+    animation: cardHover 0.2s ease forwards;
+}
+
+/* Print Styles */
+@media print {
+    .metric-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .clickable-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .card-chevron {
+        display: none;
+    }
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- EMPL: Stage of Employment Issue --></label>
+    <name>EMPL_Issue_Stage__c</name>
+    <picklistValues>
+        <masterLabel>Formal Complaint Filed</masterLabel>
+        <translation><!-- Formal Complaint Filed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Informal Complaint</masterLabel>
+        <translation><!-- Informal Complaint --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lawsuit Filed</masterLabel>
+        <translation><!-- Lawsuit Filed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Negotiations or Settlement Discussions</masterLabel>
+        <translation><!-- Negotiations or Settlement Discussions --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

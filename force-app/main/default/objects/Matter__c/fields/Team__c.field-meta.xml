@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Team__c</fullName>
+    <label>Team</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Team Carl</fullName>
+                <default>false</default>
+                <label>Team Carl</label>
+            </value>
+            <value>
+                <fullName>Team Dillon</fullName>
+                <default>false</default>
+                <label>Team Dillon</label>
+            </value>
+            <value>
+                <fullName>Team Tyler</fullName>
+                <default>false</default>
+                <label>Team Tyler</label>
+            </value>
+            <value>
+                <fullName>Team Brian</fullName>
+                <default>false</default>
+                <label>Team Brian</label>
+            </value>
+            <value>
+                <fullName>Team BRP</fullName>
+                <default>false</default>
+                <label>Team BRP</label>
+            </value>
+            <value>
+                <fullName>Team CJS</fullName>
+                <default>false</default>
+                <label>Team CJS</label>
+            </value>
+            <value>
+                <fullName>Team DF</fullName>
+                <default>false</default>
+                <label>Team DF</label>
+            </value>
+            <value>
+                <fullName>Team TSG</fullName>
+                <default>false</default>
+                <label>Team TSG</label>
+            </value>
+            <value>
+                <fullName>Team Admin</fullName>
+                <default>false</default>
+                <label>Team Admin</label>
+            </value>
+            <value>
+                <fullName>Team Marketing</fullName>
+                <default>false</default>
+                <label>Team Marketing</label>
+            </value>
+            <value>
+                <fullName>Team Ashley</fullName>
+                <default>false</default>
+                <label>Team Ashley</label>
+            </value>
+            <value>
+                <fullName>Team AW</fullName>
+                <default>false</default>
+                <label>Team AW</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

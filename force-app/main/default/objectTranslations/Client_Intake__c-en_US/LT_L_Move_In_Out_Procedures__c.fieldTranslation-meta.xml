@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- LT_L: Move-in and move-out... --></label>
+    <name>LT_L_Move_In_Out_Procedures__c</name>
+</CustomFieldTranslation>

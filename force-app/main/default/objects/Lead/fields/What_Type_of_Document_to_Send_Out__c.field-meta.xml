@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>What_Type_of_Document_to_Send_Out__c</fullName>
+    <label>What Type of Document to Send Out</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Non Rep Letter</fullName>
+                <default>false</default>
+                <label>Non Rep Letter</label>
+            </value>
+            <value>
+                <fullName>Client(s) Considering Options</fullName>
+                <default>false</default>
+                <label>Client(s) Considering Options</label>
+            </value>
+            <value>
+                <fullName>PAID CONSULT Closing Letter</fullName>
+                <default>false</default>
+                <label>PAID CONSULT Closing Letter</label>
+            </value>
+            <value>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+                <label>Not Applicable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

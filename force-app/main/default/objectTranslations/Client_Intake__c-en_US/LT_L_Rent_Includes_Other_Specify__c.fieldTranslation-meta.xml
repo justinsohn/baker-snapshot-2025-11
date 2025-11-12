@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- LT_L: Rent Includes Other (Specify) --></label>
+    <name>LT_L_Rent_Includes_Other_Specify__c</name>
+</CustomFieldTranslation>

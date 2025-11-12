@@ -1,0 +1,972 @@
+<template>
+    <lightning-card title="Intake Form Summary" icon-name="standard:form">
+        <div slot="actions">
+            <template if:true={hasData}>
+                <lightning-button
+                    label="Email Summary"
+                    variant="brand"
+                    icon-name="utility:email"
+                    onclick={handleEmailClick}
+                ></lightning-button>
+            </template>
+        </div>
+        <div class="slds-p-around_medium">
+            <template if:false={hasData}>
+                <template if:true={error}>
+                    <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                        <span class="slds-assistive-text">Error</span>
+                        <h2>{error}</h2>
+                    </div>
+                </template>
+                <template if:false={error}>
+                    <div class="slds-text-align_center slds-p-vertical_large">
+                        <lightning-icon icon-name="utility:info" size="large" variant="inverse" class="slds-m-bottom_small"></lightning-icon>
+                        <p class="slds-text-heading_medium slds-text-color_weak">No intake form data available</p>
+                        <p class="slds-text-body_regular slds-text-color_weak">This lead has not completed an intake form yet.</p>
+                    </div>
+                </template>
+            </template>
+
+            <template if:true={hasData}>
+                <!-- Legal Matter Types -->
+                <div class="summary-section">
+                    <h3 class="section-header">Legal Matter Type(s)</h3>
+                    <div class="section-content">
+                        <div class="field-row">
+                            <span class="field-value legal-matters">{legalMatterTypes}</span>
+                        </div>
+                        <template if:true={hasLegalMatterOther}>
+                            <div class="field-row">
+                                <span class="field-label">Other:</span>
+                                <span class="field-value">{legalMatterOther}</span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- General Information -->
+                <template if:true={hasGeneralInfo}>
+                    <div class="summary-section">
+                        <h3 class="section-header">General Information</h3>
+                        <div class="section-content">
+                            <template if:true={issueDescription}>
+                                <div class="field-row">
+                                    <span class="field-label">Issue Description:</span>
+                                    <span class="field-value">{issueDescription}</span>
+                                </div>
+                            </template>
+                            <template if:true={desiredOutcome}>
+                                <div class="field-row">
+                                    <span class="field-label">Desired Outcome:</span>
+                                    <span class="field-value">{desiredOutcome}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Contact & Communication Preferences -->
+                <template if:true={hasContactInfo}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Contact & Communication Preferences</h3>
+                        <div class="section-content">
+                            <template if:true={preferredPronouns}>
+                                <div class="field-row">
+                                    <span class="field-label">Preferred Pronouns:</span>
+                                    <span class="field-value">{preferredPronouns}</span>
+                                </div>
+                            </template>
+                            <template if:true={workPhone}>
+                                <div class="field-row">
+                                    <span class="field-label">Work Phone:</span>
+                                    <span class="field-value">{workPhone}</span>
+                                </div>
+                            </template>
+                            <template if:true={canText}>
+                                <div class="field-row">
+                                    <span class="field-label">Can Text:</span>
+                                    <span class="field-value">{canText}</span>
+                                </div>
+                            </template>
+                            <template if:true={canEmailFollowUp}>
+                                <div class="field-row">
+                                    <span class="field-label">Can Email Follow Up:</span>
+                                    <span class="field-value">{canEmailFollowUp}</span>
+                                </div>
+                            </template>
+                            <template if:true={preferredCommunicationMethod}>
+                                <div class="field-row">
+                                    <span class="field-label">Preferred Communication Method:</span>
+                                    <span class="field-value">{preferredCommunicationMethod}</span>
+                                </div>
+                            </template>
+                            <template if:true={preferredLanguage}>
+                                <div class="field-row">
+                                    <span class="field-label">Preferred Language:</span>
+                                    <span class="field-value">{preferredLanguage}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Personal Information -->
+                <template if:true={hasPersonalInfo}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Personal Information</h3>
+                        <div class="section-content">
+                            <template if:true={dateOfBirth}>
+                                <div class="field-row">
+                                    <span class="field-label">Date of Birth:</span>
+                                    <span class="field-value">{dateOfBirth}</span>
+                                </div>
+                            </template>
+                            <template if:true={occupationEmployer}>
+                                <div class="field-row">
+                                    <span class="field-label">Occupation/Employer:</span>
+                                    <span class="field-value">{occupationEmployer}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Referral Information -->
+                <template if:true={hasReferralInfo}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Referral Information</h3>
+                        <div class="section-content">
+                            <template if:true={howDidYouHear}>
+                                <div class="field-row">
+                                    <span class="field-label">How Did You Hear About Us:</span>
+                                    <span class="field-value">{howDidYouHear}</span>
+                                </div>
+                            </template>
+                            <template if:true={howHearDetails}>
+                                <div class="field-row">
+                                    <span class="field-label">Details:</span>
+                                    <span class="field-value">{howHearDetails}</span>
+                                </div>
+                            </template>
+                            <template if:true={workedWithUsBefore}>
+                                <div class="field-row">
+                                    <span class="field-label">Worked With Us Before:</span>
+                                    <span class="field-value">{workedWithUsBefore}</span>
+                                </div>
+                            </template>
+                            <template if:true={previousAttorneyOffice}>
+                                <div class="field-row">
+                                    <span class="field-label">Previous Attorney/Office:</span>
+                                    <span class="field-value">{previousAttorneyOffice}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Attorney History -->
+                <template if:true={hasAttorneyHistory}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Attorney History</h3>
+                        <div class="section-content">
+                            <template if:true={spokenWithOtherAttorneys}>
+                                <div class="field-row">
+                                    <span class="field-label">Spoken With Other Attorneys:</span>
+                                    <span class="field-value">{spokenWithOtherAttorneys}</span>
+                                </div>
+                            </template>
+                            <template if:true={priorAttorneyNameFirm}>
+                                <div class="field-row">
+                                    <span class="field-label">Prior Attorney Name/Firm:</span>
+                                    <span class="field-value">{priorAttorneyNameFirm}</span>
+                                </div>
+                            </template>
+                            <template if:true={reasonNoHirePriorAttorney}>
+                                <div class="field-row">
+                                    <span class="field-label">Reason Not Hired Prior Attorney:</span>
+                                    <span class="field-value">{reasonNoHirePriorAttorney}</span>
+                                </div>
+                            </template>
+                            <template if:true={currentlyRepresented}>
+                                <div class="field-row">
+                                    <span class="field-label">Currently Represented:</span>
+                                    <span class="field-value">{currentlyRepresented}</span>
+                                </div>
+                            </template>
+                            <template if:true={reasonSeekingNewAttorney}>
+                                <div class="field-row">
+                                    <span class="field-label">Reason Seeking New Attorney:</span>
+                                    <span class="field-value">{reasonSeekingNewAttorney}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Office Preferences -->
+                <template if:true={hasOfficePreferences}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Office & Scheduling Preferences</h3>
+                        <div class="section-content">
+                            <template if:true={preferredOfficeLocation}>
+                                <div class="field-row">
+                                    <span class="field-label">Preferred Office:</span>
+                                    <span class="field-value">{preferredOfficeLocation}</span>
+                                </div>
+                            </template>
+                            <div class="field-row">
+                                <span class="field-label">Accommodations Needed:</span>
+                                <span class="field-value">{accommodationsNeeded}</span>
+                            </div>
+                            <template if:true={availabilityTimes}>
+                                <div class="field-row">
+                                    <span class="field-label">Available Times:</span>
+                                    <span class="field-value">{availabilityTimes}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Conflicts Information -->
+                <template if:true={hasConflictsInfo}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Conflicts & Prior Representation</h3>
+                        <div class="section-content">
+                            <template if:true={otherPartiesInvolved}>
+                                <div class="field-row">
+                                    <span class="field-label">Other Parties Involved:</span>
+                                    <span class="field-value">{otherPartiesInvolved}</span>
+                                </div>
+                            </template>
+                            <template if:true={legalMattersWithPartiesBefore}>
+                                <div class="field-row">
+                                    <span class="field-label">Previous Legal Matters With Parties:</span>
+                                    <span class="field-value">{legalMattersWithPartiesBefore}</span>
+                                </div>
+                            </template>
+                            <template if:true={awareOfConflicts}>
+                                <div class="field-row">
+                                    <span class="field-label">Aware of Conflicts:</span>
+                                    <span class="field-value">{awareOfConflicts}</span>
+                                </div>
+                            </template>
+                            <template if:true={representedOtherPartiesInCase}>
+                                <div class="field-row">
+                                    <span class="field-label">Represented Other Parties in Case:</span>
+                                    <span class="field-value">{representedOtherPartiesInCase}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Criminal Law Details -->
+                <template if:true={hasCriminalLaw}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Criminal Law Details</h3>
+                        <div class="section-content">
+                            <template if:true={criminalCharges}>
+                                <div class="field-row">
+                                    <span class="field-label">Charges/Allegations:</span>
+                                    <span class="field-value">{criminalCharges}</span>
+                                </div>
+                            </template>
+                            <template if:true={criminalCaseStatus}>
+                                <div class="field-row">
+                                    <span class="field-label">Case Status:</span>
+                                    <span class="field-value">{criminalCaseStatus}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Family Law Details -->
+                <template if:true={hasFamilyLaw}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Family Law Details</h3>
+                        <div class="section-content">
+                            <template if:true={familyCurrentlyMarried}>
+                                <div class="field-row">
+                                    <span class="field-label">Currently Married:</span>
+                                    <span class="field-value">{familyCurrentlyMarried}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyMarriageDate}>
+                                <div class="field-row">
+                                    <span class="field-label">Marriage Date:</span>
+                                    <span class="field-value">{familyMarriageDate}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyMarriageLocation}>
+                                <div class="field-row">
+                                    <span class="field-label">Marriage Location:</span>
+                                    <span class="field-value">{familyMarriageLocation}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyRelationshipStatus}>
+                                <div class="field-row">
+                                    <span class="field-label">Relationship Status:</span>
+                                    <span class="field-value">{familyRelationshipStatus}</span>
+                                </div>
+                            </template>
+                            <template if:true={familySpouseChildrenTogether}>
+                                <div class="field-row">
+                                    <span class="field-label">Spouse/Children Together:</span>
+                                    <span class="field-value">{familySpouseChildrenTogether}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyPreviouslyFiledCase}>
+                                <div class="field-row">
+                                    <span class="field-label">Previously Filed Family Case:</span>
+                                    <span class="field-value">{familyPreviouslyFiledCase}</span>
+                                </div>
+                            </template>
+                            <template if:true={familySeekingAction}>
+                                <div class="field-row">
+                                    <span class="field-label">Seeking Action:</span>
+                                    <span class="field-value">{familySeekingAction}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyPropertyDivision}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Division:</span>
+                                    <span class="field-value">{familyPropertyDivision}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyPropertyDivisionRealEstate}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Division - Real Estate:</span>
+                                    <span class="field-value">{familyPropertyDivisionRealEstate}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyPropertyDivisionBankAccounts}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Division - Bank Accounts:</span>
+                                    <span class="field-value">{familyPropertyDivisionBankAccounts}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyPropertyDivisionOtherAssets}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Division - Other Assets:</span>
+                                    <span class="field-value">{familyPropertyDivisionOtherAssets}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyDivorceContestedStatus}>
+                                <div class="field-row">
+                                    <span class="field-label">Divorce Contested Status:</span>
+                                    <span class="field-value">{familyDivorceContestedStatus}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyChildrenInvolved}>
+                                <div class="field-row">
+                                    <span class="field-label">Children Involved:</span>
+                                    <span class="field-value">{familyChildrenInvolved}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyChildrenDetails}>
+                                <div class="field-row">
+                                    <span class="field-label">Children Details:</span>
+                                    <span class="field-value">{familyChildrenDetails}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyExistingCustodyOrders}>
+                                <div class="field-row">
+                                    <span class="field-label">Existing Custody Orders:</span>
+                                    <span class="field-value">{familyExistingCustodyOrders}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyChildSafetyConcerns}>
+                                <div class="field-row">
+                                    <span class="field-label">Child Safety Concerns:</span>
+                                    <span class="field-value">{familyChildSafetyConcerns}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyCPSReportsMade}>
+                                <div class="field-row">
+                                    <span class="field-label">CPS Reports Made:</span>
+                                    <span class="field-value">{familyCPSReportsMade}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyCPSReportsDetails}>
+                                <div class="field-row">
+                                    <span class="field-label">CPS Reports Details:</span>
+                                    <span class="field-value">{familyCPSReportsDetails}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyNeedMediationPrep}>
+                                <div class="field-row">
+                                    <span class="field-label">Need Mediation Prep:</span>
+                                    <span class="field-value">{familyNeedMediationPrep}</span>
+                                </div>
+                            </template>
+                            <template if:true={familyPreparedForMediation}>
+                                <div class="field-row">
+                                    <span class="field-label">Prepared for Mediation:</span>
+                                    <span class="field-value">{familyPreparedForMediation}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Employment Law Details -->
+                <template if:true={hasEmploymentLaw}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Employment Law Details</h3>
+                        <div class="section-content">
+                            <template if:true={employmentIssueType}>
+                                <div class="field-row">
+                                    <span class="field-label">Issue Type:</span>
+                                    <span class="field-value">{employmentIssueType}</span>
+                                </div>
+                            </template>
+                            <template if:true={employmentCurrentStatus}>
+                                <div class="field-row">
+                                    <span class="field-label">Current Status:</span>
+                                    <span class="field-value">{employmentCurrentStatus}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Real Estate Details -->
+                <template if:true={hasRealEstate}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Real Estate Details</h3>
+                        <div class="section-content">
+                            <template if:true={realEstateProperty}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Address:</span>
+                                    <span class="field-value">{realEstateProperty}</span>
+                                </div>
+                            </template>
+                            <template if:true={realEstateTransactionType}>
+                                <div class="field-row">
+                                    <span class="field-label">Transaction Type:</span>
+                                    <span class="field-value">{realEstateTransactionType}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Business Law Details -->
+                <template if:true={hasBusinessLaw}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Business Law Details</h3>
+                        <div class="section-content">
+                            <template if:true={businessName}>
+                                <div class="field-row">
+                                    <span class="field-label">Business Name:</span>
+                                    <span class="field-value">{businessName}</span>
+                                </div>
+                            </template>
+                            <template if:true={businessIssueType}>
+                                <div class="field-row">
+                                    <span class="field-label">Issue Type:</span>
+                                    <span class="field-value">{businessIssueType}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Construction Details -->
+                <template if:true={hasConstruction}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Construction & Construction Defect Details</h3>
+                        <div class="section-content">
+                            <template if:true={constructionPropertyType}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Type:</span>
+                                    <span class="field-value">{constructionPropertyType}</span>
+                                </div>
+                            </template>
+                            <template if:true={constructionIssueDescription}>
+                                <div class="field-row">
+                                    <span class="field-label">Issue Description:</span>
+                                    <span class="field-value">{constructionIssueDescription}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- HOA Details -->
+                <template if:true={hasHOA}>
+                    <div class="summary-section">
+                        <h3 class="section-header">HOA Details</h3>
+                        <div class="section-content">
+                            <template if:true={hoaPropertyAddress}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Address:</span>
+                                    <span class="field-value">{hoaPropertyAddress}</span>
+                                </div>
+                            </template>
+                            <template if:true={hoaIssueType}>
+                                <div class="field-row">
+                                    <span class="field-label">Issue Type:</span>
+                                    <span class="field-value">{hoaIssueType}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Landlord-Tenant Details -->
+                <template if:true={hasLandlordTenant}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Landlord-Tenant Details</h3>
+                        <div class="section-content">
+                            <template if:true={landlordTenantRole}>
+                                <div class="field-row">
+                                    <span class="field-label">Role:</span>
+                                    <span class="field-value">{landlordTenantRole}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantProperty}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Address:</span>
+                                    <span class="field-value">{landlordTenantProperty}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantStage}>
+                                <div class="field-row">
+                                    <span class="field-label">Stage:</span>
+                                    <span class="field-value">{landlordTenantStage}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantMonthlyRent}>
+                                <div class="field-row">
+                                    <span class="field-label">Monthly Rent Amount:</span>
+                                    <span class="field-value">{landlordTenantMonthlyRent}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantLeaseTermType}>
+                                <div class="field-row">
+                                    <span class="field-label">Lease Term Type:</span>
+                                    <span class="field-value">{landlordTenantLeaseTermType}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantWrittenLease}>
+                                <div class="field-row">
+                                    <span class="field-label">Written Lease Agreement:</span>
+                                    <span class="field-value">{landlordTenantWrittenLease}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantPropertyOwnerName}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Owner Name:</span>
+                                    <span class="field-value">{landlordTenantPropertyOwnerName}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantOwnershipType}>
+                                <div class="field-row">
+                                    <span class="field-label">Property Ownership Type:</span>
+                                    <span class="field-value">{landlordTenantOwnershipType}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantEntityName}>
+                                <div class="field-row">
+                                    <span class="field-label">Entity Name:</span>
+                                    <span class="field-value">{landlordTenantEntityName}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantEntityState}>
+                                <div class="field-row">
+                                    <span class="field-label">Entity State of Formation:</span>
+                                    <span class="field-value">{landlordTenantEntityState}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantServices}>
+                                <div class="field-row">
+                                    <span class="field-label">Landlord Services Needed:</span>
+                                    <span class="field-value">{landlordTenantServices}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantIssueNature}>
+                                <div class="field-row">
+                                    <span class="field-label">Issue Nature:</span>
+                                    <span class="field-value">{landlordTenantIssueNature}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantEvictionFiled}>
+                                <div class="field-row">
+                                    <span class="field-label">Eviction Action Filed:</span>
+                                    <span class="field-value">{landlordTenantEvictionFiled}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantWritRequested}>
+                                <div class="field-row">
+                                    <span class="field-label">Writ of Restitution Requested:</span>
+                                    <span class="field-value">{landlordTenantWritRequested}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantCourtRepresentation}>
+                                <div class="field-row">
+                                    <span class="field-label">Court Representation Needed:</span>
+                                    <span class="field-value">{landlordTenantCourtRepresentation}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantTenantDefenses}>
+                                <div class="field-row">
+                                    <span class="field-label">Tenant Asserting Defenses:</span>
+                                    <span class="field-value">{landlordTenantTenantDefenses}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantTenantDefensesDetails}>
+                                <div class="field-row">
+                                    <span class="field-label">Tenant Defense Details:</span>
+                                    <span class="field-value">{landlordTenantTenantDefensesDetails}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantSettlementDiscussion}>
+                                <div class="field-row">
+                                    <span class="field-label">Settlement Discussion:</span>
+                                    <span class="field-value">{landlordTenantSettlementDiscussion}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantPartialRentAccepted}>
+                                <div class="field-row">
+                                    <span class="field-label">Partial Rent Accepted:</span>
+                                    <span class="field-value">{landlordTenantPartialRentAccepted}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantMediationAttempted}>
+                                <div class="field-row">
+                                    <span class="field-label">Mediation Attempted:</span>
+                                    <span class="field-value">{landlordTenantMediationAttempted}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantNoticeIssued}>
+                                <div class="field-row">
+                                    <span class="field-label">Notice Issued:</span>
+                                    <span class="field-value">{landlordTenantNoticeIssued}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantPreviousEviction}>
+                                <div class="field-row">
+                                    <span class="field-label">Previous Eviction:</span>
+                                    <span class="field-value">{landlordTenantPreviousEviction}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantPursueGoal}>
+                                <div class="field-row">
+                                    <span class="field-label">Pursue Goal:</span>
+                                    <span class="field-value">{landlordTenantPursueGoal}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantCaseNumber}>
+                                <div class="field-row">
+                                    <span class="field-label">Case Number:</span>
+                                    <span class="field-value">{landlordTenantCaseNumber}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantFilingCounty}>
+                                <div class="field-row">
+                                    <span class="field-label">Filing County:</span>
+                                    <span class="field-value">{landlordTenantFilingCounty}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantCourtLocation}>
+                                <div class="field-row">
+                                    <span class="field-label">Court Location:</span>
+                                    <span class="field-value">{landlordTenantCourtLocation}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantFilingDate}>
+                                <div class="field-row">
+                                    <span class="field-label">Filing Date:</span>
+                                    <span class="field-value">{landlordTenantFilingDate}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantNoticeType}>
+                                <div class="field-row">
+                                    <span class="field-label">Notice Type:</span>
+                                    <span class="field-value">{landlordTenantNoticeType}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantNoticeDate}>
+                                <div class="field-row">
+                                    <span class="field-label">Notice Date:</span>
+                                    <span class="field-value">{landlordTenantNoticeDate}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantNoticeReceivedDate}>
+                                <div class="field-row">
+                                    <span class="field-label">Notice Received Date:</span>
+                                    <span class="field-value">{landlordTenantNoticeReceivedDate}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantServedDate}>
+                                <div class="field-row">
+                                    <span class="field-label">Served Date:</span>
+                                    <span class="field-value">{landlordTenantServedDate}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantCurrentStatus}>
+                                <div class="field-row">
+                                    <span class="field-label">Current Status:</span>
+                                    <span class="field-value">{landlordTenantCurrentStatus}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantIssueNatureOther}>
+                                <div class="field-row">
+                                    <span class="field-label">Issue Nature Other:</span>
+                                    <span class="field-value">{landlordTenantIssueNatureOther}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantMediationOutcome}>
+                                <div class="field-row">
+                                    <span class="field-label">Mediation Outcome:</span>
+                                    <span class="field-value">{landlordTenantMediationOutcome}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantPreviousEvictionDetails}>
+                                <div class="field-row">
+                                    <span class="field-label">Previous Eviction Details:</span>
+                                    <span class="field-value">{landlordTenantPreviousEvictionDetails}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantTenantLeaseType}>
+                                <div class="field-row">
+                                    <span class="field-label">Tenant Lease Type:</span>
+                                    <span class="field-value">{landlordTenantTenantLeaseType}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantTenantLeaseTerm}>
+                                <div class="field-row">
+                                    <span class="field-label">Tenant Lease Term:</span>
+                                    <span class="field-value">{landlordTenantTenantLeaseTerm}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantLeaseAllSigned}>
+                                <div class="field-row">
+                                    <span class="field-label">Lease Signed by All Adults:</span>
+                                    <span class="field-value">{landlordTenantLeaseAllSigned}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantLeaseConcerns}>
+                                <div class="field-row">
+                                    <span class="field-label">Lease Concerns:</span>
+                                    <span class="field-value">{landlordTenantLeaseConcerns}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantLeaseConcernsDetails}>
+                                <div class="field-row">
+                                    <span class="field-label">Lease Concerns Details:</span>
+                                    <span class="field-value">{landlordTenantLeaseConcernsDetails}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantReceivedNotices}>
+                                <div class="field-row">
+                                    <span class="field-label">Received Notices from Landlord:</span>
+                                    <span class="field-value">{landlordTenantReceivedNotices}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantVerbalThreats}>
+                                <div class="field-row">
+                                    <span class="field-label">Verbal Threats of Eviction:</span>
+                                    <span class="field-value">{landlordTenantVerbalThreats}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantNoticeUnjust}>
+                                <div class="field-row">
+                                    <span class="field-label">Notice Unjust or Retaliatory:</span>
+                                    <span class="field-value">{landlordTenantNoticeUnjust}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantNoticeUnjustDetails}>
+                                <div class="field-row">
+                                    <span class="field-label">Notice Unjust Details:</span>
+                                    <span class="field-value">{landlordTenantNoticeUnjustDetails}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantHabitabilityIssues}>
+                                <div class="field-row">
+                                    <span class="field-label">Habitability Issues:</span>
+                                    <span class="field-value">{landlordTenantHabitabilityIssues}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantHabitabilityDetails}>
+                                <div class="field-row">
+                                    <span class="field-label">Habitability Details:</span>
+                                    <span class="field-value">{landlordTenantHabitabilityDetails}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantRentWithheld}>
+                                <div class="field-row">
+                                    <span class="field-label">Rent Withheld:</span>
+                                    <span class="field-value">{landlordTenantRentWithheld}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantRepairRequested}>
+                                <div class="field-row">
+                                    <span class="field-label">Repair Requested:</span>
+                                    <span class="field-value">{landlordTenantRepairRequested}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantHarassment}>
+                                <div class="field-row">
+                                    <span class="field-label">Harassment/Discrimination:</span>
+                                    <span class="field-value">{landlordTenantHarassment}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantHarassmentDetails}>
+                                <div class="field-row">
+                                    <span class="field-label">Harassment Details:</span>
+                                    <span class="field-value">{landlordTenantHarassmentDetails}</span>
+                                </div>
+                            </template>
+                            <template if:true={landlordTenantServedEviction}>
+                                <div class="field-row">
+                                    <span class="field-label">Served with Eviction:</span>
+                                    <span class="field-value">{landlordTenantServedEviction}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Guardian & Conservatorship Details -->
+                <template if:true={hasGuardianConservatorship}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Guardian & Conservatorship Details</h3>
+                        <div class="section-content">
+                            <template if:true={guardianWardName}>
+                                <div class="field-row">
+                                    <span class="field-label">Proposed Ward:</span>
+                                    <span class="field-value">{guardianWardName}</span>
+                                </div>
+                            </template>
+                            <template if:true={guardianProceedingType}>
+                                <div class="field-row">
+                                    <span class="field-label">Proceeding Type:</span>
+                                    <span class="field-value">{guardianProceedingType}</span>
+                                </div>
+                            </template>
+                            <template if:true={guardianReason}>
+                                <div class="field-row">
+                                    <span class="field-label">Reason:</span>
+                                    <span class="field-value">{guardianReason}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Defamation Details -->
+                <template if:true={hasDefamation}>
+                    <div class="summary-section">
+                        <h3 class="section-header">Defamation Details</h3>
+                        <div class="section-content">
+                            <template if:true={defamationInvolvementType}>
+                                <div class="field-row">
+                                    <span class="field-label">Involvement Type:</span>
+                                    <span class="field-value">{defamationInvolvementType}</span>
+                                </div>
+                            </template>
+                            <template if:true={defamationStatementMaker}>
+                                <div class="field-row">
+                                    <span class="field-label">Statement Maker:</span>
+                                    <span class="field-value">{defamationStatementMaker}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+
+    <!-- Email Modal -->
+    <template if:true={showEmailModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning-button-icon
+                        icon-name="utility:close"
+                        onclick={handleCloseEmailModal}
+                        alternative-text="close"
+                        variant="bare-inverse"
+                        class="slds-modal__close"
+                    ></lightning-button-icon>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Email Intake Summary</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <!-- User Selection -->
+                    <div class="slds-form-element slds-m-bottom_medium">
+                        <label class="slds-form-element__label" for="user-selection">
+                            Select Users to Email
+                        </label>
+                        <div class="slds-form-element__control">
+                            <lightning-dual-listbox
+                                name="users"
+                                label="Select Users"
+                                source-label="Available Users"
+                                selected-label="Selected Users"
+                                options={availableUsers}
+                                value={selectedUserIds}
+                                onchange={handleUserSelection}
+                                variant="label-hidden"
+                                min="1"
+                                max="20"
+                            ></lightning-dual-listbox>
+                        </div>
+                    </div>
+
+                    <!-- Email Subject -->
+                    <div class="slds-form-element slds-m-bottom_medium">
+                        <label class="slds-form-element__label" for="email-subject">
+                            Email Subject
+                        </label>
+                        <div class="slds-form-element__control">
+                            <lightning-input
+                                id="email-subject"
+                                type="text"
+                                value={emailSubject}
+                                onchange={handleSubjectChange}
+                                required
+                            ></lightning-input>
+                        </div>
+                    </div>
+
+                    <!-- Email Body Preview -->
+                    <div class="slds-form-element slds-m-bottom_medium">
+                        <label class="slds-form-element__label" for="email-body">
+                            Email Content Preview
+                        </label>
+                        <div class="slds-form-element__control">
+                            <lightning-textarea
+                                id="email-body"
+                                value={emailBody}
+                                onchange={handleBodyChange}
+                                rows="10"
+                                readonly
+                            ></lightning-textarea>
+                        </div>
+                        <div class="slds-form-element__help">
+                            This is a preview of the HTML email content that will be sent.
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button
+                        label="Cancel"
+                        onclick={handleCloseEmailModal}
+                    ></lightning-button>
+                    <lightning-button
+                        label="Send Email"
+                        variant="brand"
+                        onclick={handleSendEmail}
+                        disabled={isEmailLoading}
+                    ></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

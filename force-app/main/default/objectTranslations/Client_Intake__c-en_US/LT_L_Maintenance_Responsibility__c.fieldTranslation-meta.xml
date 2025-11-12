@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- LT_L: Who is responsible for... --></label>
+    <name>LT_L_Maintenance_Responsibility__c</name>
+    <picklistValues>
+        <masterLabel>Landlord</masterLabel>
+        <translation><!-- Landlord --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Shared Responsibility</masterLabel>
+        <translation><!-- Shared Responsibility --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tenant</masterLabel>
+        <translation><!-- Tenant --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

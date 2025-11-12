@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PE_Probate_Case_Stage__c</fullName>
+    <label>PE: Probate Case Stage</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Opened</fullName>
+                <default>false</default>
+                <label>Opened</label>
+            </value>
+            <value>
+                <fullName>Petition pending</fullName>
+                <default>false</default>
+                <label>Petition pending</label>
+            </value>
+            <value>
+                <fullName>Administration stage</fullName>
+                <default>false</default>
+                <label>Administration stage</label>
+            </value>
+            <value>
+                <fullName>Distribution stage</fullName>
+                <default>false</default>
+                <label>Distribution stage</label>
+            </value>
+            <value>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <label>Closed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

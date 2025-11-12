@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DV_Receiving_Support_Services__c</fullName>
+    <label>DV: Receiving Support Services...</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Domestic violence shelter</fullName>
+                <default>false</default>
+                <label>Domestic violence shelter</label>
+            </value>
+            <value>
+                <fullName>Therapy or counseling</fullName>
+                <default>false</default>
+                <label>Therapy or counseling</label>
+            </value>
+            <value>
+                <fullName>Legal aid services</fullName>
+                <default>false</default>
+                <label>Legal aid services</label>
+            </value>
+            <value>
+                <fullName>Medical treatment or health services</fullName>
+                <default>false</default>
+                <label>Medical treatment or health services</label>
+            </value>
+            <value>
+                <fullName>Child protection services</fullName>
+                <default>false</default>
+                <label>Child protection services</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

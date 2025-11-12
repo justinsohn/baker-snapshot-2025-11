@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Which_type_of_Fee_Agreement__c</fullName>
+    <label>Which type of Fee Agreement?</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>REGULAR CONSULTATION FEE AND INTAKE ($350)</fullName>
+                <default>false</default>
+                <label>REGULAR CONSULTATION FEE AND INTAKE ($350)</label>
+            </value>
+            <value>
+                <fullName>Hourly Evergreen</fullName>
+                <default>false</default>
+                <label>Hourly Evergreen</label>
+            </value>
+            <value>
+                <fullName>Evergreen Transactional</fullName>
+                <default>false</default>
+                <label>Evergreen Transactional</label>
+            </value>
+            <value>
+                <fullName>Contingency</fullName>
+                <default>false</default>
+                <label>Contingency</label>
+            </value>
+            <value>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+                <label>Flat Fee</label>
+            </value>
+            <value>
+                <fullName>Assigned Defense Counsel (ADC)</fullName>
+                <default>false</default>
+                <label>Assigned Defense Counsel (ADC)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
