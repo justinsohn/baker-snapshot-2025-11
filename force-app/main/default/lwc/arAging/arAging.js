@@ -48,7 +48,7 @@ function buildInvoiceDateFields(dateValue) {
   const localDate = new Date(year, monthIndex, day);
   return {
     display: DISPLAY_DATE_FORMATTER.format(localDate),
-    localDateTimeString: `${yearString}-${monthString}-${dayString}`
+    localDateTimeString: `${yearString}-${monthString}-${dayString}T00:00:00`
   };
 }
 
@@ -61,8 +61,9 @@ const COLUMNS = [
   {
     label: "Date",
     fieldName: "invoiceDateLocal",
-    type: "date-local",
+    type: "date",
     typeAttributes: {
+      timeZone: USER_TIME_ZONE,
       month: "2-digit",
       day: "2-digit",
       year: "numeric"
